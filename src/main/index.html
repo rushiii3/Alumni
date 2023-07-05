@@ -22,7 +22,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <button type="button" id="HomePageSignInButton">Sign In</button>
+              <button type="button" id="HomePageLoginButton">Log In</button>
             </li>
             <li class="nav-item" style="margin-left:2vh">
               <button type="button" id="HomePageSignUpButton">Sign Up</button>
@@ -37,13 +37,11 @@
         <img src="../img/shutterstock_658847998.webp" style="height: 100vh;width: 100%;object-fit: cover;object-position: 10% 90%;filter: brightness(60%);">
         <div style="position: absolute;top: 40%;left: 5%;right: 5%;">
             <p class="text-center text-white fs-1">
-                your <br>
-                New Way.<br>
-                New Start
+                V.G. Vaze Alumni <br>
+                Elevate, Connect, Refresh the beautiful memories<br>
             </p>
         </div>
     </div>
-
 
     <script >
       
@@ -54,9 +52,9 @@
         });
 
       //2.adding an onclick listener to the sign in  button
-      var Signinbutton =document.getElementById("HomePageSignInButton");
+      var Signinbutton =document.getElementById("HomePageLoginButton");
         Signinbutton.addEventListener('click',function(){
-          window.location.href='../main/signup.php'
+          window.location.href='../main/login.php'
         })
       
     </script>

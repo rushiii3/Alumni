@@ -31,7 +31,7 @@
                         </div>
                         <div class="stepper-item ">
                             <div class="step-counter">2</div>
-                            <div class="step-name text-center">Bachlor <br>Degree</div>
+                            <div class="step-name text-center">Bachelor <br>Degree</div>
                         </div>
                         <div class="stepper-item ">
                             <div class="step-counter">3</div>
@@ -47,40 +47,52 @@
                         </div>
                         </div>
                     </div>
-                    <form action="<?php $_PHP_SELF ?>" method="POST">
+                    <form action="<?php $_PHP_SELF ?>" method="POST" class="needs-validation" id="signupform" novalidate>
                         <!-- Page 1 starts  Personal Details -->
                         <div id="page1">
                             <!-- First name -->
                             <div class="mb-3">
-                                <label for="first_name" class="form-label">First Name</label>
-                                <input type="text" name="first_name" class="form-control" id="first_name" placeholder="e.g. abc def" required>
+                                <label for="first_name" class="form-label">First Name (as on your marksheet)</label>
+                                <input type="text" name="first_name" class="form-control" id="first_name"  required>
+                                <div class="invalid-feedback">
+                                    Please enter your firstname
+                                </div>
                             </div>
                             <!-- middle name -->
                             <div class="mb-3">
-                                <label for="middle_name" class="form-label">Middle Name</label>
-                                <input type="text" name="middle_name" class="form-control" id="middle_name" placeholder="e.g. abc def" required>
+                                <label for="middle_name" class="form-label">Middle Name (as on your marksheet)</label>
+                                <input type="text" name="middle_name" class="form-control" id="middle_name">
                             </div>
                             <!-- last name -->
                             <div class="mb-3">
-                                <label for="last_name" class="form-label">Last Name</label>
-                                <input type="text" name="last_name" class="form-control" id="last_name" placeholder="e.g. abc def" required>
+                                <label for="last_name" class="form-label">Last Name (as on your marksheet)</label>
+                                <input type="text" name="last_name" class="form-control" id="last_name" required>
+                                <div class="invalid-feedback">
+                                    Please enter your lastname
+                                </div>
                             </div>
                             <!-- Date of birth -->
                             <div class="mb-3">
                                 <label for="dob" class="form-label">Date of Birth</label>
-                                <input type="date" name="dob" class="form-control" id="dob" placeholder="e.g. abc def" required>
+                                <input type="date" name="dob" class="form-control" id="dob"  required>
+                                <div class="invalid-feedback">
+                                    Please enter your date of birth
+                                </div>
                             </div>
                             <!-- linkedin addres -->
                             <div class="mb-3">
                                 <label for="linkedin_address" class="form-label">Linkedin Address</label>
-                                <input type="text" name="linkedin_address" class="form-control" id="linkedin_address" placeholder="e.g. abc def" required>
+                                <input type="text" name="linkedin_address" class="form-control" id="linkedin_address" placeholder="https://www.linkedin.com/in/abc" >
                             </div>
                             <!-- Email -->
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <div class="input-group">
                                     <input type="email" class="form-control" placeholder="Email" aria-describedby="button-addon2">
-                                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Verify</button>
+                                    <button class="btn btn-outline-secondary" type="button" id="emailbutton-addon2">Verify</button>
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please enter a valid email address
                                 </div>
                             </div>
                             <div class="mb-3">
@@ -89,22 +101,47 @@
                             </div>
                         </div>
                         
-                        <!-- Page 2 starts  Bachlor Degree -->
+                        <!-- Page 2 starts  Bachelor Degree -->
                         <div id="page2">
-                            <!-- Bachlor Degree course name -->
+                            <!-- Bachelor Degree degree name -->
                             <div class="mb-3">
-                                <label for="bachlor_course" class="form-label">Course</label>
-                                <input type="text" name="bachlor_course" class="form-control" id="bachlor_course" placeholder="e.g. abc def" required>
+                                <label for="bachelor_degree" class="form-label">Bachelor's Degree</label>
+                               
+<select class="form-select" aria-label="Bachelors degree" id="bachelors_degree_list">
+  <option selected>Select a bachelors degree</option>
+  <option value="1">BA</option>
+  <option value="2">BSC</option>
+  <option value="3">BCOM</option>
+  <option value="4">BCOM-BI</option>
+  <option value="5">BCOM-AF</option>
+  <option value="6">BVoc</option>
+  <option value="7">BAMMC</option>
+  <option value="8">BMS</option>
+  <option value="8">Other</option>
+</select>
                             </div>
-                            <!-- Bachlor Degree college name -->
+                            <!-- Bachelor Degree college name -->
                             <div class="mb-3">
-                                <label for="bachlor_college_name" class="form-label">Name of College</label>
-                                <input type="text" name="bachlor_college_name" class="form-control" id="bachlor_college_name" placeholder="e.g. abc def" required>
+                                <label for="bachelor_college_name" class="form-label">Name of College</label>
+                                <input type="text" name="bachelor_college_name" list="vaze_college_name" class="form-control" id="bachelor_college_name"  required>
+
+                                <!--auto suggest the name of Vaze college-->
+                                <datalist id="vaze_college_name">
+                                    <option value="KET's V.G. Vaze College of Arts,Science and Commerce">
+                                </datalist>
+
+                                <div class="invalid-feedback">
+                                    Please enter the name of the college
+                                </div>
+
                             </div>
-                            <!-- Bachlor Degree admission year -->
+                            <!-- Bachelor Degree admission year -->
                             <div class="mb-3">
-                                <label for="bachlor_college_year_admission" class="form-label">Year of Admission </label>
-                                <input type="text" name="bachlor_college_year_admission" class="form-control" id="bachlor_college_year_admission" placeholder="e.g. abc def" required>
+                                <label for="bachelor_college_year_admission" class="form-label">Year of Admission</label>
+                                <input type="number" maxLength="4" name="bachelor_college_year_admission" class="form-control" id="bachelor_college_year_admission" min="1950" required>
+                                <div class="invalid-feedback">
+                                    Please enter the year you took admission in the college
+                                </div>
                             </div>
                             
                             <div class="mb-3">
@@ -115,23 +152,42 @@
                                 <button type="button" name="next_page_3" id="next_page_3" class="btn btn-primary px-5 py-2 ms-2 mt-3">Next</button>
                             </div>
                         </div>
+
+                               
                         <!-- Page 3 starts Master Degree -->
                         <div id="page3">
-                            <!--Master Degree course name -->
+                            <!--Master Degree  name -->
                             <div class="mb-3">
-                                <label for="master_course" class="form-label">Course</label>
-                                <input type="text" name="master_course" class="form-control" id="master_course" placeholder="e.g. abc def" required>
+                                <label for="master_course" class="form-label">Master's Degree</label>
+                                <select class="form-select" aria-label="Bachelors degree" id="masters_degree_list">
+  <option selected>Select a masters degree</option>
+  <option value="0">None</option>
+  <option value="1">MSC(IT)</option>
+  <option value="2">MSC(BT)</option>
+  <option value="3">MSC</option>
+  <option value="4">MCOM</option>
+  <option value="5">Ph.D. Arts</option>
+  <option value="6">Ph.D. Science</option>
+  <option value="7">PGDPCM</option>
+  <option value="8">Other</option>
+  
+</select>
+             
                             </div>
                             <!-- Master Degree college name -->
                             <div class="mb-3">
                                 <label for="master_college_name" class="form-label">Name of College</label>
-                                <input type="text" name="master_college_name" class="form-control" id="master_college_name" placeholder="e.g. abc def" required>
+                                <input type="text" name="master_college_name" list ="vaze_college_name" class="form-control" id="master_college_name">
+
+                                <datalist id="vaze_college_name">
+                                    <option value="KET's V.G. Vaze College of Arts,Science and Commerce">
+                                </datalist>
                             </div>
+
                             <!-- Master Degree admission year -->
                             <div class="mb-3">
                                 <label for="master_college_year_admission" class="form-label">Year of Admission</label>
-                                <input type="text" name="master_college_year_admission" class="form-control" id="master_college_year_admission" placeholder="e.g. abc def" required>
-                            </div>
+                                <input type="number" maxLength="4" name="master_college_year_admission" class="form-control" id="master_college_year_admission" min="1950">
                             
                             <div class="mb-3">
                                 <!-- previous page button -->
@@ -141,18 +197,19 @@
                                 <button type="button" name="next_page_4" id="next_page_4" class="btn btn-primary px-5 py-2 ms-2 mt-3">Next</button>
                             </div>
                         </div>
+                                </div>
 
                         <!-- Page 4 starts  Professional Details -->
                         <div id="page4">
                             <!-- Name of Company/Institution -->
                             <div class="mb-3">
                                 <label for="company_name" class="form-label">Name of Company/Institution</label>
-                                <input type="text" name="company_name" class="form-control" id="company_name" placeholder="e.g. abc def" required>
+                                <input type="text" name="company_name" class="form-control" id="company_name" >
                             </div>
                             <!-- Designation -->
                             <div class="mb-3">
                                 <label for="Designation" class="form-label">Designation</label>
-                                <input type="text" name="Designation" class="form-control" id="Designation" placeholder="e.g. abc def" required>
+                                <input type="text" name="Designation" class="form-control" id="Designation" >
                             </div> 
                             <div class="mb-3">
                                 <!-- previous page button -->
@@ -163,28 +220,34 @@
                             </div>
                         </div>
 
-                        <!-- Page 5 starts  Bachlor Degree -->
+                        <!-- Page 5 starts  Password -->
                         <div id="page5">
                             <!-- password -->
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
                                 <div class="input-group">
-                                    <input type="password" name="password" class="form-control" id="password" placeholder="e.g. abc def" required>
+                                    <input type="password" name="password" class="form-control" id="password" required>
                                     <span class="input-group-text pass_icon" id="basic-addon1">
                                         <i class="bi bi-eye-fill pass_open_eye"></i>
                                         <i class="bi bi-eye-slash-fill pass_close_eye"></i>
                                     </span>
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please set a password
                                 </div>
                             </div>
                             <!-- confirm password -->
                             <div class="mb-3">
                                 <label for="confirm-password" class="form-label">Confirm Password</label>
                                 <div class="input-group">
-                                    <input type="password" name="confirm-password" class="form-control" id="confirm-password" placeholder="e.g. abc def" required>
+                                    <input type="password" name="confirm-password" class="form-control" id="confirm-password" required>
                                     <span class="input-group-text confirm_pass_icon" id="basic-addon1">
                                         <i class="bi bi-eye-fill cpass_open_eye"></i>
                                         <i class="bi bi-eye-slash-fill cpass_close_eye"></i>
                                     </span>
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please re-enter the password
                                 </div>
                             </div>
                             <div class="mb-3">
@@ -203,7 +266,7 @@
                     <!-- image -->
                     <img src="https://img.freepik.com/premium-vector/online-registration-sign-up-with-man-sitting-near-smartphone_268404-95.jpg?w=1480" alt="" class="img-fluid h-auto w-100 my-5" />
                     <p class="text-center mt-5">
-                        <a href="sign_in.php"  class="link-dark">Already have an account? Sign in</a>
+                        <a href="../main/login.php"  class="link-dark">Already have an account? Log in</a>
                     </p>
                 </div>
                 
