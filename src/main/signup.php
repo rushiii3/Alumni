@@ -13,6 +13,10 @@
 
 </head>
 <body>
+    <?php
+    include_once "loader.html";
+    ?>
+    <main id="main">
 <div class="container mt-5 mb-5 shadow p-3 mb-5 bg-body" id="container">
             <div class="row p-3">
 
@@ -206,6 +210,7 @@
                
             </div>
         </div>
+</main>
         <script src="../js/sign_up.js"></script>
 </body>
 </html>
