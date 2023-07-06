@@ -36,7 +36,14 @@
             $('.cpass_close_eye').show();
        }
     })
+
+
 $('#next_page_2').on('click',function(){
+    if(!validatePageFields("1")){
+        return;
+    }
+
+    //else go to next page
     $page1.fadeOut();
     $page1.hide();
     $page2.fadeIn();
@@ -105,3 +112,51 @@ $('#previous_page_4').on('click',function(){
     $page4.fadeIn();
     $page4.show();
 })
+
+
+//form validation for fields that cant be empty using bootstrap
+  
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    /*
+    (() => {
+        'use strict';
+        const signupform = document.getElementById("signupform");
+        signupform.addEventListener('submit', function(e) {
+          if (!signupform.checkValidity()) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
+          signupform.classList.add('was-validated');
+        }, false);
+      })();
+      */
+
+
+      const signupform=document.getElementById("signupform");
+      const submit=document.getElementById("submit");
+      submit.addEventListener('click',function(e){
+        e.preventDefault;
+        if(!signupform.checkValidity){
+            e.stopPropagation();
+        }
+
+        signupform.classList.add('was-validated')
+    },false)
+
+
+    //.validate the fields on that page
+    function validatePageFields(page){
+        var pageForm = $('#page' + page).find('form');
+        if(!pageForm[0].checkValidity()){
+            return false;
+        }
+        else{
+            pageForm.addClass('was-validated');
+            return pageForm[0].checkValidity();
+        }
+    
+    }
+     
+    
+
+
