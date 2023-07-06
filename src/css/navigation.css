@@ -28,33 +28,20 @@ a:focus {
     outline: none !important;
     border: none;
 }
-/* ---------------------------------------------------
-    SIDEBAR STYLE
------------------------------------------------------ */
-
 .wrapper {
     display: flex;
     width: 100%;
     align-items: stretch;
+    min-height: 100vh;
 }
 
-#sidebar {
-    min-width: 270px;
-    max-width: 270px;
-    /* background: #7386D5; */
+#sidebar {  
     background: #0099CC ;
     color: #fff;
     transition: all 0.3s;
 }
 
-#sidebar.active {
-    margin-left: -250px;
-}
 
-#sidebar .sidebar-header {
-    padding: 20px;
-    background: #6d7fcc;
-}
 
 #sidebar ul.components {
     padding: 20px 0;
@@ -113,10 +100,7 @@ ul.CTAs a {
     margin-bottom: 5px;
 }
 
-a.download {
-    background: #fff;
-    color: #7386D5;
-}
+
 
 a.article,
 a.article:hover {
@@ -139,14 +123,10 @@ a.article:hover {
     MEDIAQUERIES
 ----------------------------------------------------- */
 
-@media only screen and (max-width: 768px) {
-     
-   
-}
-
-@media (min-width: 0px) { 
+ @media (min-width: 0px) { 
     #sidebar {
-        margin-left: -270px;
+        min-width: 100%;
+        display: none;
     }
     #sidebar.active {
         margin-left: 0;
@@ -158,6 +138,9 @@ a.article:hover {
  }
  @media (min-width: 768px) { 
     #sidebar {
+        display: block;
+        min-width: 270px;
+        max-width: 270px;
         margin-left: 0px;
     }
     #sidebar.active {
@@ -166,8 +149,12 @@ a.article:hover {
     #navigation{
     display:none;
     }
+    #CloseNav{
+        display: none;
+    }
     
- }
+ } 
+
 .show{
     display:block;
 }
@@ -183,4 +170,13 @@ a.article:hover {
     -o-transform: scale(2.5);
     -ms-transform: scale(2.5);
     transform: scale(2.5);
+}
+#sideBarLogo{
+    text-align: center;
+    -webkit-transform: scale(1.5);
+    -moz-transform: scale(1.5);
+    -o-transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    transform: scale(1.5);
+    margin-inline: auto;
 }
