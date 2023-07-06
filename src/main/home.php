@@ -28,9 +28,62 @@
             include "navbar2.php";
         ?>
             <!-- write all files here -->
-
+            <h1>
+Events
+</h1>
+<h3>
+Upcoming Events
+</h3>
+<div class="container mt-2" style="height:100vh;">
+        <div class="row p-1">
+            <div class="col-lg-4 col-md-6 mb-5">
+                <div class="card shadow p-1" style="width: auto;border-radius: 20px;">
+                    <div class="card-body ">
+                        <h5 class="card-title"><?php //echo($row_of_query['event_name']); ?></h5>
+                        <div class="badge bg-success p-1 mb-2 ">
+                    </div>
+                        <!-- <h6 class="card-subtitle mb-2 text-body-secondary">29 MAY 2023</h6> -->
+                        <p class="card-text"> <span class="fw-bold" style="text-align:justify;">Description : </span>   </p>
+                        <p class="card-text"> <span class="fw-bold">Date : </span> <?php //echo date("d M Y", strtotime($row_of_query['event_date'])); ?></p>
+                        <p class="card-text"> <span class="fw-bold">Time : </span> <?php //echo date("g:i A", strtotime($row_of_query['event_start_time'])); ?> to <?php //echo date("g:i A", strtotime($row_of_query['event_end_time'])); ?> </p>
+                        <p class="card-text"> <span class="fw-bold">Venue : </span> <?php //echo($row_of_query['ar_name']); ?> </p>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-5">
+                <div class="card shadow p-1" style="width: auto;border-radius: 20px;">
+                    <div class="card-body ">
+                        <h5 class="card-title"><?php //echo($row_of_query['event_name']); ?></h5>
+                        <div class="badge bg-success p-1 mb-2 ">
+                    </div>
+                        <!-- <h6 class="card-subtitle mb-2 text-body-secondary">29 MAY 2023</h6> -->
+                        <p class="card-text"> <span class="fw-bold" style="text-align:justify;">Description : </span>   </p>
+                        <p class="card-text"> <span class="fw-bold">Date : </span> <?php //echo date("d M Y", strtotime($row_of_query['event_date'])); ?></p>
+                        <p class="card-text"> <span class="fw-bold">Time : </span> <?php //echo date("g:i A", strtotime($row_of_query['event_start_time'])); ?> to <?php //echo date("g:i A", strtotime($row_of_query['event_end_time'])); ?> </p>
+                        <p class="card-text"> <span class="fw-bold">Venue : </span> <?php //echo($row_of_query['ar_name']); ?> </p>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-5">
+                <div class="card shadow p-1" style="width: auto;border-radius: 20px;">
+                    <div class="card-body ">
+                        <h5 class="card-title"><?php //echo($row_of_query['event_name']); ?></h5>
+                        <div class="badge bg-success p-1 mb-2 ">
+                    </div>
+                        <!-- <h6 class="card-subtitle mb-2 text-body-secondary">29 MAY 2023</h6> -->
+                        <p class="card-text"> <span class="fw-bold" style="text-align:justify;">Description : </span>   </p>
+                        <p class="card-text"> <span class="fw-bold">Date : </span> <?php //echo date("d M Y", strtotime($row_of_query['event_date'])); ?></p>
+                        <p class="card-text"> <span class="fw-bold">Time : </span> <?php //echo date("g:i A", strtotime($row_of_query['event_start_time'])); ?> to <?php //echo date("g:i A", strtotime($row_of_query['event_end_time'])); ?> </p>
+                        <p class="card-text"> <span class="fw-bold">Venue : </span> <?php //echo($row_of_query['ar_name']); ?> </p>
+                        
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+</div>
+           
 </main>
 </body>
 </html>
