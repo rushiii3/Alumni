@@ -14,7 +14,7 @@
 </head>
 <body>
     <?php
-    include_once "loader.html";
+    //include_once "loader.html";
     ?>
     <main id="main">
 <div class="wrapper">
@@ -34,53 +34,36 @@ Events
 <h3>
 Upcoming Events
 </h3>
-<div class="container mt-2" style="height:100vh;">
+<?php
+$url = 'https://alumniandroidapp.000webhostapp.com/all_events_fetch.php'; // path to your JSON file
+$data = file_get_contents($url); // put the contents of the file into a variable
+$characters = json_decode($data); // decode the JSON feed
+?>
+<div class="container mt-4" style="height:100vh;">
         <div class="row p-1">
+
+        <?php
+        foreach ($characters as $character) {
+            ?>
             <div class="col-lg-4 col-md-6 mb-5">
                 <div class="card shadow p-1" style="width: auto;border-radius: 20px;">
                     <div class="card-body ">
-                        <h5 class="card-title"><?php //echo($row_of_query['event_name']); ?></h5>
-                        <div class="badge bg-success p-1 mb-2 ">
-                    </div>
-                        <!-- <h6 class="card-subtitle mb-2 text-body-secondary">29 MAY 2023</h6> -->
-                        <p class="card-text"> <span class="fw-bold" style="text-align:justify;">Description : </span>   </p>
-                        <p class="card-text"> <span class="fw-bold">Date : </span> <?php //echo date("d M Y", strtotime($row_of_query['event_date'])); ?></p>
-                        <p class="card-text"> <span class="fw-bold">Time : </span> <?php //echo date("g:i A", strtotime($row_of_query['event_start_time'])); ?> to <?php //echo date("g:i A", strtotime($row_of_query['event_end_time'])); ?> </p>
-                        <p class="card-text"> <span class="fw-bold">Venue : </span> <?php //echo($row_of_query['ar_name']); ?> </p>
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-5">
-                <div class="card shadow p-1" style="width: auto;border-radius: 20px;">
-                    <div class="card-body ">
-                        <h5 class="card-title"><?php //echo($row_of_query['event_name']); ?></h5>
-                        <div class="badge bg-success p-1 mb-2 ">
-                    </div>
-                        <!-- <h6 class="card-subtitle mb-2 text-body-secondary">29 MAY 2023</h6> -->
-                        <p class="card-text"> <span class="fw-bold" style="text-align:justify;">Description : </span>   </p>
-                        <p class="card-text"> <span class="fw-bold">Date : </span> <?php //echo date("d M Y", strtotime($row_of_query['event_date'])); ?></p>
-                        <p class="card-text"> <span class="fw-bold">Time : </span> <?php //echo date("g:i A", strtotime($row_of_query['event_start_time'])); ?> to <?php //echo date("g:i A", strtotime($row_of_query['event_end_time'])); ?> </p>
-                        <p class="card-text"> <span class="fw-bold">Venue : </span> <?php //echo($row_of_query['ar_name']); ?> </p>
-                        
+                        <h5 class="card-title fw-bold"><?php echo $character->event_name; ?></h5>
+                        <p class="card-text " style="overflow: hidden;display:-webkit-box;-webkit-line-clamp: 3;line-clamp: 3; -webkit-box-orient: vertical;height:4.5rem"> <?php echo $character->event_description; ?>   </p>
+                        <p class="card-text"> Date : <?php echo date("d F Y", strtotime($character->event_date)); ?></p>
+                        <div class="mx-auto text-center">
+                            <a href="" class="link text-center mx-2 my-2" style="color:#0099CC ">View Details</a>
+                            <a href="<?php echo $character->event_registration_link; ?>" class="link text-center btn mx-2 my-2" style="background-color:#0099CC ">Register</a>
+
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 mb-5">
-                <div class="card shadow p-1" style="width: auto;border-radius: 20px;">
-                    <div class="card-body ">
-                        <h5 class="card-title"><?php //echo($row_of_query['event_name']); ?></h5>
-                        <div class="badge bg-success p-1 mb-2 ">
-                    </div>
-                        <!-- <h6 class="card-subtitle mb-2 text-body-secondary">29 MAY 2023</h6> -->
-                        <p class="card-text"> <span class="fw-bold" style="text-align:justify;">Description : </span>   </p>
-                        <p class="card-text"> <span class="fw-bold">Date : </span> <?php //echo date("d M Y", strtotime($row_of_query['event_date'])); ?></p>
-                        <p class="card-text"> <span class="fw-bold">Time : </span> <?php //echo date("g:i A", strtotime($row_of_query['event_start_time'])); ?> to <?php //echo date("g:i A", strtotime($row_of_query['event_end_time'])); ?> </p>
-                        <p class="card-text"> <span class="fw-bold">Venue : </span> <?php //echo($row_of_query['ar_name']); ?> </p>
-                        
-                    </div>
-                </div>
-            </div>
+            
+            <?php
+            }
+            
+            ?>
         </div>
 </div>
            
