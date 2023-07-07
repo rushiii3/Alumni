@@ -67,22 +67,20 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
                         </div>
                         <div class="stepper-item ">
                             <div class="step-counter">2</div>
-                            <div class="step-name text-center">Bachelor <br>Degree</div>
+                            <div class="step-name text-center">Degree <br>Details</div>
                         </div>
                         <div class="stepper-item ">
                             <div class="step-counter">3</div>
-                            <div class="step-name text-center">Master<br>Degree </div>
-                        </div>
-                        <div class="stepper-item ">
-                            <div class="step-counter">4</div>
                             <div class="step-name text-center">Professional <br>Details</div>
                         </div>
                         <div class="stepper-item ">
-                            <div class="step-counter">5</div>
+                            <div class="step-counter">4</div>
                             <div class="step-name text-center">Set up <br>Password</div>
                         </div>
                         </div>
                     </div>
+
+
                     <form action="<?php $_PHP_SELF ?>" method="POST"  id="signupform" >
                         <!-- Page 1 starts  Personal Details -->
                         <div id="page1">
@@ -110,7 +108,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
                             <!-- Date of birth -->
                             <div class="mb-3">
                                 <label for="dob" class="form-label">Date of Birth</label>
-                                <input type="date" name="dob" class="form-control" id="dob"  required>
+                                <input type="date" name="dob" class="form-control" id="dob"  min='1950-01-01' required>
                                 <div class="invalid-feedback">
                                     Please enter your date of birth
                                 </div>
@@ -171,20 +169,24 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
                         <div id="page2">
                             <!-- Bachelor Degree degree name -->
                             <div class="mb-3">
-                                <label for="bachelor_degree" class="form-label">Bachelor's Degree</label>
+                                <label for="bachelors_degree_list" class="form-label">Bachelor's Degree</label>
                                
-<select class="form-select" aria-label="Bachelors degree" id="bachelors_degree_list">
-  <option selected>Select a bachelors degree</option>
-  <option value="1">BA</option>
-  <option value="2">BSC</option>
-  <option value="3">BCOM</option>
-  <option value="4">BCOM-BI</option>
-  <option value="5">BCOM-AF</option>
-  <option value="6">BVoc</option>
-  <option value="7">BAMMC</option>
-  <option value="8">BMS</option>
-  <option value="8">Other</option>
-</select>
+                                <select class="form-select" aria-label="Bachelors degree" name="bachelors_degree_list" id="bachelors_degree_list">
+                                    <option selected>Select a bachelors degree</option>
+                                    <option value="1">BA</option>
+                                    <option value="2">BSC</option>
+                                    <option value="3">BCOM</option>
+                                    <option value="4">BCOM-BI</option>
+                                    <option value="5">BCOM-AF</option>
+                                    <option value="6">BVoc</option>
+                                    <option value="7">BAMMC</option>
+                                    <option value="8">BMS</option>
+                                    <option value="8">Other</option>
+                                </select>
+                                
+                                <div class="invalid-feedback">
+                                    Please select a degree
+                                </div>
                             </div>
                             <!-- Bachelor Degree college name -->
                             <div class="mb-3">
@@ -196,55 +198,52 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
                                     <option value="KET's V.G. Vaze College of Arts,Science and Commerce">
                                 </datalist>
 
-                                <div class="invalid-feedback">
+                                <div class="invalid-feedback" id="feedback_bachelor_degree_college_name">
                                     Please enter the name of the college
                                 </div>
 
                             </div>
                             <!-- Bachelor Degree admission year -->
                             <div class="mb-3">
-                                <label for="bachelor_college_year_admission" class="form-label">Year of Admission</label>
-                                <input type="number" maxLength="4" name="bachelor_college_year_admission" class="form-control" id="bachelor_college_year_admission" min="1950" required>
-                                <div class="invalid-feedback">
+                                <label for="bachelors_admission_year" class="form-label">Year of Admission</label>
+                                <input type="number" maxLength="4" name="bachelors_admission_year" class="form-control"  id="bachelors_admission_year" min="1950" required>
+                                <div class="invalid-feedback" id="feedback_bachelor_degree_admission_year">
                                     Please enter the year you took admission in the college
                                 </div>
                             </div>
-                            
-                            <div class="mb-3">
-                                <!-- previous page button -->
-                                <button type="button" name="previous_page_1" id="previous_page_1" class="btn btn-secondary px-5 py-2 ms-2 mt-3">Previous</button>
-
-                                <!-- next page button -->
-                                <button type="button" name="next_page_3" id="next_page_3" class="btn btn-primary px-5 py-2 ms-2 mt-3">Next</button>
-                            </div>
-                        </div>
-
+                        
                                
-                        <!-- Page 3 starts Master Degree -->
-                        <div id="page3">
+                        <!--starts Master Degree -->
+                    
                             <!--Master Degree  name -->
                             <div class="mb-3">
-                                <label for="master_course" class="form-label">Master's Degree</label>
-                                <select class="form-select" aria-label="Bachelors degree" id="masters_degree_list">
-  <option selected>Select a masters degree</option>
-  <option value="0">None</option>
-  <option value="1">MSC(IT)</option>
-  <option value="2">MSC(BT)</option>
-  <option value="3">MSC</option>
-  <option value="4">MCOM</option>
-  <option value="5">Ph.D. Arts</option>
-  <option value="6">Ph.D. Science</option>
-  <option value="7">PGDPCM</option>
-  <option value="8">Other</option>
+                                <label for="masters_degree_list" class="form-label">Master's Degree</label>
+                                <select class="form-select" aria-label="Bachelors degree" name="masters_degree_list" id="masters_degree_list">
+                                    <option selected>None</option>
+                                    <option value="1">MSC(IT)</option>
+                                    <option value="2">MSC(BT)</option>
+                                    <option value="3">MSC</option>
+                                    <option value="4">MCOM</option>
+                                    <option value="5">Ph.D. Arts</option>
+                                    <option value="6">Ph.D. Science</option>
+                                    <option value="7">PGDPCM</option>
+                                    <option value="8">Other</option>
   
-</select>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select a degree
+                                </div>
              
                             </div>
                             <!-- Master Degree college name -->
                             <div class="mb-3">
-                                <label for="master_college_name" class="form-label">Name of College</label>
-                                <input type="text" name="master_college_name" list ="vaze_college_name" class="form-control" id="master_college_name">
+                                <label for="masters_college_name" class="form-label">Name of College</label>
+                                <input type="text" name="masters_college_name" list ="vaze_college_name" class="form-control" id="masters_college_name">
 
+                                <div class="invalid-feedback" id="feedback_master_degree_college_name">
+                                Please enter the name of the college
+                                </div>
+ <!--auto suggest the name of Vaze college-->
                                 <datalist id="vaze_college_name">
                                     <option value="KET's V.G. Vaze College of Arts,Science and Commerce">
                                 </datalist>
@@ -252,21 +251,25 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 
                             <!-- Master Degree admission year -->
                             <div class="mb-3">
-                                <label for="master_college_year_admission" class="form-label">Year of Admission</label>
-                                <input type="number" maxLength="4" name="master_college_year_admission" class="form-control" id="master_college_year_admission" min="1950">
+                                <label for="masters_admission_year" class="form-label">Year of Admission</label>
+                                <input type="number" maxLength="4" name="masters_admission_year" class="form-control" id="masters_admission_year" min="1950">
+                                <div class="invalid-feedback" id="feedback_master_degree_admission_year">
+                                    Please enter the year you took admission in the college
+                                </div>
+                            </div>
                             
-                            <div class="mb-3">
+                                <div class="mb-3">
                                 <!-- previous page button -->
-                                <button type="button" name="previous_page_2" id="previous_page_2" class="btn btn-secondary px-5 py-2 ms-2 mt-3">Previous</button>
+                                <button type="button" name="previous_page_1" id="previous_page_1" class="btn btn-secondary px-5 py-2 ms-2 mt-3">Previous</button>
 
                                 <!-- next page button -->
-                                <button type="button" name="next_page_4" id="next_page_4" class="btn btn-primary px-5 py-2 ms-2 mt-3">Next</button>
+                                <button type="button" name="next_page_3" id="next_page_3" class="btn btn-primary px-5 py-2 ms-2 mt-3">Next</button>
                             </div>
-                        </div>
+                            
                                 </div>
 
-                        <!-- Page 4 starts  Professional Details -->
-                        <div id="page4">
+                        <!-- Page 3 starts  Professional Details -->
+                        <div id="page3">
                             <!-- Name of Company/Institution -->
                             <div class="mb-3">
                                 <label for="company_name" class="form-label">Name of Company/Institution</label>
@@ -279,15 +282,15 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
                             </div> 
                             <div class="mb-3">
                                 <!-- previous page button -->
-                                <button type="button" name="previous_page_3" id="previous_page_3" class="btn btn-secondary px-5 py-2 ms-2 mt-3">Previous</button>
+                                <button type="button" name="previous_page_2" id="previous_page_2" class="btn btn-secondary px-5 py-2 ms-2 mt-3">Previous</button>
 
                                 <!-- next page button -->
-                                <button type="button" name="next_page_5" id="next_page_5" class="btn btn-primary px-5 py-2 ms-2 mt-3">Next</button>
+                                <button type="button" name="next_page_4" id="next_page_4" class="btn btn-primary px-5 py-2 ms-2 mt-3">Next</button>
                             </div>
                         </div>
 
-                        <!-- Page 5 starts  Password -->
-                        <div id="page5">
+                        <!-- Page 4 starts  Password -->
+                        <div id="page4">
                             <!-- password -->
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
@@ -318,7 +321,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
                             </div>
                             <div class="mb-3">
                                 <!-- previous page button -->
-                                <button type="button" name="previous_page_4" id="previous_page_4" class="btn btn-secondary px-5 py-2 ms-2 mt-3">Previous</button>
+                                <button type="button" name="previous_page_3" id="previous_page_3" class="btn btn-secondary px-5 py-2 ms-2 mt-3">Previous</button>
 
                                 <!-- Submit button -->
                                 <button type="submit" name="submit" id="submit" class="btn btn-primary px-5 py-2 ms-2 mt-3">Submit</button>
