@@ -274,11 +274,18 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
                             <div class="mb-3">
                                 <label for="company_name" class="form-label">Name of Company/Institution</label>
                                 <input type="text" name="company_name" class="form-control" id="company_name" >
+                                <div class="invalid-feedback">
+                                    Please enter your company/institution name
+                                </div>
+
                             </div>
                             <!-- Designation -->
                             <div class="mb-3">
-                                <label for="Designation" class="form-label">Designation</label>
-                                <input type="text" name="Designation" class="form-control" id="Designation" >
+                                <label for="designation" class="form-label">Designation</label>
+                                <input type="text" name="designation" class="form-control" id="designation" >
+                                <div class="invalid-feedback">
+                                    Please enter your designation
+                                </div>
                             </div> 
                             <div class="mb-3">
                                 <!-- previous page button -->
@@ -300,31 +307,38 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
                                         <i class="bi bi-eye-fill pass_open_eye"></i>
                                         <i class="bi bi-eye-slash-fill pass_close_eye"></i>
                                     </span>
-                                </div>
-                                <div class="invalid-feedback">
+                                    <div class="invalid-feedback" id="feedback_password_input">
                                     Please set a password
                                 </div>
+                                </div>
+                               
                             </div>
                             <!-- confirm password -->
                             <div class="mb-3">
-                                <label for="confirm-password" class="form-label">Confirm Password</label>
+                                <label for="confirm_password" class="form-label">Confirm Password</label>
                                 <div class="input-group">
-                                    <input type="password" name="confirm-password" class="form-control" id="confirm-password" required>
-                                    <span class="input-group-text confirm_pass_icon" id="basic-addon1">
+                                    <input type="password" name="confirm_password" class="form-control" id="confirm_password" required>
+                                    
+                            <span class="input-group-text confirm_pass_icon" id="basic-addon1">
                                         <i class="bi bi-eye-fill cpass_open_eye"></i>
                                         <i class="bi bi-eye-slash-fill cpass_close_eye"></i>
                                     </span>
-                                </div>
-                                <div class="invalid-feedback">
+                                    <div class="invalid-feedback" id="feedback_confirm_password_input">
                                     Please re-enter the password
                                 </div>
+
+                                <div class="valid-feedback" >
+                                    The passwords match!
+                                </div>
+                                </div>
+                                
                             </div>
                             <div class="mb-3">
                                 <!-- previous page button -->
                                 <button type="button" name="previous_page_3" id="previous_page_3" class="btn btn-secondary px-5 py-2 ms-2 mt-3">Previous</button>
 
                                 <!-- Submit button -->
-                                <button type="submit" name="submit" id="submit" class="btn btn-primary px-5 py-2 ms-2 mt-3">Submit</button>
+                                <button type="submit" name="submit" id="submit" class="btn btn-primary px-5 py-2 ms-2 mt-3" disabled>Submit</button>
 
                             </div>
                         </div>

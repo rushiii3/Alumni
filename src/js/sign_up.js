@@ -1,5 +1,6 @@
 //GLOBAL VARIABLES
 
+let registration_form=document.getElementById("signupform");
 //PAGE 1
    let is_email_verified=false;
    let is_phone_number_valid=false;
@@ -36,6 +37,25 @@ let is_valid_bachelors_year=false, is_valid_masters_admission_year=false;
    let masters_degree_input=document.getElementById("masters_degree_list");
    let masters_admission_year_input=document.getElementById("masters_admission_year");
    let masters_degree_college_name_input=document.getElementById("masters_college_name");
+
+   //PAGE 3
+   let company="",designation="";
+
+   let company_input=document.getElementById("company_name");
+   let designation_input=document.getElementById("designation");
+
+   //PAGE 4
+   let password="",confirm_password="",final_password="";
+   let are_passwords_verified=false;
+   let password_input=document.getElementById("password");
+   let confirm_password_input=document.getElementById("confirm_password");
+
+   let feedback_password_input=document.getElementById("feedback_password_input");
+   let feedback_confirm_password_input=document.getElementById("feedback_confirm_password_input");
+
+   let submit_button=document.getElementById("submit");
+   
+
 
   
 
@@ -117,6 +137,7 @@ $('#next_page_3').on('click',function(){
 
 //PAGE 3 TO PAGE 4
 $('#next_page_4').on('click',function(){
+  if(validateFieldsOnPage3()){
     $page3.fadeOut();
     $page3.hide();
     $page4.fadeIn();
@@ -124,6 +145,7 @@ $('#next_page_4').on('click',function(){
     $step.eq(2).removeClass("active");
     $step.eq(2).addClass("completed");
     $step.eq(3).addClass("active");
+}
 })
 
 //PAGE 4 TO PAGE 5
@@ -205,10 +227,15 @@ document.addEventListener('DOMContentLoaded',function(){
 masters_admission_year_input.disabled=true;
 masters_degree_college_name_input.disabled=true;
   }
+
 });
 
 //3.Enabling or disabling the masters_college and masters_admission_year fields based on the option selected from dropdown
 masters_degree_input.addEventListener("change",disableEnableMastersFields);
+
+//4. when the user submits the form
+registration_form.addEventListener("submit",registerUser);
+
 
 //------------------------------------------------------------------------------------------------------------------------------
 //FUNCTIONS
@@ -621,21 +648,87 @@ return false;
   //...........................................................PAGE 3...............................................................
   //Page 3 validation
   function validateFieldsOnPage3(){
+
+    //get the data from input fields
+    company=company_input.value;
+    designation=designation_input.value;
+
+    //both should be either be empty or have text.If one has text and other doesnt that that is the error condition
+    if(company !== '' & designation === ''){
+
+      //designation is empty and company has text
+      company_input.classList.remove("is-invalid");
+      designation_input.classList.add("is-invalid");
+      return false;
+    }
+    else if(company === '' & designation !== ''){
+
+      //company is empty and designation has text
+      company_input.classList.add("is-invalid");
+      designation_input.classList.remove("is-invalid");
+      return false;
+    }
+    else{
+      //no error
+      company_input.classList.remove("is-invalid");
+      designation_input.classList.remove("is-invalid");
+
+      company=company_input.value;
+    designation=designation_input.value;
+
+      return true;
+    }
     
   }
   //...........................................................PAGE 4...............................................................
   //Page 4 validation
   function validateFieldsOnPage4(){
-    
-  }
-  //...........................................................PAGE 5...............................................................
-//Page 5 validation
-function validateFieldsOnPage5(){
-    
-}
-  
 
- 
+    //get the data from input fields
+
+  password=password_input.value;
+  confirm_password=confirm_password_input.value;
+  if(password===''){
+    password_input.dispatchEvent(new Event('input')); //trigger the validation of password
+    return false;
+  }
+  else if(confirm_password ===''){
+    confirm_password_input.dispatchEvent(new Event('input')); ///trigger the validation of confirm password
+    return false;
+
+  }
+  else if(!are_passwords_verified){
+    confirm_password_input.dispatchEvent(new Event('input')); ///trigger the validation of confirm password
+    return false;
+  }
+  else{
+    password=password_input.value;
+    return true;
+
+  }
+  }
+
+  //4. register the user
+  function registerUser(){
+
+    //take and serialize the data
+    $.ajax({
+      url: $(this).attr('action'), // PHP file to handle the form data
+      type: $(this).attr('method'), // HTTP method (POST in this case)
+      data: formData, // Form data object
+      dataType: 'text', // Expected data type of the response
+      success: function(response) {
+        // Handle the success response
+        console.log(response); // Display the response from the PHP file
+      },
+      error: function(xhr, status, error) {
+        // Handle the error
+        console.error("Request failed. Status: " + status + ". Error: " + error);
+      }
+    });
+  }
+  
+  
   //----------------------------------------------------------------------------------------------------------------------------------------
 
   //VALIDATION WHEN THE USER IS TYPING
@@ -756,8 +849,62 @@ email_input.addEventListener('input', function() {
 
 //...........................................................PAGE 3...............................................................
 //...........................................................PAGE 4...............................................................
-//...........................................................PAGE 5...............................................................
-//...........................................................PAGE 6...............................................................
+
+//7.the password should be minimum 8 characters and should contain 1 character,one uppercase alphabet and 1 digit
+password_input.addEventListener("input",function(){
+  var passwordRegex=/^(?=.*\d)(?=.*[a-zA-Z])(?=.*[A-Z]).+$/;
+  var entered_password=password_input.value;
+
+  if(entered_password.length < 8){
+    feedback_password_input.innerText="Password should be contain minimum 8 characters."
+    password_input.classList.add("is-invalid");
+  }
+  else{
+    if(!passwordRegex.test(entered_password)){
+      //invalid password
+      feedback_password_input.innerText="Password should be contain one digit and one capital case alphabet."
+    password_input.classList.add("is-invalid");
+  }
+  else{
+     // Valid password
+     password = entered_password;
+     password_input.classList.remove("is-invalid");
+ 
+     // Check if confirm password is mismatched
+     if (confirm_password_input.value !== password) {
+       confirm_password_input.dispatchEvent(new Event('input')); // Trigger confirm password validation
+     }
+  }
+
+    }
+  }
+);
+
+//8.confirm password 
+confirm_password_input.addEventListener("input",function(){
+  var entered_confirm_password=confirm_password_input.value;
+
+  if(entered_confirm_password === password){
+    //enable the submit button
+    submit_button.disabled=false;
+    final_password=password;
+    confirm_password_input.classList.remove("is-invalid");
+    confirm_password_input.classList.add("is-valid");
+
+  }
+  else if(entered_confirm_password !== password){
+    //disable the submit button
+    submit_button.disabled=true;
+
+    feedback_confirm_password_input.innerText="The passwords dont match";
+    confirm_password_input.classList.add("is-invalid");
+    confirm_password_input.classList.remove("is-valid");
+
+  }
+  
+
+});
+
 
     
     
