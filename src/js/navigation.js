@@ -1,9 +1,10 @@
 $(document).ready(function () {
     $('#sidebarCollapse').on('click', function () {
-        $('#sidebar').toggleClass('active');
-        $('#sidebar').addClass('heightFull');
-        $('#sideBarLogo').toggleClass('show');
-        $('#navBarLogo').toggleClass('hide');
-
+        $('#sidebar').toggle(600);
+        $('#content').hide();
     });
+    $('#CloseNav').on('click',function(){
+        $('#sidebar').toggle(600);
+        $('#content').show();
+    })
 });
