@@ -44,6 +44,7 @@ $characters = json_decode($data); // decode the JSON feed
 
         <?php
         foreach ($characters as $character) {
+            
             ?>
             <div class="col-lg-4 col-md-6 mb-5">
                 <div class="card shadow p-1" style="width: auto;border-radius: 20px;">
@@ -52,7 +53,7 @@ $characters = json_decode($data); // decode the JSON feed
                         <p class="card-text " style="overflow: hidden;display:-webkit-box;-webkit-line-clamp: 3;line-clamp: 3; -webkit-box-orient: vertical;height:4.5rem"> <?php echo $character->event_description; ?>   </p>
                         <p class="card-text"> Date : <?php echo date("d F Y", strtotime($character->event_date)); ?></p>
                         <div class="mx-auto text-center">
-                            <a href="" class="link text-center mx-2 my-2" style="color:#0099CC ">View Details</a>
+                            <a href="view_events.php?id=<?php echo $character->event_id;  ?>" class="link text-center mx-2 my-2" style="color:#0099CC ">View Details</a>
                             <a href="<?php echo $character->event_registration_link; ?>" class="link text-center btn mx-2 my-2" style="background-color:#0099CC ">Register</a>
 
                         </div>
