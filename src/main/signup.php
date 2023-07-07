@@ -1,3 +1,20 @@
+<?php
+//include the dbconnect file to connect to the database
+//require "dbconnect.php";
+
+//start the session
+session_start();
+
+//check if user is already logged in and redirect the user if logged in.
+/*
+if($_SESSION['isloggedin']==="true"){
+    echo '<script>//alert("Please log out and register again");
+    window.location.href="../main/home.php"</script>';
+exit;
+}
+*/
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +32,25 @@
 <body>
     <?php
     include_once "loader.html";
+
+    //get the form data from the post method
+if($_SERVER['REQUEST_METHOD']=="POST"){
+
+    //GET THE DETAILS
+
+    //1.Personal details
+    $firstname=$_POST['first_name'];
+    $middlename=$_POST['middle_name'];
+    $lastname=$_POST['last_name'];
+    $dob=$_POST['dob'];
+    $linkedin_address=$_POST['linkedin_address'];
+    $email=$_POST['email'];
+    $phone_number=$_POST['phone_number'];
+
+    //
+
+}
+
     ?>
     <main id="main">
 <div class="container mt-5 mb-5 shadow p-3 mb-5 bg-body" id="container">
@@ -82,19 +118,36 @@
                             <!-- linkedin addres -->
                             <div class="mb-3">
                                 <label for="linkedin_address" class="form-label">Linkedin Address</label>
-                                <input type="text" name="linkedin_address" class="form-control" id="linkedin_address" placeholder="https://www.linkedin.com/in/abc" >
+                                <input type="text" name="linkedin_address" class="form-control" id="linkedin_address" placeholder="eg: https://www.linkedin.com/in/abc" >
                             </div>
+
+                             <!-- Phone number -->
+                             <div class="mb-3">
+                                <label for="phone_number" class="form-label">Phone number</label>
+                                <input type="tel" maxLength="10" name="phone_number" class="form-control"  id="phone_number" >
+                            </div>
+
                             <!-- Email -->
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <div class="input-group">
-                                    <input type="email" class="form-control" placeholder="Email" aria-describedby="button-addon2">
-                                    <button class="btn btn-outline-secondary" type="button" id="emailbutton-addon2">Verify</button>
+                                    <input type="email" class="form-control" placeholder="Email" name="email" id="email" aria-describedby="button-addon2">
+                                    <button class="btn btn-outline-secondary" type="button" id="emailbutton-addon2">Verify Email</button>
                                 </div>
                                 <div class="invalid-feedback">
                                     Please enter a valid email address
                                 </div>
                             </div>
+
+                            <!-- Verify the OTP  -->
+                            <div class="mb-3" id="verify_email_otp_div" hidden>
+                                <label for="verify_email_otp" class="form-label">Verify your OTP</label>
+                                <input type="number" max="999999" name="verify_email_otp" class="form-control mb-2"  id="verify_email_otp"  >
+
+                                <button type="button" id="verify_otp_button" class="btn btn-secondary px-5 py-2 ms-5 mt-3">Verify OTP</button> 
+                            </div>
+
+
                             <div class="mb-3">
                                 <!-- next page button -->
                                 <button type="button" name="next_page_2" id="next_page_2" class="btn btn-primary px-5 py-2 ms-5 mt-3">Next</button>

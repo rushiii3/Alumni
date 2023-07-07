@@ -113,6 +113,35 @@ $('#previous_page_4').on('click',function(){
     $page4.show();
 })
 
+// when clicked on verify button display the verify otp section
+function verifyEmail(){
+var entered_email=document.getElementById("email");
+var verify_email_button=document.getElementById("emailbutton-addon2");
+var verify_otp_div=document.getElementById("verify_email_otp_div");
+var emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+/*entered_email.addEventListener('input',function(){
+   
+if(emailRegex.test(entered_email.value)){
+
+}
+
+})
+*/
+verify_email_button.addEventListener('click',function(){
+
+   
+
+    if(emailRegex.test(entered_email.value)){
+    verify_otp_div.removeAttribute("hidden");
+    }
+    else{
+        verify_otp_div.setAttribute('hidden','hidden');
+        alert("Please enter a valid email");
+    }
+})
+}
+verifyEmail();
 
 //form validation for fields that cant be empty using bootstrap
   
@@ -129,7 +158,7 @@ $('#previous_page_4').on('click',function(){
           signupform.classList.add('was-validated');
         }, false);
       })();
-      */
+      
 
 
       const signupform=document.getElementById("signupform");
@@ -156,7 +185,7 @@ $('#previous_page_4').on('click',function(){
         }
     
     }
-     
+     */
     
 
 
