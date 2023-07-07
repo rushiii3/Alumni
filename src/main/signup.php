@@ -83,7 +83,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
                         </div>
                         </div>
                     </div>
-                    <form action="<?php $_PHP_SELF ?>" method="POST" class="needs-validation" id="signupform" novalidate>
+                    <form action="<?php $_PHP_SELF ?>" method="POST"  id="signupform" >
                         <!-- Page 1 starts  Personal Details -->
                         <div id="page1">
                             <!-- First name -->
@@ -119,33 +119,46 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
                             <div class="mb-3">
                                 <label for="linkedin_address" class="form-label">Linkedin Address</label>
                                 <input type="text" name="linkedin_address" class="form-control" id="linkedin_address" placeholder="eg: https://www.linkedin.com/in/abc" >
+                                    <div class="invalid-feedback">
+                                    Please enter a valid Linkedin address to your profile.Copy it from your Linked profile.
+                                </div>
                             </div>
 
                              <!-- Phone number -->
                              <div class="mb-3">
                                 <label for="phone_number" class="form-label">Phone number</label>
                                 <input type="tel" maxLength="10" name="phone_number" class="form-control"  id="phone_number" >
+                                <div class="invalid-feedback">
+                                    Please enter a valid phone number
+                                </div>
                             </div>
 
                             <!-- Email -->
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <div class="input-group">
-                                    <input type="email" class="form-control" placeholder="Email" name="email" id="email" aria-describedby="button-addon2">
-                                    <button class="btn btn-outline-secondary" type="button" id="emailbutton-addon2">Verify Email</button>
-                                </div>
-                                <div class="invalid-feedback">
+                                    <input type="email" class="form-control"  name="email" id="email" aria-describedby="button-addon2">
+                                    <div class="invalid-feedback">
                                     Please enter a valid email address
                                 </div>
+                                    <button class="btn btn-outline-secondary" type="button" id="emailbutton-addon2" disabled>Verify Email</button>
+                                </div>
+                               
                             </div>
 
                             <!-- Verify the OTP  -->
                             <div class="mb-3" id="verify_email_otp_div" hidden>
                                 <label for="verify_email_otp" class="form-label">Verify your OTP</label>
-                                <input type="number" max="999999" name="verify_email_otp" class="form-control mb-2"  id="verify_email_otp"  >
-
-                                <button type="button" id="verify_otp_button" class="btn btn-secondary px-5 py-2 ms-5 mt-3">Verify OTP</button> 
-                            </div>
+                               
+                                    <input type="tel"  pattern ="\d*" maxLength="6" name="verify_email_otp" class="form-control mb-2"  id="verify_email_otp" >
+                                    <div class="invalid-feedback">
+                                        Please enter a the OTP sent to your email.Please check your SPAM folder as well
+                                    </div>
+                                    <div class="valid-feedback">
+                                        Email is successfully verified! 
+                                    </div>
+                            
+                        </div>
 
 
                             <div class="mb-3">
