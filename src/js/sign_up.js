@@ -64,6 +64,7 @@ let is_valid_bachelors_year=false, is_valid_masters_admission_year=false;
 //PASSWORD HIDE AND UNHIDE 
 $step = $('.stepper-item');
 $step.eq(0).addClass("active");
+
 $('.pass_open_eye').hide();
 $('.cpass_open_eye').hide();
 $('.pass_icon').on('click',function(){
@@ -228,13 +229,19 @@ masters_admission_year_input.disabled=true;
 masters_degree_college_name_input.disabled=true;
   }
 
+  //4. when the user submits the form
+registration_form.addEventListener("submit",function(e){
+  e.preventDefault();
+  
+  registerUser();
+});
+
 });
 
 //3.Enabling or disabling the masters_college and masters_admission_year fields based on the option selected from dropdown
 masters_degree_input.addEventListener("change",disableEnableMastersFields);
 
-//4. when the user submits the form
-registration_form.addEventListener("submit",registerUser);
+
 
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -710,19 +717,91 @@ return false;
 
   //4. register the user
   function registerUser(){
-
     //take and serialize the data
+    var user_first_name=first_name.trim();
+    var user_middle_name=middle_name.trim();
+    var user_last_name=last_name.trim();
+
+    var user_dob=dob.trim();
+    var user_linkedin_address=linkedin_address.trim();
+    var user_phone_number=phone_number.trim();
+    var user_username=email.trim();
+
+    var user_bachelors_degree=bachelors_degree.trim();
+    var user_bachelors_admission_year=bachelors_admission_year.trim();
+    var user_bachelors_degree_college_name=bachelors_degree_college_name.trim().replace("'","''");
+    console.log(user_bachelors_degree_college_name);
+
+    var user_masters_degree;
+    if(masters_degree.toLowerCase()==='none'){
+      user_masters_degree="";
+    }
+    else{
+      user_masters_degree=masters_degree.trim();
+    }
+    var user_masters_admission_year=masters_admission_year.trim();
+    var user_masters_degree_college_name;
+
+    if(masters_degree_college_name!==''){
+    user_masters_degree_college_name=masters_degree_college_name.trim().replace("'","''");
+    }
+    else{
+      user_masters_degree_college_name=masters_degree_college_name.trim();
+    }
+
+  var user_company=company.trim();
+  var user_designation=designation.trim();
+
+  var user_password=final_password;
+
+
+    var formData={
+      "username":user_username,
+      "firstname":user_first_name,
+      "middlename":user_middle_name,
+      "lastname":user_last_name,
+      "dateofbirth":user_dob,
+      "phoneno":user_phone_number,
+      "bachelor_degree":user_bachelors_degree,
+      "bachelor_admission_year":user_bachelors_admission_year,
+      "bachelor_degree_college":user_bachelors_degree_college_name,
+      "master_degree":user_masters_degree,
+      "master_admission_year":user_masters_admission_year,
+      "master_degree_college":user_masters_degree_college_name,
+      "company":user_company,
+      "designation":user_designation,
+      "linkedinprofile":user_linkedin_address,
+      "password":user_password
+  
+    };
+
+//alert("Executing register function");
+
+
     $.ajax({
-      url: $(this).attr('action'), // PHP file to handle the form data
-      type: $(this).attr('method'), // HTTP method (POST in this case)
+      url: "https://alumniandroidapp.000webhostapp.com/user_registration.php", // PHP file to handle the form data
+      type: "POST", // HTTP method (POST in this case)
       data: formData, // Form data object
       dataType: 'text', // Expected data type of the response
       success: function(response) {
-        // Handle the success response
+        if (response.includes("Username already exists")) {
+          alert("This email is already registered with us.");
+          is_email_verified = false;
+        } else if (response.includes("User registration unsuccessful")) {
+          alert("User registration was not successful");
+        } else if (response.includes("Sorry")) {
+          alert("Sorry we couldn't find anyone with the provided details. Enter the details as on the marksheet or click Help");
+        } else if (response.includes("User registration successful")) {
+          alert("Yayyy! Registration successful");
+          window.location.href='../main/login.php'
+        } else {
+          alert("Sorry! Please try again later");
+        }
         console.log(response); // Display the response from the PHP file
       },
       error: function(xhr, status, error) {
         // Handle the error
+        alert("Oops! There was some error occured.Please try again later")
         console.error("Request failed. Status: " + status + ". Error: " + error);
       }
     });

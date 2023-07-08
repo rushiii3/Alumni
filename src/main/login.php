@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
     <script src="../js/sign_in.js"></script>
     <script src="../js/logout.js"></script>
+
     <link rel="stylesheet" href="../css/sign_up.css">
 </head>
 <body class="bg-light">
@@ -23,7 +24,7 @@
 
     <main id="main">
         <!-- FAILED -->
-        <div class="modal fade" id="failed" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="failed_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog modal-dialog-centered w-75 mx-auto">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -37,33 +38,44 @@
             </div>
         </div>
         
+        
         <div class="container  mt-5 mb-5 shadow p-3 mb-5 bg-body" id="container">
             <div class="row p-3">
                 <div class="p-1 col-lg-6">
                     <div class="col-lg-12 mb-5">
-                        <p class="h1">Sign in</p>
+                        <p class="h1">Log in</p>
                     </div>
-                    <form action="<?php $_PHP_SELF ?>" method="POST">
+
+                    <!--MAIN FORM-->
+                    <form id="login_form">
                         <div class="mb-3 pt-5">
                             <label for="email" class="form-label">Email address</label>
-                            <input type="email" name="email" class="form-control" id="email" aria-describedby="emailVerify" placeholder="e.g. abc@vazecollege.net" required />
-                            <div id="emailVerify" class="form-text"></div>
+                            <input type="email" name="email" class="form-control" id="email" aria-describedby="feedback_emailVerify" placeholder="eg: abc@gmail.com" required />
+                            <div id="feedback_emailVerify" class="invalid-feedback"></div>
                         </div>
+
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
                             <div class="input-group">
                                 <input type="password" name="password" class="form-control" id="password" aria-describedby="pass_verify" placeholder="Password" required />
+                                <div id="feedback_password" class="invalid-feedback"></div>
+                                <div id="feedback_password_valid" class="valid-feedback"></div>
                                 <span class="input-group-text pass_icon" id="basic-addon1">
                                     <i class="bi bi-eye-fill pass_open_eye"></i>
                                     <i class="bi bi-eye-slash-fill pass_close_eye"></i>
                                 </span>
                             </div>
+
+
+                            <!--
                             <div id="pass_verify" class="form-text"></div>
+-->
                         </div>
+
                         <div class="mb-3 text-end">
                                 <a href="forgot.php" class="link-dark">Forgot password?</a>
                         </div>
-                        <button type="submit" name="submit" id="submit" class="btn btn-primary px-5 py-2 ms-5 mt-3">
+                        <button type="submit" name="submit_btn" id="submit_btn" class="btn btn-primary px-5 py-2 ms-5 mt-3" disabled>
                             Submit
                         </button>
                     </form>
@@ -71,11 +83,13 @@
                 <div class="p-4 col-lg-6 mt-1">
                     <img src="https://img.freepik.com/free-vector/login-concept-illustration_114360-757.jpg?w=1060&t=st=1683729827~exp=1683730427~hmac=cb33e311b798aee5f88e3960c51d67d266074f5df878c0126ab6fe6db3dbaeab" alt="" class="img-fluid h-75 w-100" />
                     <p class="text-center mt-5">
-                        <a href="sign_up.php" class="link-dark">Don't have an account? Sign up</a>
+                        <a href="signup.php" class="link-dark">Don't have an account? Sign up</a>
                     </p>
                 </div>
             </div>
         </div>
     </main>
+
+    <script src="../js/login.js"></script>
 </body>
 </html>

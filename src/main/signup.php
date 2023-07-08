@@ -33,24 +33,6 @@ exit;
     <?php
     include_once "loader.html";
 
-    //get the form data from the post method
-if($_SERVER['REQUEST_METHOD']=="POST"){
-
-    //GET THE DETAILS
-
-    //1.Personal details
-    $firstname=$_POST['first_name'];
-    $middlename=$_POST['middle_name'];
-    $lastname=$_POST['last_name'];
-    $dob=$_POST['dob'];
-    $linkedin_address=$_POST['linkedin_address'];
-    $email=$_POST['email'];
-    $phone_number=$_POST['phone_number'];
-
-    //
-
-}
-
     ?>
     <main id="main">
 <div class="container mt-5 mb-5 shadow p-3 mb-5 bg-body" id="container">
@@ -81,7 +63,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
                     </div>
 
 
-                    <form action="<?php $_PHP_SELF ?>" method="POST"  id="signupform" >
+                    <form   id="signupform" >
                         <!-- Page 1 starts  Personal Details -->
                         <div id="page1">
                             <!-- First name -->
@@ -173,15 +155,15 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
                                
                                 <select class="form-select" aria-label="Bachelors degree" name="bachelors_degree_list" id="bachelors_degree_list">
                                     <option selected>Select a bachelors degree</option>
-                                    <option value="1">BA</option>
-                                    <option value="2">BSC</option>
-                                    <option value="3">BCOM</option>
-                                    <option value="4">BCOM-BI</option>
-                                    <option value="5">BCOM-AF</option>
-                                    <option value="6">BVoc</option>
-                                    <option value="7">BAMMC</option>
-                                    <option value="8">BMS</option>
-                                    <option value="8">Other</option>
+                                    <option value="BA">BA</option>
+                                    <option value="BSC">BSC</option>
+                                    <option value="BCOM">BCOM</option>
+                                    <option value="BCOM-BI">BCOM-BI</option>
+                                    <option value="BCOM-AF">BCOM-AF</option>
+                                    <option value="BVoc">BVoc</option>
+                                    <option value="BAMMC">BAMMC</option>
+                                    <option value="BMS">BMS</option>
+                                    <option value="Other">Other</option>
                                 </select>
                                 
                                 <div class="invalid-feedback">
@@ -220,14 +202,14 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
                                 <label for="masters_degree_list" class="form-label">Master's Degree</label>
                                 <select class="form-select" aria-label="Bachelors degree" name="masters_degree_list" id="masters_degree_list">
                                     <option selected>None</option>
-                                    <option value="1">MSC(IT)</option>
-                                    <option value="2">MSC(BT)</option>
-                                    <option value="3">MSC</option>
-                                    <option value="4">MCOM</option>
-                                    <option value="5">Ph.D. Arts</option>
-                                    <option value="6">Ph.D. Science</option>
-                                    <option value="7">PGDPCM</option>
-                                    <option value="8">Other</option>
+                                    <option value="MSC(IT)">MSC(IT)</option>
+                                    <option value="MSC(BT)">MSC(BT)</option>
+                                    <option value="MSC">MSC</option>
+                                    <option value="MCOM">MCOM</option>
+                                    <option value="Ph.D. Arts">Ph.D. Arts</option>
+                                    <option value="Ph.D. Science">Ph.D. Science</option>
+                                    <option value="PGDPCM">PGDPCM</option>
+                                    <option value="Other">Other</option>
   
                                 </select>
                                 <div class="invalid-feedback">
