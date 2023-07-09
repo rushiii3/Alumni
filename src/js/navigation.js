@@ -6,5 +6,6 @@ $(document).ready(function () {
     $('#CloseNav').on('click',function(){
         $('#sidebar').toggle(600);
         $('#content').show();
-    })
+    });
 });
+
