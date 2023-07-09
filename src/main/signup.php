@@ -6,13 +6,14 @@
 session_start();
 
 //check if user is already logged in and redirect the user if logged in.
-/*
-if($_SESSION['isloggedin']==="true"){
+
+if($_SESSION['isloggedin']){
+    
     echo '<script>//alert("Please log out and register again");
     window.location.href="../main/home.php"</script>';
 exit;
 }
-*/
+
 
 ?>
 <!DOCTYPE html>

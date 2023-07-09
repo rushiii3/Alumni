@@ -47,20 +47,27 @@ function loginUser(){
           data: formData, // Form data object
           dataType: 'text', // Expected data type of the response
           success: function(response) {
-            if (response.includes("Username already exists")) {
-              alert("This email is already registered with us.");
+            if (response.includes("Username doesnt exist")) {
+              feedback_email.innerText="This username isn't registered with us.";
+              username_input.classList.add("is-invalid");
               failed_modal.ariaHidden=false;
               is_email_verified = false;
-            } else if (response.includes("User registration unsuccessful")) {
-              alert("User registration was not successful");
+            } 
+            else if (response.includes("Invalid password")) {
+               feedback_password.innerText="Invalid password";
+               password_input.classList.add("is-invalid");
               failed_modal.ariaHidden=false;
-            } else if (response.includes("Sorry")) {
-              alert("Sorry we couldn't find anyone with the provided details. Enter the details as on the marksheet");
-              failed_modal.ariaHidden=false;
-            } else if (response.includes("User registration successful")) {
-              alert("Yayyy! Registration successful");
+
+            } 
+            else if (response.includes("login successful")) {
+              alert("Yayyy! Login successful");
+              username_input.classList.remove("is-invalid");
+              password_input.classList.remove("is-invalid");
+              setLoginSessionVar();
               failed_modal.ariaHidden=true;
-            } else {
+              window.location.href="../main/home.php";
+            } 
+            else {
               alert("Sorry! Please try again later");
             }
             console.log(response); // Display the response from the PHP file
@@ -97,6 +104,33 @@ function loginUser(){
                password_input.classList.remove("is-invalid");
                return true;
           }
+      }
+
+      //3.set the session as logged in
+      function setLoginSessionVar(){
+          $.ajax({
+               url: "../main/set_session.php", // PHP file to handle the form data
+          type: "POST", // HTTP method (POST in this case)
+          data: {"login_success":"true"}, // Form data object
+          dataType: 'text', // Expected data type of the response
+          success: function(response) {
+               if(response.includes("Login session variable set successfully")){
+                    alert("session variable set successfully");
+               }
+               else{
+                    alert("Some issue occurred while setting the session variable");
+                    console.log(response);
+               }
+            console.log(response); // Display the response from the PHP file
+          },
+          error: function(xhr, status, error) {
+            // Handle the error
+           
+            alert("Error when setting the login session variable");
+            console.error("Request failed. Status: " + status + ". Error: " + error);
+          }
+
+          })
       }
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //OTHER LISTENERS
