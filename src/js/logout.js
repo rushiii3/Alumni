@@ -14,7 +14,7 @@ window.onunload = function () { null };
 //2.Logout the user
 function logoutUser() {
     $.ajax({
-      url: "../main/destroy_session.php", // PHP file to handle the logout logic
+      url: "../main/logout_and_destroy_session.php", // PHP file to handle the logout logic
       type: "POST",
       dataType: "text",
       success: function(response) {
