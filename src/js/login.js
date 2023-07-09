@@ -12,6 +12,8 @@ let feedback_password_valid=document.getElementById("feedback_password_valid");
 
 let entered_username="",entered_password="";
 
+let login_failed_message_para=document.getElementById("login_failed_message");
+
 //Password hide and unhide 
 
 $('.pass_open_eye').hide();
@@ -48,19 +50,23 @@ function loginUser(){
           dataType: 'text', // Expected data type of the response
           success: function(response) {
             if (response.includes("Username doesnt exist")) {
+               
               feedback_email.innerText="This username isn't registered with us.";
               username_input.classList.add("is-invalid");
-              failed_modal.ariaHidden=false;
+
+             
               is_email_verified = false;
             } 
             else if (response.includes("Invalid password")) {
                feedback_password.innerText="Invalid password";
                password_input.classList.add("is-invalid");
-              failed_modal.ariaHidden=false;
+              //failed_modal.ariaHidden=false;
 
             } 
             else if (response.includes("login successful")) {
-              alert("Yayyy! Login successful");
+
+               
+              //alert("Yayyy! Login successful");
               username_input.classList.remove("is-invalid");
               password_input.classList.remove("is-invalid");
               setLoginSessionVar();
@@ -68,14 +74,18 @@ function loginUser(){
               window.location.href="../main/home.php";
             } 
             else {
-              alert("Sorry! Please try again later");
+               login_failed_message_para.innerHTML="<strong>Login was not successful. Sorry! Please try again later</strong>"
+               $('#login_failed_modal').modal('show'); //show the login failed modal
+              //alert("Sorry! Please try again later");
             }
             console.log(response); // Display the response from the PHP file
           },
           error: function(xhr, status, error) {
             // Handle the error
-            failed_modal.ariaHidden=false;
-            alert("Oops! There was some error occured.Please try again later")
+            login_failed_message_para.innerHTML="<strong>Oops! An unexpected error occured.Please try again later</strong>"
+            $('#login_failed_modal').modal('show'); //show the login failed modal
+
+            //alert("Oops! There was some error occured.Please try again later")
             console.error("Request failed. Status: " + status + ". Error: " + error);
           }
         });
@@ -118,6 +128,8 @@ function loginUser(){
                     console.log("session variable set successfully");
                }
                else{
+                    login_failed_message_para.innerHTML="<strong>Oops! An unexpected error occured.Please try again later</strong>"
+            $('#login_failed_modal').modal('show'); //show the login failed modal
                     console.log("Some issue occurred while setting the session variable"+response);
                }
             console.log(response); // Display the response from the PHP file

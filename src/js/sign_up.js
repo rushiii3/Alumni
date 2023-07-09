@@ -1,6 +1,8 @@
 //GLOBAL VARIABLES
 
 let registration_form=document.getElementById("signupform");
+
+let failed_modal_message_para=document.getElementById("failed_registration_message");
 //PAGE 1
    let is_email_verified=false;
    let is_phone_number_valid=false;
@@ -219,8 +221,9 @@ verify_email_button.addEventListener('click',function(){
     //todo:generate the otp and send the email
 });
 
-//2. Setting the max content when DOMcontent is loaded
+//2. when DOMcontent is loaded
 document.addEventListener('DOMContentLoaded',function(){
+  //set the max date in the calendar
   setMaxDateofCalendar();
 
   //when none is selected disable the masters_college and masters_admission_year fields
@@ -229,12 +232,13 @@ masters_admission_year_input.disabled=true;
 masters_degree_college_name_input.disabled=true;
   }
 
-  //4. when the user submits the form
+  //when the user submits the form
 registration_form.addEventListener("submit",function(e){
   e.preventDefault();
-  
   registerUser();
 });
+
+//display the success modal when registration is successful
 
 });
 
@@ -785,23 +789,39 @@ return false;
       dataType: 'text', // Expected data type of the response
       success: function(response) {
         if (response.includes("Username already exists")) {
-          alert("This email is already registered with us.");
+          failed_modal_message_para.innerHTML="<strong>This email is already registered with us. </strong>";
+          $('#failed_modal').modal('show');
+         // alert("This email is already registered with us.");
           is_email_verified = false;
-        } else if (response.includes("User registration unsuccessful")) {
-          alert("User registration was not successful");
-        } else if (response.includes("Sorry")) {
-          alert("Sorry we couldn't find anyone with the provided details. Enter the details as on the marksheet or click Help");
-        } else if (response.includes("User registration successful")) {
-          alert("Yayyy! Registration successful");
+        } 
+        else if (response.includes("User registration unsuccessful")) {
+          failed_modal_message_para.innerHTML="<strong>Registration was not successful </strong>";
+          $('#failed_modal').modal('show');
+          //alert("User registration was not successful");
+        } 
+        else if (response.includes("Sorry")) {
+          failed_modal_message_para.innerHTML="<strong>Sorry we couldn't find anyone with the provided details. Please enter the details as on your the marksheet</strong>";
+          $('#failed_modal').modal('show');
+          //alert("Sorry we couldn't find anyone with the provided details. Enter the details as on the marksheet or click Help");
+        } 
+        else if (response.includes("User registration successful")) {
+          //registration successful
+          $('#success_modal').modal('show');
+          //alert("Yayyy! Registration successful");
           window.location.href='../main/login.php'
-        } else {
-          alert("Sorry! Please try again later");
+        } 
+        else {
+          failed_modal_message_para.innerHTML="<strong> Registration failed.Sorry! Please try again later</strong>";
+          $('#failed_modal').modal('show');
+          //alert("Sorry! Please try again later");
         }
         console.log(response); // Display the response from the PHP file
       },
       error: function(xhr, status, error) {
         // Handle the error
-        alert("Oops! There was some error occured.Please try again later")
+        failed_modal_message_para.innerHTML="<strong> Oops!Some unexpected error occured.Please try again later</strong>";
+        $('#failed_modal').modal('show');
+       // alert("Oops! There was some error occured.Please try again later")
         console.error("AJAX Request failed. Status: " + status + ". Error: " + error);
       }
     });

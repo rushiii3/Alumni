@@ -37,6 +37,38 @@ exit;
     include_once "loader.html";
 
     ?>
+
+    <!-- SUCCESS MODAL -->
+    <div class="modal fade" id="success_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog modal-dialog-centered w-75 mx-auto">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img src="https://img.freepik.com/free-vector/confirmed-concept-illustration_114360-545.jpg?w=1060&t=st=1683867581~exp=1683868181~hmac=1e7364b0ade26d1472f5c388369363e9158af74c9e3784a415576453158c7a65" class="img-fluid" alt="">
+                        <p class="fs-6 text-center"><strong>Congratulations.</strong> <br/> Your account has been successfully created.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" onclick="location.href='login.php';" class="btn btn-primary">Login</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAILED MODAL-->
+        <div class="modal fade" id="failed_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog modal-dialog-centered w-75 mx-auto">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img src="https://img.freepik.com/free-vector/removing-goods-from-basket-refusing-purchase-changing-decision-item-deletion-emptying-trash-online-shopping-app-laptop-user-cartoon-character-vector-isolated-concept-metaphor-illustration_335657-2843.jpg?w=1060&t=st=1683869448~exp=1683870048~hmac=351919e98226dbde35a446a66fcd783e63766b69193d06232b36da08b0ca3b2c" class="img-fluid" alt="">
+                        <p class="fs-6 text-center" id="failed_registration_message"><strong>Failed to register.</strong></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Try Again</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--MAIN STEPPER VIEW-->
     <main id="main">
 <div class="container mt-5 mb-5 shadow p-3 mb-5 bg-body" id="container">
             <div class="row p-3">
