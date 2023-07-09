@@ -802,7 +802,7 @@ return false;
       error: function(xhr, status, error) {
         // Handle the error
         alert("Oops! There was some error occured.Please try again later")
-        console.error("Request failed. Status: " + status + ". Error: " + error);
+        console.error("AJAX Request failed. Status: " + status + ". Error: " + error);
       }
     });
   }

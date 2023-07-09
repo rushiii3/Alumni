@@ -115,18 +115,17 @@ function loginUser(){
           dataType: 'text', // Expected data type of the response
           success: function(response) {
                if(response.includes("Login session variable set successfully")){
-                    alert("session variable set successfully");
+                    console.log("session variable set successfully");
                }
                else{
-                    alert("Some issue occurred while setting the session variable");
-                    console.log(response);
+                    console.log("Some issue occurred while setting the session variable"+response);
                }
             console.log(response); // Display the response from the PHP file
           },
           error: function(xhr, status, error) {
             // Handle the error
            
-            alert("Error when setting the login session variable");
+            console.log("JAX Error while setting the session variable");
             console.error("Request failed. Status: " + status + ". Error: " + error);
           }
 
