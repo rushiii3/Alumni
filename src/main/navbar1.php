@@ -76,6 +76,9 @@
                 <li>
                     <a href="#"> <span class="material-symbols-outlined me-1">emoji_events</span> Professional Development</a>
                 </li>
+                <li>
+                    <a href="#"><span class="material-symbols-outlined">volunteer_activism</span> Giving Back</a>
+                </li>
             </ul>
 
             <ul class="list-unstyled components">

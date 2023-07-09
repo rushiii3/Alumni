@@ -58,7 +58,7 @@ function loginUser(){
               is_email_verified = false;
             } 
             else if (response.includes("Invalid password")) {
-               feedback_password.innerText="Invalid password";
+               feedback_password.innerText="Incorrect password";
                password_input.classList.add("is-invalid");
               //failed_modal.ariaHidden=false;
 
@@ -69,9 +69,10 @@ function loginUser(){
               //alert("Yayyy! Login successful");
               username_input.classList.remove("is-invalid");
               password_input.classList.remove("is-invalid");
-              setLoginSessionVar();
-              failed_modal.ariaHidden=true;
               window.location.href="../main/home.php";
+              setLoginSessionVar();
+              //failed_modal.ariaHidden=true;
+              
             } 
             else {
                login_failed_message_para.innerHTML="<strong>Login was not successful. Sorry! Please try again later</strong>"
@@ -137,7 +138,7 @@ function loginUser(){
           error: function(xhr, status, error) {
             // Handle the error
            
-            console.log("JAX Error while setting the session variable");
+            console.log("AJAX Error while setting the session variable");
             console.error("Request failed. Status: " + status + ". Error: " + error);
           }
 
