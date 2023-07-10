@@ -4,6 +4,7 @@ session_start();
 
 if($_POST['login_success']=== 'true'){
     $_SESSION["isloggedin"]=true;
+    $_SESSION["username"]=$_POST["username"];
     echo "Login session variable set successfully";
 }
 else if($_SESSION["isloggedin"]===true){

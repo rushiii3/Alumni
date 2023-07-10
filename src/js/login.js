@@ -67,10 +67,11 @@ function loginUser(){
 
                
               //alert("Yayyy! Login successful");
+              setLoginSessionVar();
               username_input.classList.remove("is-invalid");
               password_input.classList.remove("is-invalid");
               window.location.href="../main/home.php";
-              setLoginSessionVar();
+              
               //failed_modal.ariaHidden=true;
               
             } 
@@ -119,10 +120,11 @@ function loginUser(){
 
       //3.set the session as logged in
       function setLoginSessionVar(){
+          var username=entered_username.trim();
           $.ajax({
                url: "../main/set_session.php", // PHP file to handle the form data
           type: "POST", // HTTP method (POST in this case)
-          data: {"login_success":"true"}, // Form data object
+          data: {"login_success":"true","username":username}, // Form data object
           dataType: 'text', // Expected data type of the response
           success: function(response) {
                if(response.includes("Login session variable set successfully")){

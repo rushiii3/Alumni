@@ -1,5 +1,34 @@
 <!--To handle the actions on navbar 1.php-->
 <script>
+
+  //GLOBAL VARIABLES
+//----------------------------------------------------------------------------------------------------------------------------------------
+//FUNCTIONS
+function fetchLoggedinUserDetails(username){
+    var loggedin_username=username;
+    console.log(username);
+    $.ajax({
+        url:"https://alumniandroidapp.000webhostapp.com/logged_in_alumni_details_fetch_profile_fragment.php", 
+        type:"POST",
+        data:{"alumni_username":loggedin_username},
+        dataType:"json",
+        success:function(response){
+          console.log(response);
+          if (Array.isArray(response) && response.length > 0) {
+        var name_of_alumni = response[0].firstname + " " + response[0].lastname;
+        $('#alumni_name').text(name_of_alumni);
+      }
+      
+        },
+        error:function(error){
+          console.error("Error fetching logged-in alumni details: " + error);
+        }
+    
+    }
+    );
+}
+//----------------------------------------------------------------------------------------------------------------------------------------
+
   $(document).ready(function() {
     // Show the confirmation dialog when the user clicks on the logout link
     $("#logout_user_link").click(function(event) {
@@ -20,6 +49,9 @@
     $("#crossButton").click(function() {
         $("#logoutModal").modal("hide");// dismiss the logout modal
     });
+
+//fetch the details of the logged in alumni
+fetchLoggedinUserDetails("<?php echo $_SESSION["username"];?>");
   });
 
   
@@ -59,7 +91,7 @@
                     <img src="../img/logo11-removebg-preview.png" alt="college_logo"  id="sideBarLogo">
                 </p>
                 
-                <h3 class="p-1 text-center">Hrushikesh Sanjay Shinde</h3>
+                <h3 class="p-1 text-center" id="alumni_name"></h3>
             </div>
 
             <ul class="list-unstyled components">
