@@ -68,7 +68,7 @@ foreach ($characters as $character) {
         ?>
         <div class="container my-auto  mt-5 mb-5  shadow mb-5 bg-body" id="container">
         <div class="row">
-            <div class="p-0 col-lg-6 mt-1">
+            <div class="p-0 col-lg-6 col-md-6 mt-1">
                 <img id="img" src="<?php 
                 if($img=="event image")
                 { 
@@ -79,7 +79,7 @@ foreach ($characters as $character) {
                 } 
                 ?>" alt="" class="img-fluid h-100 w-100"/>
             </div>
-            <div class="col-lg-6 bg-white my-5 p-4" id="Event_body">
+            <div class="col-lg-6 col-md-6 bg-white my-5 p-4" id="Event_body">
                 <h1 class="fw-bold">
                     <?php echo $character->event_name; ?>
                 </h1>
