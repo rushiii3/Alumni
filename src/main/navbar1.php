@@ -51,7 +51,8 @@ function fetchLoggedinUserDetails(username){
     });
 
 //fetch the details of the logged in alumni
-fetchLoggedinUserDetails("<?php echo $_SESSION["username"];?>");
+//fetchLoggedinUserDetails("<?php echo $_SESSION["username"];?>");
+
   });
 
   

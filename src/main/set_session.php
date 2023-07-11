@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-
+/*
 if($_POST['login_success']=== 'true'){
     $_SESSION["isloggedin"]=true;
     $_SESSION["username"]=$_POST["username"];
@@ -16,7 +16,7 @@ else if($_POST['login_success']==='false'){
 }
 
 
-
+*/
 
 
 ?>
