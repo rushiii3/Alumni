@@ -26,11 +26,59 @@
   border-style: outset;
   border: none;
 } 
+
+
+
+
+.wrap{
+  right: 10%;
+  position: absolute;
+  width: 0px;
+  height: 55px;
+  line-height: 55px;
+  padding-right: 55px;
+  border-radius: 5px;
+  transition: all 0.5s ease;
+}
+
+.input{
+  border: 0;
+  width: 0%;
+  outline: none;
+  color: black;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.wrap .fa{
+  color: #fff;
+  /* position: absolute; */
+  right: 17px;
+  top: 15px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.wrap.active{
+  width: 250px;
+  padding-left: 25px;
+  transition: all 0.5s ease;
+}
+
+.input.active{
+  width: 98%;
+  padding-left: 5px;
+  transition: all 0.5s 0.8s ease;
+}
+
+input::placeholder {
+  color: #fff;
+}
     </style>
 </head>
 <body>
     <?php
-    include_once "loader.html";
+    //include_once "loader.html";
     ?>
     <main id="main">
 <div class="wrapper">
@@ -43,21 +91,20 @@
         <?php
             include "navbar2.php";
         ?>
-        <button id="yes">yes</button>
             <!-- write all files here -->
-            <div style="    display: flex;
-    flex-direction: row;
-    justify-content: space-between;">
+            <div style="display: flex;flex-direction: row;justify-content: space-between;">
                 <h1 class="mb-5" id="AD"> Alumni Directory</h1>
                 <div>
-                <form class="d-flex" role="search">
-        <input class="form-control me-2" style="outline: none;width:15rem"  type="search" placeholder="Search" aria-label="Search">
-        
-        <button class="btn" id="SearchIconButton" type="button"><i class="bi bi-search fs-3"></i></button>
-        <button class="btn" id="ListIconButton" type="button"><i class="bi bi-filter fs-3"></i></button>
-
-      </form>
+                    <div class="wrap">
+                        <form>
+                            <input type="text" class="input" placeholder="Search">
+	                    </form>
+                        <button class="btn text-black fa fa-search" id="SearchIconButton" type="button"><i class="bi bi-search fs-3"></i></button>
+                    </div>
+                <div>
+                    <button class="btn" id="ListIconButton" type="button"><i class="bi bi-filter fs-3"></i></button>
                 </div>
+</div>
             </div>
 
 <div class="container mt-2" style="height:100vh;">
@@ -77,7 +124,15 @@
 
         </div>
 </div>
-           
+           <script>
+
+  $(".fa-search").click(function(){
+    $(".wrap, .input").toggleClass("active");
+    $("input[type='text']").focus();
+  });
+  
+
+            </script>
 </main>
 </body>
 </html>
