@@ -1,3 +1,20 @@
+<?php
+session_start();
+if(!isset($_SESSION['isloggedin'])){
+  echo "<script> window.location.href='../main/login.php' </script>";
+  exit;
+
+}
+else{
+  if(!$_SESSION['isloggedin']){
+    echo "<script> window.location.href='../main/login.php' </script>";
+    exit;
+  }
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
