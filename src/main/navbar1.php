@@ -51,7 +51,7 @@ function fetchLoggedinUserDetails(username){
     });
 
 //fetch the details of the logged in alumni
-//fetchLoggedinUserDetails("<?php echo $_SESSION["username"];?>");
+fetchLoggedinUserDetails("<?php echo $_SESSION["username"];?>");
 
   });
 
@@ -107,7 +107,7 @@ function fetchLoggedinUserDetails(username){
                     <a href="alumni_directory.php"> <span class="material-symbols-outlined me-1">school</span> Alumni Directory</a>
                 </li>
                 <li>
-                    <a href="#"> <span class="material-symbols-outlined me-1">emoji_events</span> Professional Development</a>
+                    <a href="professional_dev.php"> <span class="material-symbols-outlined me-1">emoji_events</span> Professional Development</a>
                 </li>
                 <li>
                     <a href="#"><span class="material-symbols-outlined">volunteer_activism</span> Giving Back</a>
