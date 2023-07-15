@@ -29,6 +29,8 @@ else{
   
   <link rel="stylesheet" href="../css/navigation.css">
   <link rel="stylesheet" href="../css/alumni_directory.css">
+
+  <script src="../js/navigation.js"></script>
 </head>
 
 <body>
@@ -113,21 +115,30 @@ else{
             ?>
             <?php
             foreach ($characters as $character) {
-              if(($college_name==$character->bachelor_degree_college) || ($character->master_degree_college==$college_name)){
+              if(($college_name==$character->bachelor_degree_college)){
 
             ?>
               <div class="col-lg-4 col-md-6 mb-5" id="card">
                 <div class="card shadow p-1" style="width: auto;border-radius: 20px;">
                   <div class="card-body ">
                     <h5 class="card-title fw-bold" id="username"><?php echo $character->firstname . " " . $character->lastname; ?></h5>
-                    <p class="card-text text-muted mt-3" id="user_bachelor_course"><?php echo $character->bachelor_degree ?> </p>
+                    <div class="d-flex align-items-center">
+                    <p class="card-text text-muted mt-3" id="user_bachelor_course"><?php echo $character->bachelor_degree; ?>&nbsp;</p>
                     <p class="card-text text-muted"><span id="user_bachelor_admission_year"><?php echo $character->bachelor_admission_year; ?> </span> </p>
-
+                    </div>
                     <?php
+              }
+             if(($college_name==$character->master_degree_college)){
                     //if($character->master_degree!=='' & $character->master_admission_year!=='' ){
                     ?>
-                    <p class="card-text text-muted mt-3" id="user_master_course"><?php echo $character->master_degree ?> </p>
+
+                    <div class="d-flex align-items-center">
+                    <p class="card-text text-muted mt-3" id="user_master_course"><?php echo $character->master_degree." "; ?>&nbsp;</p>
                     <p class="card-text text-muted"><span id="user_master_admission_year"><?php echo $character->master_admission_year; ?> </span> </p>
+                    </div>
+<?php
+             }
+?>
 
                     <p class="text-center mb-0">
                       <a href="" class="link text-center" style="color:#0099CC ">View Details</a>
@@ -136,7 +147,7 @@ else{
                 </div>
               </div>
             <?php
-              }
+              
             }
             ?>
 
