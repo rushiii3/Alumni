@@ -16,6 +16,8 @@
   
   <link rel="stylesheet" href="../css/navigation.css">
   <link rel="stylesheet" href="../css/alumni_directory.css">
+
+  <script src="../js/navigation.js"></script>
 </head>
 
 <body>

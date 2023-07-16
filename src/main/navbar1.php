@@ -101,7 +101,7 @@ fetchLoggedinUserDetails("<?php echo $_SESSION["username"];?>");
                 </li>
                 
                 <li>
-                    <a href="#"><span class="material-symbols-outlined me-1">newspaper</span> News</a>
+                    <a href="news.php"><span class="material-symbols-outlined me-1">newspaper</span> News</a>
                 </li>
                 <li>
                     <a href="alumni_directory.php"> <span class="material-symbols-outlined me-1">school</span> Alumni Directory</a>

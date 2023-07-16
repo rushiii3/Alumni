@@ -1,0 +1,30 @@
+
+
+.navigation-item {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  padding: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.navigation-item.active {
+  background-color: #0099CC;
+  color: #fff;
+}
+
+
+
+/* MOBILE DEVICES */
+@media only screen and (min-width: 0em) {
+    #bottom-navigation{
+        width: 90%;
+    }
+}
+
+/* Medium devices such as tablets (768px and up) */
+@media only screen and (min-width: 48em) {
+    #bottom-navigation{
+        width: 75%;
+    }
+}
