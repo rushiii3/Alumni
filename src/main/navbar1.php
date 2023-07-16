@@ -116,7 +116,7 @@ fetchLoggedinUserDetails("<?php echo $_SESSION["username"];?>");
 
             <ul class="list-unstyled components">
                 <li>
-                    <a href="#"> <span class="material-symbols-outlined me-1">account_circle</span> Your Profile</a>
+                    <a href="profile.php"> <span class="material-symbols-outlined me-1">account_circle</span> Your Profile</a>
                 </li>
                 <li>
                     <a  href="#" id="logout_user_link"><span class="material-symbols-outlined me-1"> logout </span>Log out</a>

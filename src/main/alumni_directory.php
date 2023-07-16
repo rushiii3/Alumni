@@ -29,7 +29,7 @@ else{
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" />
-  
+  <script src="../js/navigation.js"></script>
   <link rel="stylesheet" href="../css/navigation.css">
   <link rel="stylesheet" href="../css/alumni_directory.css">
 </head>
@@ -106,7 +106,7 @@ else{
 
         </div>
 
-        <div class="container mt-2" style="height:100vh;">
+        <div class="container mt-2">
           <div class="row p-1">
             <?php
             $url = 'https://alumniandroidapp.000webhostapp.com/all_alumni_fetch.php'; // path to your JSON file
