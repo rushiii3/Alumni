@@ -86,14 +86,13 @@ News
   <a href="#" class="navigation-item">Campus News</a>
             -->
   <button type="button" class="text-center mx-2 btn navigation-item active">
-  <span class="material-symbols-outlined">
-domain
-</span>
+  <img src="../img/ic_alumni_news_frag.svg" />
             <br />
            Alumni news
         </button>
 
         <button type="button" class="text-center mx-2 btn navigation-item">
+       
         <span class="material-symbols-outlined">
 domain
 </span>
