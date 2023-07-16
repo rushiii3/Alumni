@@ -94,7 +94,7 @@ if(!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']){
 
 
 <!-- Bottom navigation -->
-<div class="position-absolute bottom-0 bg-white d-flex justify-content-evenly py-1" id="down_navigation">
+<div class="position-fixed bottom-0 bg-white d-flex justify-content-evenly py-1" id="down_navigation">
         <button type="button" class="text-center mx-2 btn Scholarship_awards">
           <span class="material-symbols-outlined">
             social_leaderboard
@@ -108,7 +108,7 @@ if(!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']){
             card_travel
             </span>
             <br />
-            Intership & jobs
+            Internship & jobs
         </button>
 
         <button type="button" class="text-center mx-2 btn Accolades_you">
@@ -116,7 +116,7 @@ if(!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']){
             card_travel
             </span>
             <br />
-            Accolades & you
+            Accolades by you
         </button>
        
     </div>

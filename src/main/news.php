@@ -42,7 +42,7 @@ else{
         <?php
         include "navbar2.php";
         ?>  
-         <h1>
+         <h1 id="heading">
 News
 </h1>
 
@@ -80,10 +80,26 @@ News
             ?>
 
 
-<div class="bottom-navigation">
- 
+<div class="position-fixed bottom-0 bg-white d-flex justify-content-evenly py-1" id="bottom-navigation">
+ <!--
   <a href="#" class="navigation-item active">Alumni News</a>
   <a href="#" class="navigation-item">Campus News</a>
+            -->
+  <button type="button" class="text-center mx-2 btn navigation-item active">
+  <span class="material-symbols-outlined">
+domain
+</span>
+            <br />
+           Alumni news
+        </button>
+
+        <button type="button" class="text-center mx-2 btn navigation-item">
+        <span class="material-symbols-outlined">
+domain
+</span>
+            <br />
+          Campus news
+        </button>
 </div>
 
 

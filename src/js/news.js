@@ -24,28 +24,32 @@ $(document).ready(function() {
       
 
       //load the alumni news first
+      $('#heading').text("Alumni news");
       displayNews("alumni");
 
 
     //when clicked on navigation tab
-    $('.navigation-item').click(function(e) {
-      e.preventDefault();
+    $('.navigation-item').on('click',function(){
+      
       $('.navigation-item').removeClass('active');
       $(this).addClass('active');
-  
-      // Load the respective news content based on the selected navigation item
+
       var selectedItem = $(this).text();
-      if (selectedItem === 'Campus News') {
+      if (selectedItem.includes('Campus news')) {
         // Load campus news content
         // ...
+        $('#heading').text("Campus news");
         displayNews("campus");
 
 
-      } else if (selectedItem === 'Alumni News') {
+      } else if (selectedItem.includes('Alumni news')) {
         // Load alumni news content
         // ...
+        $('#heading').text("Alumni news");
         displayNews("alumni");
       }
-    });
+
+    })
+    
   });
   
