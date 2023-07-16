@@ -1,13 +1,13 @@
 <?php
 session_start();
-$_SESSION['isloggedin']=true;
-$_SESSION['username']="chocolateassignment68@gmail.com";
-/*
+//$_SESSION['isloggedin']=true;
+//$_SESSION['username']="chocolateassignment68@gmail.com";
+
 if(!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']){
     echo "<script> window.location.href='../main/login.php' </script>";
     exit;
 }
-*/
+
 
 
 ?>

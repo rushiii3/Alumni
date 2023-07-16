@@ -1,3 +1,19 @@
+<?php
+session_start();
+if(!isset($_SESSION['isloggedin'])){
+  echo "<script> window.location.href='../main/login.php' </script>";
+  exit;
+
+}
+else{
+  if(!$_SESSION['isloggedin']){
+    echo "<script> window.location.href='../main/login.php' </script>";
+    exit;
+  }
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,7 +66,7 @@ Professional Development
             foreach ($characters as $character) {
               
             ?>
-             <div class="col-lg-4 col-md-6 mb-5" id="card">
+             <div class="col-lg-4 col-md-6 mb-5 mt-4" id="card">
   <div class="card shadow p-1" style="width: auto; border-radius: 20px;">
     <div class="card-body">
       <div class="d-flex justify-content-between align-items-center">
