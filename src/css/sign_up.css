@@ -92,7 +92,7 @@ content: none;
 #container{
     border-radius: 20px;
 }
-
+/* MOBILE DEVICES */
 @media only screen and (min-width: 0em) {
     #container{
         width: 90%;
