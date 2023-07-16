@@ -1,28 +1,43 @@
-$(document).ready(function(){
-    $('#Scholarship_awards_page').hide();
-    $('#Intership_jobs_page').hide();
-    $('#Accolades_you_page').hide();
-    //show scholarship page
-    $('.Scholarship_awards').on('click',function(){
-        $('#section_name').text("Scholarship & awards");
-        $('#Scholarship_awards_page').show();
-        $('#Intership_jobs_page').hide();
-        $('#Accolades_you_page').hide();
-    })
-    // show intership page
-    $('.Intership_jobs').on('click',function(){
-        $('#section_name').text("Intership & jobs");
-        $('#Intership_jobs_page').show();
-        $('#Scholarship_awards_page').hide();
-        $('#Accolades_you_page').hide();
-    })
+$(document).ready(function () {
+  /*-----------------------------------------
+bottom navigation logic
+    ---------------------------------------------------*/
 
-    $('.Accolades_you').on('click',function(){
-        $('#section_name').text("Accolades & you");
-        $('#Intership_jobs_page').hide();
-        $('#Scholarship_awards_page').hide();
-        $('#Accolades_you_page').show();
-    })                                     
+  $("#Scholarship_awards_page").hide();
+  $("#Internship_jobs_page").hide();
+  $("#Accolades_you_page").hide();
+  //show scholarship page
+  $(".Scholarship_awards").on("click", function () {
+    $("#section_name").text("Scholarship & awards");
+    $("#Scholarship_awards_page").show();
+    $("#Internship_jobs_page").hide();
+    $("#Accolades_you_page").hide();
+  });
+  // show Internship page
+  $(".Internship_jobs").on("click", function () {
+    $("#section_name").text("Internship & jobs");
+    $("#Internship_jobs_page").show();
+    $("#Scholarship_awards_page").hide();
+    $("#Accolades_you_page").hide();
+  });
 
-    $('.Scholarship_awards').click();
-})
+  $(".Accolades_you").on("click", function () {
+    $("#section_name").text("Accolades by you");
+    $("#Accolades_you_page").show();
+    $("#Internship_jobs_page").hide();
+    $("#Scholarship_awards_page").hide();
+  });
+
+  //by default select scholarship awards
+  $(".Scholarship_awards").click();
+
+  //-------------------------------------------------------------------
+  //GLOBAL Variables
+
+
+  //---------------------------------------------------------------------------------------------------
+  //FUNCTIONS
+
+  //------------------------------------------------------------------------------------------------
+  //VALIDATION WHEN USER IS TYPING
+});

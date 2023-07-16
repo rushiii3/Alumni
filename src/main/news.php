@@ -83,7 +83,7 @@ News
             ?>
 
 
-<div class="position-fixed bottom-0 bg-white d-flex justify-content-evenly py-1" id="bottom-navigation">
+<div class="position-sticky bottom-0 bg-white d-flex justify-content-evenly py-1" id="bottom-navigation">
  <!--
   <a href="#" class="navigation-item active">Alumni News</a>
   <a href="#" class="navigation-item">Campus News</a>
