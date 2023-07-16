@@ -29,6 +29,9 @@ else{
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/jquery.simplePagination.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/simplePagination.min.css">
+
   <script src="../js/navigation.js"></script>
   <link rel="stylesheet" href="../css/navigation.css">
   <link rel="stylesheet" href="../css/alumni_directory.css">
@@ -38,7 +41,7 @@ else{
 
 <body>
   <?php
-  include_once "loader.html";
+  //include_once "loader.html";
   ?>
   <main id="main">
     <div class="wrapper">
@@ -123,7 +126,7 @@ else{
             ?>
               <div class="col-lg-4 col-md-6 mb-5" id="card">
                 <div class="card shadow p-1" style="width: auto;border-radius: 20px;">
-                  <div class="card-body ">
+                  <div class="card-body " style="height:14rem;">
                     <h5 class="card-title fw-bold" id="username"><?php echo $character->firstname . " " . $character->lastname; ?></h5>
                     <div class="d-flex align-items-center">
                     <p class="card-text text-muted mt-3" id="user_bachelor_course"><?php echo $character->bachelor_degree; ?>&nbsp;</p>
@@ -143,7 +146,7 @@ else{
              }
 ?>
 
-                    <p class="text-center mb-0">
+                    <p class="text-center <?php if(($college_name==$character->master_degree_college)){ }else{echo"mt-5"; } ?> ">
                       <a href="" class="link text-center" style="color:#0099CC ">View Details</a>
                     </p>
                   </div>
@@ -155,6 +158,13 @@ else{
             ?>
 
           </div>
+         <div class="d-flex justify-content-evenly">
+            <div id="pagination"></div>
+         </div>
+          
+         
+          
+
         </div>
        
   </main>

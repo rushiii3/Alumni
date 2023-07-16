@@ -1,5 +1,29 @@
 
 $(document).ready(function() {
+
+    // pagination
+    $(".row #card").slice(6).hide();
+    var items = $(".row #card");
+    var length_of_items = items.length;
+    console.log(length_of_items);
+
+    $('#pagination').pagination({
+       
+      // Total number of items present
+      // in wrapper class
+      items: length_of_items,
+
+      // Items allowed on a single page
+      itemsOnPage: 6, 
+
+      onPageClick: function (noofele) {
+        
+          $(".row #card").hide().slice(6*(noofele-1),6+ 6* (noofele - 1)).show();
+      }
+  });
+
+
+
     $(".btn-search").on("mouseover", function() {
       $('#AD').hide();
     }).on("mouseenter", function() {
