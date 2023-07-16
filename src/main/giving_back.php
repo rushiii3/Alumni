@@ -2,11 +2,12 @@
 session_start();
 $_SESSION['isloggedin']=true;
 $_SESSION['username']="chocolateassignment68@gmail.com";
+/*
 if(!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']){
     echo "<script> window.location.href='../main/login.php' </script>";
     exit;
 }
-
+*/
 
 
 ?>
@@ -25,9 +26,24 @@ if(!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']){
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" />
     <script src="../js/navigation.js"></script>
-    <script src="../js/logout.js"></script>
+    <script src="../js/giving_back.js"></script>
    
     <link rel="stylesheet" href="../css/navigation.css">
+    <style>
+/* MOBILE DEVICES */
+@media only screen and (min-width: 0em) {
+    #down_navigation{
+        width: 90%;
+    }
+}
+
+/* Medium devices such as tablets (768px and up) */
+@media only screen and (min-width: 48em) {
+    #down_navigation{
+        width: 75%;
+    }
+}
+    </style>
 </head>
 <body>
     <?php
@@ -45,46 +61,66 @@ if(!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']){
             include "navbar2.php";
         ?>
             <!-- write all files here -->
+            <!-- page name -->
             <h1>
-Events
-</h1>
-<h3>
-Upcoming Events
-</h3>
-<?php
-$url = 'https://alumniandroidapp.000webhostapp.com/all_events_fetch.php'; // path to your JSON file
-$data = file_get_contents($url); // put the contents of the file into a variable
-$characters = json_decode($data); // decode the JSON feed
-?>
-<div class="container mt-4" style="height:100vh;">
-        <div class="row p-1">
-
-        <?php
-        foreach ($characters as $character) {
+                    Giving Back
+            </h1>
+            <!-- section name -->
+            <h3 id="section_name">
             
-            ?>
-            <div class="col-lg-4 col-md-6 mb-5">
-                <div class="card shadow p-1" style="width: auto;border-radius: 20px;">
-                    <div class="card-body ">
-                        <h5 class="card-title fw-bold"><?php echo $character->event_name; ?></h5>
-                        <p class="card-text " style="overflow: hidden;display:-webkit-box;-webkit-line-clamp: 3;line-clamp: 3; -webkit-box-orient: vertical;height:4.5rem"> <?php echo $character->event_description; ?>   </p>
-                        <p class="card-text"> Date : <?php echo date("d F Y", strtotime($character->event_date)); ?></p>
-                        <div class="mx-auto text-center">
-                            <a href="view_events.php?id=<?php echo $character->event_id;  ?>" class="link text-center mx-2 my-2" style="color:#0099CC ">View Details</a>
-                            <a href="<?php echo $character->event_registration_link; ?>" class="link text-center btn mx-2 my-2" style="background-color:#0099CC ">Register</a>
+            </h3>
 
-                        </div>
-                    </div>
-                </div>
+            <!-- Scholarship_awards page -->
+            <div id="Scholarship_awards_page">
+                <p>
+                    Hello
+                </p>
             </div>
-            
-            <?php
-            }
-            
-            ?>
-        </div>
+
+            <!-- Intership_jobs page -->
+            <div id="Intership_jobs_page">
+                <p>
+                    Hi
+                </p>
+            </div>
+
+
+    <!-- Accolades_you page -->
+            <div id="Accolades_you_page">
+                    <p>
+                        Byee
+                    </p>
+            </div>
+
+
+<!-- Bottom navigation -->
+<div class="position-absolute bottom-0 bg-white d-flex justify-content-evenly py-1" id="down_navigation">
+        <button type="button" class="text-center mx-2 btn Scholarship_awards">
+          <span class="material-symbols-outlined">
+            social_leaderboard
+            </span>
+            <br />
+            Scholarship & awards
+        </button>
+        
+        <button type="button" class="text-center mx-2 btn Intership_jobs">
+          <span class="material-symbols-outlined">
+            card_travel
+            </span>
+            <br />
+            Intership & jobs
+        </button>
+
+        <button type="button" class="text-center mx-2 btn Accolades_you">
+          <span class="material-symbols-outlined">
+            card_travel
+            </span>
+            <br />
+            Accolades & you
+        </button>
+       
+    </div>
 </div>
-           
 </main>
 </body>
 </html>

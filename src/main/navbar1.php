@@ -67,7 +67,7 @@ fetchLoggedinUserDetails("<?php echo $_SESSION["username"];?>");
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="logoutModalLabel">Logout Confirmation</h5>
-        <button type="button" class="close" data-dismiss="modal"  id="crossButton" aria-label="Close">
+        <button type="button" class="close btn" data-dismiss="modal"  id="crossButton" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -110,7 +110,7 @@ fetchLoggedinUserDetails("<?php echo $_SESSION["username"];?>");
                     <a href="professional_dev.php"> <span class="material-symbols-outlined me-1">emoji_events</span> Professional Development</a>
                 </li>
                 <li>
-                    <a href="#"><span class="material-symbols-outlined">volunteer_activism</span> Giving Back</a>
+                    <a href="giving_back.php"><span class="material-symbols-outlined">volunteer_activism</span> Giving Back</a>
                 </li>
             </ul>
 
