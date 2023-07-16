@@ -66,7 +66,7 @@ body{
 </head>
 <body class="bg-light">
     <?php
-    //include_once "loader.html";
+    include_once "loader.html";
     ?>
 
     <main id="main">
