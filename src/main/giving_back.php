@@ -32,6 +32,13 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
     <link rel="stylesheet" href="../css/navigation.css">
     <link rel="stylesheet" href="../css/giving_back.css">
 
+   <!-- <style>
+        #loadingDiv {
+            display: none;
+        }
+    </style>
+    -->
+
 </head>
 
 <body>
@@ -198,7 +205,7 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
                         <div class="mb-3">
 
                             <label for="sj_description" class="form-label">Description</label>
-                            <input type="text" name="sj_description" class="form-control" id="sj_description" required>
+                            <input type="text" name="sj_description" class="form-control" id="sj_description" required maxlength="5000">
                             <div class="invalid-feedback">
                                 Please enter the description
                             </div>
@@ -209,7 +216,7 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
 
                             <label for="sj_no_of_vacancies" class="form-label">Number of Vacancies</label>
                             <input type="number" name="sj_no_of_vacancies" class="form-control" id="sj_no_of_vacancies" required>
-                            <div class="invalid-feedback">
+                            <div class="invalid-feedback" id="feedback_sj_no_of_vacancies">
                                 Please enter the number of vacancies
                             </div>
                         </div>
@@ -219,7 +226,7 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
 
                             <label for="sj_email" class="form-label">Email</label>
                             <input type="email" name="sj_email" class="form-control" id="sj_email" required>
-                            <div class="invalid-feedback">
+                            <div class="invalid-feedback" id="feedback_sj_email">
                                 Please enter a email.
                             </div>
                         </div>
@@ -229,7 +236,7 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
 
                             <label for="sj_contact_no" class="form-label">Contact number</label>
                             <input type="tel" maxlength="10" name="sj_contact_no" class="form-control" id="sj_contact_no" required>
-                            <div class="invalid-feedback">
+                            <div class="invalid-feedback" id="feedback_sj_contact_no">
                                 Please enter a contact number.
                             </div>
                         </div>
@@ -239,8 +246,8 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
 
                             <label for="sj_job_or_internship" class="form-label">Job or Internship</label>
                             <select id="sj_job_or_internship" name="sj_job_or_internship" class="form-select" aria-label="job_or_internship">
-                                <option value="Job">Job</option>
-                                <option value="Internship">Internship</option>
+                                <option selected value="j">Job</option>
+                                <option value="i">Internship</option>
                             </select>
                             <div class="invalid-feedback">
                                 Please select whether it's a job or internship.
@@ -249,7 +256,7 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
 
                         <div class="mb-3">
                             <!-- Submit button -->
-                            <button type="submit" name="ij_submit" id="ij_submit" class="btn btn-primary px-5 py-2 ms-2 mt-3" disabled>Submit</button>
+                            <button type="submit" name="ij_submit" id="ij_submit" class="btn btn-primary px-5 py-2 ms-2 mt-3" >Submit</button>
                         </div>
 
                     </form>
@@ -260,7 +267,8 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
                 <!-- Accolades_you page -->
                 <div id="Accolades_you_page">
 
-
+                
+                <!--<object type="text/html" data="loader.html"></object>-->
                     <div class="form-check mb-3">
 
                         <input type="radio" class="form-check-input" name="exampleRadios" id="aby_scholarship_by_you" value="Scholarship and Awards by you">
@@ -275,32 +283,11 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
 
                     </div>
 
-                    <?php
-                    $url = 'https://alumniandroidapp.000webhostapp.com/all_student_scholarship_award_fetch.php'; // path to your JSON file
-                    $data = file_get_contents($url); // put the contents of the file into a variable
-                    $characters = json_decode($data); // decode the JSON feed
-                    ?>
-                    <div class="container mt-4" style="height:100vh;">
-                        <div class="row p-1">
+                   
+                    <div class="container mt-4" style="height:100vh;" >
+                        <div class="row p-1" id="card_container">
 
-                            <?php
-                            foreach ($characters as $character) {
-
-                            ?>
-                                <div class="col-lg-4 col-md-6 mb-5">
-                                    <div class="card shadow p-1" style="width: auto;border-radius: 20px;">
-                                        <div class="card-body ">
-                                            <h5 class="card-title fw-bold"><?php echo $character->sa_name; ?></h5>
-                                            <p class="card-text " style="overflow: hidden;display:-webkit-box;-webkit-line-clamp: 3;line-clamp: 3; -webkit-box-orient: vertical;height:4.5rem"> <?php echo $character->sa_for_department . " " . $character->sa_class; ?> </p>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                            <?php
-                            }
-
-                            ?>
+                           
                         </div>
                     </div>
                 </div>
@@ -342,18 +329,67 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
         //1.When clicked on scholarship award submit button
         
   var sa_submit_button=document.getElementById("sa_submit");
-  sa_submit_btn.addEventListener("click", function (e) {
+  sa_submit_button.addEventListener("click", function (e) {
   e.preventDefault();
   //alert("clicked");
   if (validateScholarshipAwardForm()) {
 
-    console.log("successfully validated");
+    //console.log("successfully validated");
     insertScholarshipAwardsByUser("<?php echo $_SESSION["username"];?>");
+    
   } else {
-    console.log("not validated");
+    console.log(" scholarship award form is not valid");
   }
 });
   
+
+//2.When clicked on internship job submit button
+
+      
+var ij_submit_button=document.getElementById("ij_submit");
+  ij_submit_button.addEventListener("click", function (e) {
+  e.preventDefault();
+  //alert("clicked");
+  if (validateInternshipJobForm()) {
+
+    //console.log("successfully validated");
+    insertInternshipJobByUser("<?php echo $_SESSION["username"];?>");
+    
+  } else {
+    console.log("Internship/Job form is not valid");
+  }
+});
+
+//3.When user changes the radio button selected
+
+const radioButtons = document.querySelectorAll('input[type="radio"]');
+  
+  radioButtons.forEach(function(radioButton) {
+    radioButton.addEventListener("change", function(event) {
+      if (event.target.checked) {
+
+        const selectedOption = event.target.value;
+        // Execute different functions based on the selected option
+
+        if (selectedOption === "Scholarship and Awards by you") {
+          // alert("Scholarships by you");
+           fetchAllScholarshipAwardsByUser("<?php echo $_SESSION["username"];?>")
+           .then(function(data){
+            displayScholarshipsAwardsByUser();
+           });
+          
+        } else if (selectedOption === "Jobs and Internships by you") {
+           //alert("Internships by you");
+           fetchAllInternshipJobsByUser("<?php echo $_SESSION["username"];?>")
+           .then(function(data){
+            displayInternshipJobsByUser();
+           });
+           
+        } 
+      }
+    });
+  });
+
     </script>
 
 

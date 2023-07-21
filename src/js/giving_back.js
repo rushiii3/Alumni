@@ -1,7 +1,16 @@
 //GLOBAL Variables
 
-var logged_in_username=$("#alumni_name").text();
+var scholarship_award_form=document.getElementById("scholarship_award_form");
+var internship_job_form=document.getElementById("internship_job_form");
+
+//var logged_in_username = $("#alumni_name").text();
 let errorInputFieldsArray = new Array();
+
+var all_scholarships_awards_posted;
+var all_internship_jobs_posted;
+var all_scholarships_posted_by_user=[];
+var all_internship_jobs_posted_by_user=[];
+
 //Scholarship Awards Page
 var sa_name_input = document.getElementById("sa_name"); //$("#sa_name");
 var sa_department_input = document.getElementById("sa_department_list"); //$("#sa_department_list");
@@ -22,6 +31,30 @@ var sa_name = "",
   sa_total_amt = "";
 
 //Internship Job Page
+
+var sj_company_input = document.getElementById("sj_company");
+var sj_post_input = document.getElementById("sj_post");
+var sj_qualification_input = document.getElementById("sj_qualification");
+var sj_description_input = document.getElementById("sj_description");
+var sj_no_of_vacancies_input = document.getElementById("sj_no_of_vacancies");
+var sj_email_input = document.getElementById("sj_email");
+var sj_contact_no_input = document.getElementById("sj_contact_no");
+var sj_job_or_internship_input = document.getElementById(
+  "sj_job_or_internship"
+);
+
+var feedback_sj_email = document.getElementById("feedback_sj_email");
+var feedback_sj_contact_no = document.getElementById("feedback_sj_contact_no");
+var feedback_sj_no_of_vacancies = document.getElementById("feedback_sj_no_of_vacancies");
+
+var sj_company = "",
+  sj_post = "",
+  sj_qualification = "",
+  sj_description = "",
+  sj_no_of_vacancies = "",
+  sj_email = "",
+  sj_contact_no = "",
+  sj_job_or_internship = "";
 
 //Accolades by You Page
 
@@ -178,22 +211,62 @@ sa_department_input.addEventListener("change", function () {
 
 //2.Total amount should be a multiplication of the number of students and amt per student
 
-sa_total_amt_input.addEventListener("input",function(){
-  var no_of_students=parseInt(sa_no_students_to_be_awarded_input.value.trim());
-  var amt_per_student=parseInt(sa_amt_per_student_input.value.trim());
-  var entered_total_amt=parseInt(sa_total_amt_input.value.trim());
+sa_total_amt_input.addEventListener("input", function () {
+  var no_of_students = parseInt(
+    sa_no_students_to_be_awarded_input.value.trim()
+  );
+  var amt_per_student = parseInt(sa_amt_per_student_input.value.trim());
+  var entered_total_amt = parseInt(sa_total_amt_input.value.trim());
 
-  if(entered_total_amt != (no_of_students * amt_per_student)){
-    console.log("total amt:" + entered_total_amt + " multiplication: " + no_of_students +  amt_per_student );
-    feedback_total_amt.innerText="Please check the entered values";
+  if (entered_total_amt != no_of_students * amt_per_student) {
+    
+    /*console.log(
+      "total amt:" +
+        entered_total_amt +
+        " multiplication: " +
+        no_of_students +
+        amt_per_student
+    );
+    */
+    feedback_total_amt.innerText = "Please check the entered values";
     sa_total_amt_input.classList.add("is-invalid");
-  }
-  else{
+  } else {
     sa_total_amt_input.classList.remove("is-invalid");
-    sa_total_amt=entered_total_amt.toString();
+    sa_total_amt = entered_total_amt.toString();
   }
 });
+
 //....................................................INTERNSHIPS JOB PAGE....................................................
+
+//1.the email is valid
+sj_email_input.addEventListener("input", function () {
+  var entered_email = sj_email_input.value.trim();
+  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailRegex.test(entered_email)) {
+    feedback_sj_email.innerText = "Please enter a valid email";
+
+    sj_email_input.classList.add("is-invalid");
+  } else {
+    sj_email = entered_email;
+    sj_email_input.classList.remove("is-invalid");
+  }
+});
+
+//2. the phone is valid
+sj_contact_no_input.addEventListener("input", function () {
+  var entered_phone_number = sj_contact_no_input.value.trim();
+  var phone_number_regex = /^\d{10}$/;
+
+  if (!phone_number_regex.test(entered_phone_number)) {
+    feedback_sj_contact_no.innerText = "Please enter a valid contact number";
+    sj_contact_no_input.classList.add("is-invalid");
+  } else {
+    sj_contact_no_input.classList.remove("is-invalid");
+    sj_contact_no = entered_phone_number;
+  }
+});
+
 //....................................................ACCOLADES BY YOU PAGE....................................................
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -207,17 +280,16 @@ FUNCTIONS
 //1.insert the scholarship award by user into the db
 function insertScholarshipAwardsByUser(username) {
   var scholarshipAwardFormData = {
-"sa_name":sa_name,
-"sa_for_department":sa_department,
-"sa_class":sa_class,
-"sa_amount_per_student":sa_amt_per_student,
-"sa_number_of_students_awarded":sa_no_students_to_be_awarded,
-"sa_total_amount":sa_total_amt,
-"sa_username":username
-
+    sa_name: sa_name,
+    sa_for_department: sa_department,
+    sa_class: sa_class,
+    sa_amount_per_student: sa_amt_per_student,
+    sa_number_of_students_awarded: sa_no_students_to_be_awarded,
+    sa_total_amount: sa_total_amt,
+    sa_username: username,
   };
 
-console.log("username is :" + username);
+  //console.log("username is :" + username);
   $.ajax({
     url: "https://alumniandroidapp.000webhostapp.com/post_scholarship_award_giving_back_fragment.php",
     type: "POST",
@@ -225,16 +297,26 @@ console.log("username is :" + username);
     dataType: "text",
     success: function (response) {
       console.log(response);
-      if(response.includes("Inserted scholarship/award successfully")){
+      if (response.includes("Inserted scholarship/award successfully")) {
         alert("Scholarship/Award Posted Successfully");
-      }
-      else{
+
+        //reset the form after successful submission
+
+        scholarship_award_form.reset();
+        //reload the accolades by you section
+        $("#section_name").text("Accolades by you");
+    $("#Accolades_you_page").show();
+    $("#Internship_jobs_page").hide();
+    $("#Scholarship_awards_page").hide();
+
+      } else {
         alert("Sorry! Couldnt post Scholarship/Award.Please try again later");
       }
     },
     error: function (xhr, status, error) {
       console.error("Request failed. Status: " + status + ". Error: " + error);
-    },
+      alert("Oops!Couldnt post your scholarship/award. Please try again later.");
+    }
   });
 }
 
@@ -244,10 +326,11 @@ function validateScholarshipAwardForm() {
   sa_department = sa_department_input.value.trim();
   sa_class = sa_class_input.value.trim();
   sa_amt_per_student = sa_amt_per_student_input.value.trim();
-    sa_no_students_to_be_awarded=sa_no_students_to_be_awarded_input.value.trim();
- // sa_total_amt = sa_total_amt_input.value.trim();
+  sa_no_students_to_be_awarded =
+    sa_no_students_to_be_awarded_input.value.trim();
+  // sa_total_amt = sa_total_amt_input.value.trim();
 
-  console.log(
+  /*console.log(
     sa_name +
       " " +
       sa_department +
@@ -260,6 +343,7 @@ function validateScholarshipAwardForm() {
       " " +
       sa_total_amt
   );
+  */
 
   if (sa_name === "") {
     displayErrorinInputField(sa_name_input);
@@ -285,28 +369,24 @@ function validateScholarshipAwardForm() {
     sa_total_amt_input.dispatchEvent(new Event("input"));
     sa_total_amt_input.focus();
     return false;
-  } 
-  else if(sa_no_students_to_be_awarded === "."){
+  } else if (sa_no_students_to_be_awarded === ".") {
     sa_no_students_to_be_awarded_input.classList.add("is-invalid");
     return false;
-  }
-  else if(sa_amt_per_student==="."){
+  } else if (sa_amt_per_student === ".") {
     sa_amt_per_student_input.classList.add("is-invalid");
     return false;
-  }
-
-  else if (sa_total_amt_input.classList.contains("is-invalid")) {
+  } else if (sa_total_amt_input.classList.contains("is-invalid")) {
     sa_total_amt_input.dispatchEvent(new Event("input"));
     sa_total_amt_input.focus();
     return false;
-  } 
-  else if(parseInt(sa_total_amt)!= (parseInt(sa_amt_per_student) * parseInt(sa_no_students_to_be_awarded))){
+  } else if (
+    parseInt(sa_total_amt) !=
+    parseInt(sa_amt_per_student) * parseInt(sa_no_students_to_be_awarded)
+  ) {
     sa_total_amt_input.dispatchEvent(new Event("input"));
     sa_total_amt_input.focus();
     return false;
-  }
-  else {
-
+  } else {
     sa_no_students_to_be_awarded_input.classList.remove("is-invalid");
     sa_amt_per_student_input.classList.remove("is-invalid");
     return true;
@@ -354,20 +434,213 @@ function removeThirdYearToClasslist() {
 }
 
 //....................................................INTERNSHIPS JOB PAGE....................................................
+
+//1.validate the internship job form
+function validateInternshipJobForm() {
+  sj_company = sj_company_input.value.trim();
+  sj_post = sj_post_input.value.trim();
+  sj_description = sj_description_input.value.trim();
+  sj_qualification = sj_qualification_input.value.trim();
+  sj_no_of_vacancies = sj_no_of_vacancies_input.value.trim();
+  sj_email = sj_email_input.value.trim();
+  sj_contact_no = sj_contact_no_input.value.trim();
+  sj_job_or_internship = sj_job_or_internship_input.value.trim();
+
+  if (sj_company === "") {
+    displayErrorinInputField(sj_company_input);
+    sj_company_input.focus();
+    return false;
+  } else if (sj_post === "") {
+    displayErrorinInputField(sj_post_input);
+    sj_post_input.focus();
+    return false;
+  } else if (sj_description === "") {
+    displayErrorinInputField(sj_description_input);
+    sj_description_input.focus();
+    return false;
+  } else if (sj_qualification === "") {
+    displayErrorinInputField(sj_qualification_input);
+    sj_qualification_input.focus();
+    return false;
+  } else if (sj_no_of_vacancies === "") {
+    displayErrorinInputField(sj_no_of_vacancies_input);
+    sj_no_of_vacancies_input.focus();
+    return false;
+  } 
+  else if(parseInt(sj_no_of_vacancies) >99999){
+    feedback_sj_no_of_vacancies.innerText="Please enter a valid number of vacancies."
+    sj_no_of_vacancies_input.classList.add("is-invalid");
+    sj_no_of_vacancies_input.focus();
+    return false;
+
+  }
+  else if (sj_email === "") {
+    sj_email_input.dispatchEvent(new Event("input"));
+    sj_email_input.focus();
+    return false;
+  } else if (sj_contact_no === "") {
+    sj_contact_no_input.dispatchEvent(new Event("input"));
+    sj_contact_no_input.focus();
+    return false;
+  } else if (sj_job_or_internship === "") {
+    sj_job_or_internship_input.classList.add("is-invalid");
+    sj_job_or_internship_input.focus();
+    return false;
+  } else {
+    sj_no_of_vacancies_input.classList.remove("is-invalid");
+    return true;
+  }
+}
+
+//2.insert the internship job into the database after successful validation
+function insertInternshipJobByUser(username) {
+  var internshipJobFormData = {
+    "sj_username": username,
+    "sj_company_name": sj_company,
+    "sj_post": sj_post,
+    "sj_contact_number": sj_contact_no,
+    "sj_contact_email": sj_email,
+    "sj_description": sj_description,
+    "sj_qualification": sj_qualification,
+    "sj_number_of_vacancies":sj_no_of_vacancies,
+    "sj_job_or_internship" : sj_job_or_internship
+  };
+
+  $.ajax({
+    url: "https://alumniandroidapp.000webhostapp.com/post_student_job_giving_back_fragment.php",
+    type: "POST",
+    data: internshipJobFormData,
+    dataType: "text",
+    success: function (response) {
+      console.log(response);
+      if (response.includes("Inserted successfully")) {
+        alert("Internship/Job Posted Successfully");
+
+        //clear the form
+        internship_job_form.reset();
+
+        //reload the accolades by you section
+       $("#section_name").text("Accolades by you");
+    $("#Accolades_you_page").show();
+    $("#Internship_jobs_page").hide();
+    $("#Scholarship_awards_page").hide();
+
+      } else {
+        alert("Sorry! Couldnt post the internship/job.Please try again later");
+      }
+    },
+    error: function (xhr, status, error) {
+      console.error("Request failed. Status: " + status + ". Error: " + error);
+      alert("Oops!Couldnt post your internship/job.Please try again later.");
+    }
+  });
+}
+
 //....................................................ACCOLADES BY YOU PAGE....................................................
 
 //1. fetch all the scholarships awards
-function fetchScholarshipAwardsByUser() {
+function fetchAllScholarshipAwardsByUser(username) {
+  //$('#loadingDiv').show();
+
+  return new Promise(function(resolve,reject){
   $.ajax({
     url: "https://alumniandroidapp.000webhostapp.com/all_student_scholarship_award_fetch.php",
     type: "POST",
     dataType: "json",
     success: function (response) {
-      console.log(response);
+      //console.log(response);
+      all_scholarships_awards_posted=response;
+      all_scholarships_posted_by_user = all_scholarships_awards_posted.filter((scholarship) => scholarship.sa_username === username);
+      //$('#loadingDiv').hide();
+      resolve("success");
     },
     error: function (xhr, status, error) {
       console.error("Request failed. Status: " + status + ". Error: " + error);
+      reject("error");
+      //$('#loadingDiv').hide();
       //alert("Error occurred while logging out");
     },
   });
+});
+}
+
+//2. fetch all the internship jobs
+function fetchAllInternshipJobsByUser(username){
+
+ // $('#loadingDiv').show();
+
+  return new Promise(function(resolve,reject){
+  $.ajax({
+    url: "https://alumniandroidapp.000webhostapp.com/all_student_internship_job_fetch.php",
+    type: "POST",
+    dataType: "json",
+    success: function (response) {
+      //console.log(response);
+      all_internship_jobs_posted=response;
+      all_internship_jobs_posted_by_user = all_internship_jobs_posted.filter((internship) => internship.sj_username === username);
+     // $('#loadingDiv').hide();
+     resolve("success");
+    },
+    error: function (xhr, status, error) {
+      console.error("Request failed. Status: " + status + ". Error: " + error);
+      reject("error");
+     // $('#loadingDiv').hide();
+      //alert("Error occurred while logging out");
+    },
+  });
+});
+
+}
+
+//3. display scholarship awards by user
+function displayScholarshipsAwardsByUser(){
+  const cardContainer = document.getElementById("card_container");
+  cardContainer.innerHTML = ""; // Clear existing content before adding new cards
+
+  // Loop through the sorted scholarship data and generate cards
+  if(all_scholarships_posted_by_user.length > 0){
+  all_scholarships_posted_by_user.forEach((scholarship) => {
+    const cardHtml = `
+      <div class="col-lg-4 col-md-6 mb-5">
+        <div class="card shadow p-1" style="width: auto;border-radius: 20px;">
+          <div class="card-body ">
+            <h5 class="card-title fw-bold">${scholarship.sa_name}</h5>
+            <p class="card-text " style="overflow: hidden;display:-webkit-box;-webkit-line-clamp: 3;line-clamp: 3; -webkit-box-orient: vertical;height:4.5rem">${scholarship.sa_for_department} ${scholarship.sa_class}</p>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Append the card HTML to the container
+    cardContainer.insertAdjacentHTML("beforeend", cardHtml);
+  });
+}
+}
+
+
+//4. display internship jobs by user
+function displayInternshipJobsByUser(){
+  const cardContainer = document.getElementById("card_container");
+  cardContainer.innerHTML = ""; // Clear existing content before adding new cards
+
+  // Loop through the sorted scholarship data and generate cards
+
+  if(all_internship_jobs_posted_by_user.length > 0){
+ all_internship_jobs_posted_by_user.forEach((internship) => {
+    const cardHtml = `
+      <div class="col-lg-4 col-md-6 mb-5">
+        <div class="card shadow p-1" style="width: auto;border-radius: 20px;">
+          <div class="card-body ">
+            <h5 class="card-title fw-bold">${internship.sj_post}</h5>
+            <p class="card-text " style="overflow: hidden;display:-webkit-box;-webkit-line-clamp: 3;line-clamp: 3; -webkit-box-orient: vertical;height:4.5rem">${internship.sj_company_name}</p>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Append the card HTML to the container
+    cardContainer.insertAdjacentHTML("beforeend", cardHtml);
+  });
+
+}
 }
