@@ -84,6 +84,8 @@ $characters = json_decode($data); // decode the JSON feed
             ?>
         </div>
 </div>
+        </div>
+</div>
            
 </main>
 </body>

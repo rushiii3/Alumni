@@ -6,7 +6,7 @@
 //FUNCTIONS
 function fetchLoggedinUserDetails(username){
     var loggedin_username=username;
-    console.log(username);
+    //console.log(username);
     $.ajax({
         url:"https://alumniandroidapp.000webhostapp.com/logged_in_alumni_details_fetch_profile_fragment.php", 
         type:"POST",
@@ -17,6 +17,7 @@ function fetchLoggedinUserDetails(username){
           if (Array.isArray(response) && response.length > 0) {
         var name_of_alumni = response[0].firstname + " " + response[0].lastname;
         $('#alumni_name').text(name_of_alumni);
+        let loggedin_username=$("#alumni_name").text();
       }
       
         },
@@ -51,6 +52,8 @@ function logoutUser() {
 //----------------------------------------------------------------------------------------------------------------------------------------
 
   $(document).ready(function() {
+
+    
     // Show the confirmation dialog when the user clicks on the logout link
     $("#logout_user_link").click(function(event) {
       event.preventDefault();
@@ -73,6 +76,7 @@ function logoutUser() {
 
 //fetch the details of the logged in alumni
 fetchLoggedinUserDetails("<?php echo $_SESSION["username"];?>");
+
 
   });
 

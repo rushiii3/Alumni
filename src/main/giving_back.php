@@ -27,7 +27,7 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" />
     <script src="../js/navigation.js"></script>
-    <script src="../js/giving_back.js"></script>
+   
 
     <link rel="stylesheet" href="../css/navigation.css">
     <link rel="stylesheet" href="../css/giving_back.css">
@@ -116,7 +116,7 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
                                 <option value="Third Year">Third Year</option>
                             </select>
 
-                            <div class="invalid-feedback">
+                            <div class="invalid-feedback" >
                                 Please select a class
                             </div>
 
@@ -128,15 +128,15 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
                             <label for="amt_per_student" class="form-label">Amount Per Student</label>
                             <input type="number" name="amt_per_student" class="form-control" id="amt_per_student" required>
 
-                            <div class="invalid-feedback">
+                            <div class="invalid-feedback" id="feedback_amt_per_student">
                                 Please enter the amount offered for each student
                             </div>
                         </div>
                         <!-- Number of students to be Awarded -->
                         <div class="mb-3">
                             <label for="no_of_students_to_be_awarded" class="form-label">Number of students to be Awarded </label>
-                            <input type="number" name="no_of_students_to_be_awarded" class="form-control" id="no_of_students_to_be_awarded">
-                            <div class="invalid-feedback">
+                            <input type="number" name="no_of_students_to_be_awarded" class="form-control" id="no_of_students_to_be_awarded" required>
+                            <div class="invalid-feedback" id="feedback_no_of_students_awarded">
                                 Please enter the number of students to be awarded
                             </div>
                         </div>
@@ -144,8 +144,8 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
                         <!-- Total Amount -->
                         <div class="mb-3">
                             <label for="total_amount" class="form-label">Total Amount</label>
-                            <input type="number" maxLength="10" name="total_amount" class="form-control" id="total_amount">
-                            <div class="invalid-feedback">
+                            <input type="number" maxLength="10" name="total_amount" class="form-control" id="total_amount" required>
+                            <div class="invalid-feedback" id="feedback_total_amt">
                                 Please enter an amount.
                                 <!--The amounts do no match.Please verify the amounts and number of students again-->
                             </div>
@@ -153,7 +153,7 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
 
                         <div class="mb-3">
                             <!-- Submit button -->
-                            <button type="submit" name="sa_submit" id="sa_submit" class="btn btn-primary px-5 py-2 ms-2 mt-3" disabled>Submit</button>
+                            <button type="submit" name="sa_submit" id="sa_submit" class="btn btn-primary px-5 py-2 ms-2 mt-3" >Submit</button>
                         </div>
 
                     </form>
@@ -218,7 +218,7 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
                         <div class="mb-3">
 
                             <label for="sj_email" class="form-label">Email</label>
-                            <input type="number" name="sj_email" class="form-control" id="sj_email" required>
+                            <input type="email" name="sj_email" class="form-control" id="sj_email" required>
                             <div class="invalid-feedback">
                                 Please enter a email.
                             </div>
@@ -247,6 +247,11 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
                             </div>
                         </div>
 
+                        <div class="mb-3">
+                            <!-- Submit button -->
+                            <button type="submit" name="ij_submit" id="ij_submit" class="btn btn-primary px-5 py-2 ms-2 mt-3" disabled>Submit</button>
+                        </div>
+
                     </form>
 
                 </div>
@@ -254,9 +259,50 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
 
                 <!-- Accolades_you page -->
                 <div id="Accolades_you_page">
-                    <p>
-                        Byee
-                    </p>
+
+
+                    <div class="form-check mb-3">
+
+                        <input type="radio" class="form-check-input" name="exampleRadios" id="aby_scholarship_by_you" value="Scholarship and Awards by you">
+                        <label for="aby_scholarship_by_you" class="form-check-label">Scholarship and Awards by you</label>
+
+                    </div>
+
+                    <div class="form-check mb-3">
+
+                        <input type="radio" class="form-check-input" name="exampleRadios" id="aby_internship_by_you" value="Jobs and Internships by you">
+                        <label for="aby_internship_by_you" class="form-check-label">Jobs and Internships by you</label>
+
+                    </div>
+
+                    <?php
+                    $url = 'https://alumniandroidapp.000webhostapp.com/all_student_scholarship_award_fetch.php'; // path to your JSON file
+                    $data = file_get_contents($url); // put the contents of the file into a variable
+                    $characters = json_decode($data); // decode the JSON feed
+                    ?>
+                    <div class="container mt-4" style="height:100vh;">
+                        <div class="row p-1">
+
+                            <?php
+                            foreach ($characters as $character) {
+
+                            ?>
+                                <div class="col-lg-4 col-md-6 mb-5">
+                                    <div class="card shadow p-1" style="width: auto;border-radius: 20px;">
+                                        <div class="card-body ">
+                                            <h5 class="card-title fw-bold"><?php echo $character->sa_name; ?></h5>
+                                            <p class="card-text " style="overflow: hidden;display:-webkit-box;-webkit-line-clamp: 3;line-clamp: 3; -webkit-box-orient: vertical;height:4.5rem"> <?php echo $character->sa_for_department . " " . $character->sa_class; ?> </p>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <?php
+                            }
+
+                            ?>
+                        </div>
+                    </div>
                 </div>
 
 
@@ -289,6 +335,28 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
             </div>
         </div>
     </main>
+
+    <script src="../js/giving_back.js"> </script>
+    
+    <script>
+        //1.When clicked on scholarship award submit button
+        
+  var sa_submit_button=document.getElementById("sa_submit");
+  sa_submit_btn.addEventListener("click", function (e) {
+  e.preventDefault();
+  //alert("clicked");
+  if (validateScholarshipAwardForm()) {
+
+    console.log("successfully validated");
+    insertScholarshipAwardsByUser("<?php echo $_SESSION["username"];?>");
+  } else {
+    console.log("not validated");
+  }
+});
+  
+    </script>
+
+
 </body>
 
 </html>
