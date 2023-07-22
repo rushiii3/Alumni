@@ -20,7 +20,6 @@ $(document).ready(function() {
     });
   }
 }
-
       
 
       //load the alumni news first

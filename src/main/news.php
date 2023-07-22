@@ -70,6 +70,7 @@ News
       <p class="card-text text-muted mt-3" id="news_for" hidden><?php echo $character->news_for_alumni_or_campus; ?></p>
 
       <p class="card-text text-muted mt-3" id="news_description"><?php echo $character->news_description; ?></p>
+      <p class="card-text text-muted mt-3" id="news_id" hidden><?php echo $character->news_id; ?></p>
       
       
       
@@ -109,5 +110,17 @@ domain
         </div>
          </main>
 <script src="../js/news.js"></script>
+<script>
+  
+var cards=document.querySelectorAll("#card");
+cards.forEach( (card)=>{
+  card.addEventListener("click",function(){
+    var news_id=card.querySelector("#news_id");
+    var news_title=card.querySelector("#news_title");
+    window.location.href="../main/specificnews.php?news_id="+news_id.innerText+"&news_title="+news_title.innerText;
+  })
+}
+) 
+</script>
 </body>
 </html>

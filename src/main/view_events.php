@@ -83,7 +83,7 @@ foreach ($characters as $character) {
     {
         $img = $character->event_image;
         ?>
-        <div class="container my-auto  mt-5 mb-5  shadow mb-5 bg-body" id="container">
+        <div class="container my-auto  mt-5 mb-5  shadow mb-5 bg-body" id="container" style="overflow:auto;">
         <div class="row">
             <div class="p-0 col-lg-6 col-md-6 mt-1">
                 <img id="img" src="<?php 
