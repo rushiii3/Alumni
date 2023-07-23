@@ -6,7 +6,7 @@
 //FUNCTIONS
 function fetchLoggedinUserDetails(username){
     var loggedin_username=username;
-    console.log(username);
+    //console.log(username);
     $.ajax({
         url:"https://alumniandroidapp.000webhostapp.com/logged_in_alumni_details_fetch_profile_fragment.php", 
         type:"POST",
@@ -17,6 +17,7 @@ function fetchLoggedinUserDetails(username){
           if (Array.isArray(response) && response.length > 0) {
         var name_of_alumni = response[0].firstname + " " + response[0].lastname;
         $('#alumni_name').text(name_of_alumni);
+        let loggedin_username=$("#alumni_name").text();
       }
       
         },
@@ -27,9 +28,32 @@ function fetchLoggedinUserDetails(username){
     }
     );
 }
+
+//2.Logout the user
+function logoutUser() {
+    $.ajax({
+      url: "../main/logout_and_destroy_session.php", // PHP file to handle the logout logic
+      type: "POST",
+      dataType: "text",
+      success: function(response) {
+        if (response.includes("logged out")) {
+          console.log("Logged out successfully");
+          window.location.href = "../main/login.php";
+        } else {
+          console.log("Error occurred while logging out");
+        }
+      },
+      error: function(xhr, status, error) {
+        console.error("Request failed. Status: " + status + ". Error: " + error);
+        alert("Error occurred while logging out");
+      }
+    });
+  }
 //----------------------------------------------------------------------------------------------------------------------------------------
 
   $(document).ready(function() {
+
+    
     // Show the confirmation dialog when the user clicks on the logout link
     $("#logout_user_link").click(function(event) {
       event.preventDefault();
@@ -52,6 +76,7 @@ function fetchLoggedinUserDetails(username){
 
 //fetch the details of the logged in alumni
 fetchLoggedinUserDetails("<?php echo $_SESSION["username"];?>");
+
 
   });
 
@@ -124,8 +149,4 @@ fetchLoggedinUserDetails("<?php echo $_SESSION["username"];?>");
                
             </ul>
         </nav>
-        <!--
-            was trying to logout the user when user clicks on the logout
-        <script src="../js/logout.js"></script>
-        href="destroy_session.php"
--->
+      

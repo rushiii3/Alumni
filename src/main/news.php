@@ -1,19 +1,22 @@
 <?php
 session_start();
+$_SESSION['isloggedin']=true;
+$_SESSION['username']="abc12@gmail.com";
 if(!isset($_SESSION['isloggedin'])){
-  //echo "<script> window.location.href='../main/login.php' </script>";
-  //exit;
+  echo "<script> window.location.href='../main/login.php' </script>";
+  exit;
 
 }
 else{
   if(!$_SESSION['isloggedin']){
-    //echo "<script> window.location.href='../main/login.php' </script>";
-    //exit;
+    echo "<script> window.location.href='../main/login.php' </script>";
+    exit;
   }
 }
 
 
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -58,7 +61,7 @@ News
             foreach ($characters as $character) {
               
             ?>
-             <div class="col-lg-4 col-md-6 mb-5" id="card">
+             <div class="col-lg-4 col-md-6 mb-5 mt-4" id="card">
   <div class="card shadow p-1" style="width: auto; border-radius: 20px;">
     <div class="card-body">
      
@@ -67,6 +70,7 @@ News
       <p class="card-text text-muted mt-3" id="news_for" hidden><?php echo $character->news_for_alumni_or_campus; ?></p>
 
       <p class="card-text text-muted mt-3" id="news_description"><?php echo $character->news_description; ?></p>
+      <p class="card-text text-muted mt-3" id="news_id" hidden><?php echo $character->news_id; ?></p>
       
       
       
@@ -80,7 +84,7 @@ News
             ?>
 
 
-<div class="position-fixed bottom-0 bg-white d-flex justify-content-evenly py-1" id="bottom-navigation">
+<div class="position-sticky bottom-0 bg-white d-flex justify-content-evenly py-1" id="bottom-navigation">
  <!--
   <a href="#" class="navigation-item active">Alumni News</a>
   <a href="#" class="navigation-item">Campus News</a>
@@ -106,5 +110,17 @@ domain
         </div>
          </main>
 <script src="../js/news.js"></script>
+<script>
+  
+var cards=document.querySelectorAll("#card");
+cards.forEach( (card)=>{
+  card.addEventListener("click",function(){
+    var news_id=card.querySelector("#news_id");
+    var news_title=card.querySelector("#news_title");
+    window.location.href="../main/specificnews.php?news_id="+news_id.innerText+"&news_title="+news_title.innerText;
+  })
+}
+) 
+</script>
 </body>
 </html>

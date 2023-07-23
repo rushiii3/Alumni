@@ -201,8 +201,11 @@ exit;
                                     <option value="BCOM-BI">BCOM-BI</option>
                                     <option value="BCOM-AF">BCOM-AF</option>
                                     <option value="BVoc">BVoc</option>
+                                    <option value="BSC(IT)">BSC(IT)</option>
+                                    <option value="BSC(BT)">BSC(BT)</option>
                                     <option value="BAMMC">BAMMC</option>
                                     <option value="BMS">BMS</option>
+                                    
                                     <option value="Other">Other</option>
                                 </select>
                                 

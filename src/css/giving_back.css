@@ -1,0 +1,13 @@
+ /* MOBILE DEVICES */
+ @media only screen and (min-width: 0em) {
+    #down_navigation {
+        width: 100%;
+    }
+}
+
+/* Medium devices such as tablets (768px and up) */
+@media only screen and (min-width: 48em) {
+    #down_navigation {
+        width: 100%;
+    }
+}
