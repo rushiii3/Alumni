@@ -149,7 +149,8 @@ else{
 ?>
 
                     <p class="text-center <?php if(($college_name==$character->master_degree_college)){ }else{echo"mt-5"; } ?> ">
-                      <a href="" class="link text-center" style="color:#0099CC ">View Details</a>
+                      <a href="alumni_view_profile.php?id=<?php echo(str_rot13($character->username));
+                      //echo($character->username); ?>" class="link text-center" style="color:#0099CC ">View Details</a>
                     </p>
                   </div>
                 </div>
