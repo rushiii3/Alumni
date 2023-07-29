@@ -314,7 +314,7 @@ foreach ($characters as $character) {
                             </div>
 
                                 <div class="col-lg-12 mt-4">
-                                    <button type="button" class="btn btn-primary w-25">Save </button>
+                                    <button type="submit" id="SubmitPassword" class="btn btn-primary w-25">Submit </button>
                                 </div>
                                 
                         </div>

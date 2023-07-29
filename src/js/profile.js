@@ -73,7 +73,7 @@ let feedback_confirm_password_input = document.getElementById(
   "feedback_confirm_password_input"
 );
 
-let submit_button = document.getElementById("submit");
+let submit_button = document.getElementById("SubmitPassword");
 
 
 // password symbol enable disable
@@ -678,4 +678,35 @@ password_input.addEventListener("input", function () {
       confirm_password_input.classList.remove("is-valid");
     }
   });
+
+
+
+$('#SubmitPassword').on('click',function(e){
+  e.preventDefault();
+  password = password_input.value;
+  confirm_password = confirm_password_input.value;
+  if (password === "") {
+    password_input.dispatchEvent(new Event("input")); //trigger the validation of password
+  } else if (confirm_password === "") {
+    confirm_password_input.dispatchEvent(new Event("input")); ///trigger the validation of confirm password
+  } else if (password === confirm_password) {
+    $.ajax({
+      type: 'POST',
+      url: 'https://alumniandroidapp.000webhostapp.com/alumni_update_password_profile_fragment.php',
+      data: {username:email_input.value,password:password_input.value},
+      success: function(data){
+          console.log(data);
+          
+      },
+      error: function(response) {
+          console.log(response.status);
+      },
+  })
+  }
+
+})
+
+
+
+  
   
