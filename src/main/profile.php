@@ -99,42 +99,42 @@ foreach ($characters as $character) {
                                 <div class="row gx-3 gy-1 mb-2">
                                     <!-- Form Group (first name)-->
                                     <div class="col-lg-4">
-                                        <label class="small mb-1" for="inputFirstName">First Name (as on your marksheet)</label>
-                                        <input class="form-control" id="inputFirstName" type="text" value="<?php echo($character->firstname) ?>" placeholder="Enter your first name" >
+                                        <label class="small mb-1" for="first_name">First Name (as on your marksheet)</label>
+                                        <input class="form-control" name="first_name" id="first_name" type="text" value="<?php echo($character->firstname) ?>" placeholder="Enter your first name" >
                                     </div>
                                     <!-- Form Group (middle name)-->
                                     <div class="col-lg-4">
-                                        <label class="small mb-1" for="inputLastName">Middle Name (as on your marksheet)</label>
-                                        <input class="form-control" id="inputLastName" type="text" value="<?php echo($character->middlename) ?>"  placeholder="Enter your middle name">
+                                        <label class="small mb-1" for="middle_name">Middle Name (as on your marksheet)</label>
+                                        <input class="form-control" id="middle_name" name="middle_name" type="text" value="<?php echo($character->middlename) ?>"  placeholder="Enter your middle name">
                                     </div>
                                     <!-- Form Group (last name)-->
                                     <div class="col-lg-4">
-                                        <label class="small mb-1" for="inputLastName">Last Name (as on your marksheet)</label>
-                                        <input class="form-control" id="inputLastName" type="text" value="<?php echo($character->lastname) ?>"  placeholder="Enter your last name" >
+                                        <label class="small mb-1" for="last_name">Last Name (as on your marksheet)</label>
+                                        <input class="form-control" name="last_name" id="last_name" type="text" value="<?php echo($character->lastname) ?>"  placeholder="Enter your last name" >
                                     </div>
                                 </div>
                                 
                                 <!-- Form Row        -->
                                 <div class="row gx-3 gy-1 mb-2">
-                                    <!-- Form Group (organization name)-->
+                                    <!-- Form Group (Phone number)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="phone_number">Phone Number</label>
-                                        <input class="form-control"  maxLength="10" name="phone_number" class="form-control" value="<?php echo($character->phoneno) ?>"  id="phone_number" type="tel" placeholder="Enter your phone number" >
+                                        <input class="form-control"  maxLength="10" name="phone_number" class="form-control" value="<?php echo($character->phoneno) ?>"  id="phone_number" type="number" placeholder="Enter your phone number" >
                                     </div>
-                                    <!-- Form Group (location)-->
+                                    <!-- Form Group (Email)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="email">Email</label>
-                                        <input class="form-control" name="email" id="email"type="email" value="<?php echo($character->username) ?>" placeholder="Enter your email" >
+                                        <input class="form-control" autocomplete="username"  name="email" id="email"type="email" value="<?php echo($character->username) ?>" placeholder="Enter your email" >
                                     </div>
                                 </div>
                                 <!-- Form Row-->
                                 <div class="row gx-3 mb-3">
-                                    <!-- Form Group (phone number)-->
+                                    <!-- Form Group (Linkedin Address)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="linkedin_address">Linkedin Address</label>
                                         <input class="form-control" name="linkedin_address" id="linkedin_address" value="<?php echo($character->linkedin_profile) ?>" type="text" placeholder="Enter your Linkedin Address" >
                                     </div>
-                                    <!-- Form Group (birthday)-->
+                                    <!-- Form Group (DOb)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="dob">Date of Birth</label>
                                         <input class="form-control"   type="date" name="dob" id="dob" value="<?php echo($character->dateofbirth) ?>" placeholder="Enter your birthday" min='1950-01-01' required>
@@ -148,13 +148,14 @@ foreach ($characters as $character) {
 
                                     <!-- Form Row-->
                                     <div class="row gx-3  mb-2">
-                                        <!-- Form Group (first name)-->
+                                        
                                         <div class="col-12">
                                             <p>
                                                 Bachelors Degree
                                             </p>
                                         </div>
                                         <div class="col-lg-4">
+                                            <!-- Form Group (Degree name)-->
                                             <label class="small mb-1" for="bachelors_degree_list">Select Degree</label>
 
                                             <input type="text" class="d-none" id="bachelor_degree__name" value="<?php echo($character->bachelor_degree) ?>">
@@ -172,12 +173,15 @@ foreach ($characters as $character) {
                                                 <option value="BAMMC">BAMMC</option>
                                                 <option value="BMS">BMS</option>
                                                 <option value="Other">Other</option>
-                                            </select>                                        
+                                            </select>  
+                                            <div class="invalid-feedback">
+                                    Please select a degree
+                                </div>                                      
                                         </div>
-                                        <!-- Form Group (middle name)-->
+                                        <!-- Form Group (Bachelor college name)-->
                                         <div class="col-lg-4">
-                                            <label class="small mb-1" for="inputLastName">Name of College</label>
-                                            <input class="form-control" id="inputLastName" type="text" value="<?php echo($character->bachelor_degree_college) ?>" list="vaze_college_name" placeholder="Enter your name of College">
+                                            <label class="small mb-1" for="bachelor_college_name">Name of College</label>
+                                            <input class="form-control" name="bachelor_college_name" id="bachelor_college_name" type="text" value="<?php echo($character->bachelor_degree_college) ?>" list="vaze_college_name" placeholder="Enter your name of College">
                                             <!--auto suggest the name of Vaze college-->
                                             <datalist id="vaze_college_name">
                                                 <option value="KET's V.G. Vaze College of Arts,Science and Commerce">
@@ -186,9 +190,9 @@ foreach ($characters as $character) {
                                                 Please enter the name of the college
                                             </div>
                                         </div>
-                                        <!-- Form Group (last name)-->
+                                        <!-- Form Group ( bachelors admission year )-->
                                         <div class="col-lg-4">
-                                            <label class="small mb-1" for="inputLastName">Year of Admission</label>
+                                            <label class="small mb-1" for="bachelors_admission_year">Year of Admission</label>
                                             <input type="number" maxLength="4" name="bachelors_admission_year" value="<?php echo($character->bachelor_admission_year) ?>" class="form-control" placeholder="Enter your admission year"  id="bachelors_admission_year" min="1950" required>
                                             <div class="invalid-feedback" id="feedback_bachelor_degree_admission_year">
                                                 Please enter the year you took admission in the college
@@ -202,10 +206,11 @@ foreach ($characters as $character) {
                                             </p>
                                         </div>
                                         <div class="col-lg-4">
-                                            <label class="small mb-1" for="inputFirstName">Select Course</label>
+                                            <!-- Form Group (Master degree name)-->
+                                            <label class="small mb-1" for="masters_degree_list">Select Course</label>
                                             <input type="text" class="d-none" id="master_degree__name" value="<?php echo($character->master_degree) ?>">
 
-                                            <select class="form-select" aria-label="Masters degree" name="master_degree_list" id="master_degree_list">
+                                            <select class="form-select" aria-label="Masters degree" name="masters_degree_list" id="masters_degree_list">
                                                 <option value="None">None</option>
                                                 <option value="MSC(IT)">MSC(IT)</option>
                                                 <option value="MSC(BT)">MSC(BT)</option>
@@ -215,12 +220,15 @@ foreach ($characters as $character) {
                                                 <option value="Ph.D. Science">Ph.D. Science</option>
                                                 <option value="PGDPCM">PGDPCM</option>
                                                 <option value="Other">Other</option>
-                                            </select>                                        
+                                            </select>  
+                                            <div class="invalid-feedback">
+                                    Please select a degree
+                                </div>                                      
                                         </div>
-                                        <!-- Form Group (middle name)-->
+                                        <!-- Form Group (Master college name)-->
                                         <div class="col-lg-4">
-                                            <label class="small mb-1" for="inputLastName">Name of College</label>
-                                            <input class="form-control" id="inputLastName" type="text" value="<?php echo($character->master_degree_college) ?>" list="vaze_college_name" placeholder="Enter your name of College">
+                                            <label class="small mb-1" for="masters_college_name">Name of College</label>
+                                            <input class="form-control" name="masters_college_name" id="masters_college_name" type="text" value="<?php echo($character->master_degree_college) ?>" list="vaze_college_name" placeholder="Enter your name of College">
                                             <!--auto suggest the name of Vaze college-->
                                             <datalist id="vaze_college_name">
                                                 <option value="KET's V.G. Vaze College of Arts,Science and Commerce">
@@ -229,10 +237,10 @@ foreach ($characters as $character) {
                                                 Please enter the name of the college
                                             </div>
                                         </div>
-                                        <!-- Form Group (last name)-->
+                                        <!-- Form Group (Master year of admission)-->
                                         <div class="col-lg-4">
-                                            <label class="small mb-1" for="inputLastName">Year of Admission</label>
-                                            <input type="number" maxLength="4" name="bachelors_admission_year" value="<?php echo($character->master_admission_year) ?>" class="form-control" placeholder="Enter your admission year"   id="bachelors_admission_year" min="1950" required>
+                                            <label class="small mb-1" for="masters_admission_year">Year of Admission</label>
+                                            <input type="number" maxLength="4" name="masters_admission_year" value="<?php echo($character->master_admission_year) ?>" class="form-control" placeholder="Enter your admission year"   id="masters_admission_year" min="1950" required>
                                             <div class="invalid-feedback" id="feedback_bachelor_degree_admission_year">
                                                 Please enter the year you took admission in the college
                                             </div>
@@ -247,16 +255,16 @@ foreach ($characters as $character) {
 
                                         <!-- Form Row-->
                                         <div class="row gx-3 gy-3  mb-2">
-                                            <!-- Form Group (first name)-->
+                                            <!-- Form Group (comapny name)-->
                                             
                                             <div class="col-lg-12">
-                                                <label class="small mb-1" for="inputFirstName">Currently Working in Company/Institution</label>
-                                                <input class="form-control" id="inputLastName" type="text" value="<?php echo($character->company) ?>"  placeholder="Enter your Company/Institution name">
+                                                <label class="small mb-1" for="company_name">Currently Working in Company/Institution</label>
+                                                <input class="form-control" name="company_name" id="company_name" type="text" value="<?php echo($character->company) ?>"  placeholder="Enter your Company/Institution name">
                                             </div>
-                                            <!-- Form Group (middle name)-->
+                                            <!-- Form Group (Designation)-->
                                             <div class="col-lg-12">
-                                                <label class="small mb-1" for="inputLastName">Designation</label>
-                                                <input class="form-control" id="inputLastName" type="text" value="<?php echo($character->designation) ?>" placeholder="Enter your Designation">
+                                                <label class="small mb-1" for="designation">Designation</label>
+                                                <input class="form-control" name="designation" id="designation" type="text" value="<?php echo($character->designation) ?>" placeholder="Enter your Designation">
                                                 
                                             </div>
                                         </div>
@@ -266,39 +274,45 @@ foreach ($characters as $character) {
 
                             <!-- Form Row-->
                             <div class="row gx-3 gy-3  mb-2">
-                                <!-- Old password -->
-                                <div class="col-lg-12">
-                                    <label for="password" class="form-label">Old Password</label>
-                                    <div class="input-group">
-                                        <input type="password" name="password" class="form-control" id="password" required>
-                                        <span class="input-group-text pass_icon" id="basic-addon1">
-                                            <i class="bi bi-eye-fill pass_open_eye"></i>
-                                            <i class="bi bi-eye-slash-fill pass_close_eye"></i>
-                                        </span>
-                                    </div>
+
+
+
+<!-- password -->
+<div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <div class="input-group">
+                                    <input type="password" autocomplete="new-password"  name="password" class="form-control" id="password" required>
+                                    <span class="input-group-text pass_icon" id="basic-addon1">
+                                        <i class="bi bi-eye-fill pass_open_eye"></i>
+                                        <i class="bi bi-eye-slash-fill pass_close_eye"></i>
+                                    </span>
+                                    <div class="invalid-feedback" id="feedback_password_input">
+                                    Please set a password
                                 </div>
-<!-- new password -->
-                                <div class="col-lg-12">
-                                    <label for="password" class="form-label">New Password</label>
-                                    <div class="input-group">
-                                        <input type="password" name="password" class="form-control" id="password" required>
-                                        <span class="input-group-text pass_icon" id="basic-addon1">
-                                            <i class="bi bi-eye-fill pass_open_eye"></i>
-                                            <i class="bi bi-eye-slash-fill pass_close_eye"></i>
-                                        </span>
-                                    </div>
                                 </div>
-<!-- confirm password -->
-                                <div class="col-lg-12">
-                                    <label for="password" class="form-label">Confirm Password</label>
-                                    <div class="input-group">
-                                        <input type="password" name="password" class="form-control" id="password" required>
-                                        <span class="input-group-text pass_icon" id="basic-addon1">
-                                            <i class="bi bi-eye-fill pass_open_eye"></i>
-                                            <i class="bi bi-eye-slash-fill pass_close_eye"></i>
-                                        </span>
-                                    </div>
+                               
+                            </div>
+                            <!-- confirm password -->
+                            <div class="mb-3">
+                                <label for="confirm_password" class="form-label">Confirm Password</label>
+                                <div class="input-group">
+                                    <input type="password" name="confirm_password" autocomplete="current-password" class="form-control" id="confirm_password" required>
+                                    
+                            <span class="input-group-text confirm_pass_icon" id="basic-addon1">
+                                        <i class="bi bi-eye-fill cpass_open_eye"></i>
+                                        <i class="bi bi-eye-slash-fill cpass_close_eye"></i>
+                                    </span>
+                                    <div class="invalid-feedback" id="feedback_confirm_password_input">
+                                    Please re-enter the password
                                 </div>
+
+                                <div class="valid-feedback" >
+                                    The passwords match!
+                                </div>
+                                </div>
+                                
+                            </div>
+
                                 <div class="col-lg-12 mt-4">
                                     <button type="button" class="btn btn-primary w-25">Save </button>
                                 </div>
@@ -314,78 +328,6 @@ foreach ($characters as $character) {
             ?>
 </div>
 </main>
+<script src="../js/profile.js"></script>
 </body>
 </html>
-<script>
-    $("#personal_details_page :input").prop("disabled", true);
-    $("#degree_details_page :input").prop("disabled", true);
-    $("#professional_details_page :input").prop("disabled", true);
-    $('.save').hide();
-    $('#degree_details_page').hide();
-    $('#professional_details_page').hide();
-    $('#change_password_page').hide();
-    
-    $('.nav-link ').on('click',function(){
-        $('.nav-link ').removeClass("active");
-        $(this).addClass("active");
-        $('.card-header').text($(this).text());
-        if($(this).text() == "Personal  Details"){
-            $('#personal_details_page').show();
-            $('#degree_details_page').hide();
-            $('#professional_details_page').hide();
-            $('#change_password_page').hide();
-        }else if($(this).text() == "Degree  Details"){
-            $('#degree_details_page').show();
-            $('#personal_details_page').hide();
-            $('#professional_details_page').hide();
-            $('#change_password_page').hide();
-        }else if($(this).text() == "Professional  Details"){
-            $('#professional_details_page').show();
-            $('#degree_details_page').hide();
-            $('#personal_details_page').hide();
-            $('#change_password_page').hide();
-        }else if($(this).text() == "Change  Password"){
-            $('#professional_details_page').hide();
-            $('#degree_details_page').hide();
-            $('#personal_details_page').hide();
-            $('#change_password_page').show();
-        }
-    })
-
-    $('.edit').on('click',function(){
-        $("#personal_details_page :input").prop("disabled", false);
-    $("#degree_details_page :input").prop("disabled", false);
-    $("#professional_details_page :input").prop("disabled", false);
-        $('.edit').hide();
-        $('.delete').hide();
-        $('.save').show();
-    })
-    $('.save').on('click',function(){
-        $('.edit').show();
-        $('.delete').show();
-        $('.save').hide();
-        $("#personal_details_page :input").prop("disabled", true);
-    $("#degree_details_page :input").prop("disabled", true);
-    $("#professional_details_page :input").prop("disabled", true);
-    })
-    
-    
-    $bachelor_degree_name = $('#bachelor_degree__name').val();
-    $("#bachelors_degree_list option").each(function()
-    {
-    if($(this).text()==$bachelor_degree_name){
-        $(this).prop("selected", true);
-        console.log("yes");
-    }
-    });
-
-    $master_degree_name = $('#master_degree__name').val();
-    console.log($master_degree_name);
-    $("#master_degree_list option").each(function()
-    {
-    if($(this).text()==$master_degree_name){
-        $(this).prop("selected", true);
-    }
-    });
-
-</script>
