@@ -95,6 +95,11 @@ Professional Development
 
 </div>
         </div>
+            </div>
+            </div>
+        <?php
+include "footer.php"
+?>
          </main>
   <script src="../js/professional_dev.js"></script>
 </body>

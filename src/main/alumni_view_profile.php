@@ -232,7 +232,9 @@ foreach ($characters as $character) {
     }
 }
 ?>
-
+<?php
+include "footer.php"
+?>
        
     </main>
 </body>
