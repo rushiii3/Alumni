@@ -331,6 +331,10 @@ foreach ($characters as $character) {
 }
             ?>
 </div>
+</div>
+</div>
+</div>
+
 </main>
 <script src="../js/profile.js"></script>
 </body>

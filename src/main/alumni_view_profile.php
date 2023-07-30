@@ -234,7 +234,9 @@ foreach ($characters as $character) {
     echo "Please refresh or try again later";
 }
 ?>
-
+<?php
+include "footer.php"
+?>
        
     </main>
 </body>
