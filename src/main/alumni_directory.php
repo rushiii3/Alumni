@@ -166,10 +166,15 @@ else{
          </div>
           
          
-          
+         
 
         </div>
-       
+        <?php
+include "footer.php"
+?>
+          </div>
+          </div>
+        
   </main>
   <script src="../js/alumni_directory.js"></script>
 </body>

@@ -381,6 +381,9 @@ exit;
                
             </div>
         </div>
+        <?php
+include "footer.php"
+?>
 </main>
         <script src="../js/sign_up.js"></script>
 </body>
