@@ -82,6 +82,8 @@ body{
     }
 $url = 'https://alumniandroidapp.000webhostapp.com/all_alumni_fetch.php'; // path to your JSON file
 $data = file_get_contents($url); // put the contents of the file into a variable
+
+if($data){
 $characters = json_decode($data); // decode the JSON feed
 foreach ($characters as $character) {
     if($character->username == $user_id)
@@ -214,6 +216,7 @@ foreach ($characters as $character) {
                 </div>
                 <?php
             }
+        }
                 ?>
 
 
@@ -226,10 +229,9 @@ foreach ($characters as $character) {
                             </div>
     <?php
         break;
-    }else{
-        
-
     }
+}else{
+    echo "Please refresh or try again later";
 }
 ?>
 

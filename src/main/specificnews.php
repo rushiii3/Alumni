@@ -13,12 +13,17 @@ $news_title=$_GET['news_title'];
 
 $url="https://alumniandroidapp.000webhostapp.com/all_news_fetch.php";
 $data=file_get_contents($url);
+
+if($data){
 $characters=json_decode($data);
 
 foreach($characters as $character){
     if($character->news_id == $news_id){
         $news_description=$character->news_description;
     }
+}
+}else{
+    echo "Please refresh or try again later";
 }
 
 //fetch the description
@@ -63,7 +68,7 @@ echo $news_title;
                     <?php echo $news_title; ?>
                 </h1>
 
-                <p>
+                <p style="word-wrap: break-word;">
                     <?php
 echo $news_description;
                     ?>

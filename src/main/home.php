@@ -7,6 +7,11 @@ if(!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']){
     exit;
 }
 
+/*error_reporting(0);
+ini_set('log_errors', 1);
+ini_set('error_log', '/path/to/error.log');
+
+*/
 
 
 ?>
@@ -54,6 +59,7 @@ Upcoming Events
 <?php
 $url = 'https://alumniandroidapp.000webhostapp.com/all_events_fetch.php'; // path to your JSON file
 $data = file_get_contents($url); // put the contents of the file into a variable
+if($data){
 $characters = json_decode($data); // decode the JSON feed
 ?>
 <div class="container mt-4" style="height:100vh;">
@@ -80,6 +86,10 @@ $characters = json_decode($data); // decode the JSON feed
             
             <?php
             }
+        }
+        else{
+            echo "Please refresh or try again later";
+        }
             
             ?>
         </div>

@@ -83,6 +83,7 @@ if(!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']){
             $user_id = $_SESSION['username'];
 $url = 'https://alumniandroidapp.000webhostapp.com/all_alumni_fetch.php'; // path to your JSON file
 $data = file_get_contents($url); // put the contents of the file into a variable
+if($data){
 $characters = json_decode($data); // decode the JSON feed
 foreach ($characters as $character) {
     if($character->username == $user_id)
@@ -324,6 +325,9 @@ foreach ($characters as $character) {
             
             <?php
 }
+}
+}else{
+    echo "Please refresh or try again later";
 }
             ?>
 </div>

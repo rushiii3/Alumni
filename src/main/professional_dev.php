@@ -62,6 +62,7 @@ Professional Development
             <?php
             $url = 'https://alumniandroidapp.000webhostapp.com/all_professional_job_fetch.php'; // path to your JSON file
             $data = file_get_contents($url); // put the contents of the file into a variable
+            if($data){
             $characters = json_decode($data); // decode the JSON feed
             ?>
             <?php
@@ -88,6 +89,9 @@ Professional Development
 
             <?php
               }
+            }else{
+              echo "Please refresh or try again later";
+            }
             
             ?>
 
