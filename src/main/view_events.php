@@ -77,6 +77,7 @@ body{
     }
 $url = 'https://alumniandroidapp.000webhostapp.com/all_events_fetch.php'; // path to your JSON file
 $data = file_get_contents($url); // put the contents of the file into a variable
+if($data){
 $characters = json_decode($data); // decode the JSON feed
 foreach ($characters as $character) {
     if($character->event_id == $event_id)
@@ -115,7 +116,7 @@ schedule
                 <h4 class="my-2 fw-bold">
                     About the Event
                 </h4>
-                <p style="text-align:justify;">
+                <p style="text-align:justify;word-wrap: break-word;">
                     <?php echo $character->event_description; ?>
                 </p>
                 <p class="text-center">
@@ -132,6 +133,10 @@ schedule
         
 
     }
+}
+}
+else{
+    echo "Please refresh or try again later";
 }
 ?>
 

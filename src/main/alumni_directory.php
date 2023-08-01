@@ -1,7 +1,7 @@
 <?php
 session_start();
-$_SESSION['isloggedin']=true;
-$_SESSION['username']="abc12@gmail.com";
+//$_SESSION['isloggedin']=true;
+//$_SESSION['username']="abc12@gmail.com";
 if(!isset($_SESSION['isloggedin'])){
   echo "<script> window.location.href='../main/login.php' </script>";
   exit;
@@ -118,6 +118,8 @@ else{
             <?php
             $url = 'https://alumniandroidapp.000webhostapp.com/all_alumni_fetch.php'; // path to your JSON file
             $data = file_get_contents($url); // put the contents of the file into a variable
+
+            if($data){
             $characters = json_decode($data); // decode the JSON feed
             $college_name="KET's V.G. Vaze College of Arts,Science and Commerce";
             ?>
@@ -156,7 +158,10 @@ else{
                 </div>
               </div>
             <?php
-              
+            }
+            }
+            else{
+              echo "Please refresh or try again later";
             }
             ?>
 

@@ -1,7 +1,7 @@
 <?php
 session_start();
-$_SESSION['isloggedin'] = true;
-$_SESSION['username'] = "abc12@gmail.com";
+//$_SESSION['isloggedin'] = true;
+//$_SESSION['username'] = "abc12@gmail.com";
 
 if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
     echo "<script> window.location.href='../main/login.php' </script>";
@@ -284,7 +284,7 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
                     </div>
 
                    
-                    <div class="container mt-4" style="height:100vh;" >
+                    <div class="container mt-4" style="height:calc(100vh-60px);" >
                         <div class="row p-1" id="card_container">
 
                            
@@ -294,7 +294,7 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
 
 
                 <!-- Bottom navigation -->
-                <div class="position-sticky fixed-bottom bg-white d-flex justify-content-evenly py-1 " id="down_navigation">
+                <div class="position-fixed fixed-bottom bg-white d-flex justify-content-evenly py-1 " id="down_navigation">
                     <button type="button" class="text-center mx-2 btn Scholarship_awards">
                         <span class="material-symbols-outlined">
                             social_leaderboard

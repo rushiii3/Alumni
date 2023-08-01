@@ -1,90 +1,90 @@
 //GLOBAL VARIABLES
 
-let registration_form = document.getElementById("signupform");
+var registration_form = document.getElementById("signupform");
 
-let failed_modal_message_para = document.getElementById(
+var failed_modal_message_para = document.getElementById(
   "failed_registration_message"
 );
 //PAGE 1
-let is_email_verified = false;
-let is_phone_number_valid = false;
-let is_valid_linkedin_address = false;
+var is_email_verified = false;
+var is_phone_number_valid = false;
+var is_valid_linkedin_address = false;
 
-let firstname_input = document.getElementById("first_name");
-let middlename_input = document.getElementById("middle_name");
-let lastname_input = document.getElementById("last_name");
-let dob_input = document.getElementById("dob");
-let linkedin_address_input = document.getElementById("linkedin_address");
-let phone_number_input = document.getElementById("phone_number");
+var firstname_input = document.getElementById("first_name");
+var middlename_input = document.getElementById("middle_name");
+var lastname_input = document.getElementById("last_name");
+var dob_input = document.getElementById("dob");
+var linkedin_address_input = document.getElementById("linkedin_address");
+var phone_number_input = document.getElementById("phone_number");
 
-let email_input = document.getElementById("email");
-let verify_email_button = document.getElementById("emailbutton-addon2");
-let verify_otp_div = document.getElementById("verify_email_otp_div");
-let verify_otp_input = document.getElementById("verify_email_otp");
+var email_input = document.getElementById("email");
+var verify_email_button = document.getElementById("emailbutton-addon2");
+var verify_otp_div = document.getElementById("verify_email_otp_div");
+var verify_otp_input = document.getElementById("verify_email_otp");
 
-let first_name = "",
+var first_name = "",
   middle_name = "",
   last_name = "",
   dob = "",
   linkedin_address = "",
   phone_number = "",
   email = "";
-let errorInputFieldsArray = new Array();
-let generated_OTP = "";
-let email_sent_to_address = "";
+var errorInputFieldsArray = new Array();
+var generated_OTP = "";
+var email_sent_to_address = "";
 
 //PAGE 2.
-let bachelors_degree = "",
+var bachelors_degree = "",
   bachelors_admission_year = "",
   bachelors_degree_college_name = "";
-let masters_degree = "",
+var masters_degree = "",
   masters_admission_year = "",
   masters_degree_college_name = "";
 
-let college_name = "KET's V.G. Vaze College of Arts,Science and Commerce";
+var college_name = "KET's V.G. Vaze College of Arts,Science and Commerce";
 
-let is_valid_bachelors_year = false,
+var is_valid_bachelors_year = false,
   is_valid_masters_admission_year = false;
 
-let bachelors_degree_input = document.getElementById("bachelors_degree_list");
-let bachelors_admission_year_input = document.getElementById(
+var bachelors_degree_input = document.getElementById("bachelors_degree_list");
+var bachelors_admission_year_input = document.getElementById(
   "bachelors_admission_year"
 );
-let bachelors_degree_college_name_input = document.getElementById(
+var bachelors_degree_college_name_input = document.getElementById(
   "bachelor_college_name"
 );
 
-let masters_degree_input = document.getElementById("masters_degree_list");
-let masters_admission_year_input = document.getElementById(
+var masters_degree_input = document.getElementById("masters_degree_list");
+var masters_admission_year_input = document.getElementById(
   "masters_admission_year"
 );
-let masters_degree_college_name_input = document.getElementById(
+var masters_degree_college_name_input = document.getElementById(
   "masters_college_name"
 );
 
 //PAGE 3
-let company = "",
+var company = "",
   designation = "";
 
-let company_input = document.getElementById("company_name");
-let designation_input = document.getElementById("designation");
+var company_input = document.getElementById("company_name");
+var designation_input = document.getElementById("designation");
 
 //PAGE 4
-let password = "",
+var password = "",
   confirm_password = "",
   final_password = "";
-let are_passwords_verified = false;
-let password_input = document.getElementById("password");
-let confirm_password_input = document.getElementById("confirm_password");
+var are_passwords_verified = false;
+var password_input = document.getElementById("password");
+var confirm_password_input = document.getElementById("confirm_password");
 
-let feedback_password_input = document.getElementById(
+var feedback_password_input = document.getElementById(
   "feedback_password_input"
 );
-let feedback_confirm_password_input = document.getElementById(
+var feedback_confirm_password_input = document.getElementById(
   "feedback_confirm_password_input"
 );
 
-let submit_button = document.getElementById("submit");
+var submit_button = document.getElementById("submit");
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------
 //PASSWORD HIDE AND UNHIDE
@@ -140,7 +140,7 @@ $("#next_page_2").on("click", function () {
     $page2.fadeIn();
     $page2.show();
     $step.eq(0).removeClass("active");
-    $step.eq(0).addClass("completed");
+    $step.eq(0).addClass("compvared");
     $step.eq(1).addClass("active");
   }
 });
@@ -153,7 +153,7 @@ $("#next_page_3").on("click", function () {
     $page3.fadeIn();
     $page3.show();
     $step.eq(1).removeClass("active");
-    $step.eq(1).addClass("completed");
+    $step.eq(1).addClass("compvared");
     $step.eq(2).addClass("active");
   }
 });
@@ -166,7 +166,7 @@ $("#next_page_4").on("click", function () {
     $page4.fadeIn();
     $page4.show();
     $step.eq(2).removeClass("active");
-    $step.eq(2).addClass("completed");
+    $step.eq(2).addClass("compvared");
     $step.eq(3).addClass("active");
   }
 });
@@ -179,7 +179,7 @@ $('#next_page_5').on('click',function(){
     $page5.fadeIn();
     $page5.show();
     $step.eq(3).removeClass("active");
-    $step.eq(3).addClass("completed");
+    $step.eq(3).addClass("compvared");
     $step.eq(4).addClass("active");
 })
 */
@@ -358,7 +358,7 @@ function removeErrorWhenInputFieldIsNotEmpty() {
 //5.send the email with OTP
 function sendEmail(email_to) {
   email_sent_to_address = email_to;
-  let body_of_email = `<div id='emailContent' style='max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; background-color: #f9f9f9;'><div style='max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; background-color: #f9f9f9;'><table style='height: 100%; width: 100%; background-color: #f5f6f8;'><tbody><tr><td valign='top' class='edimg' style='padding: 5px; box-sizing: border-box; text-align: center;'><img src='https://github.com/rushiii3/Book_A_Slot/blob/main/src/img/logo11.jpeg?raw=true' alt='Image' width='108' style='border-width: 0px; border-style: none; max-width: 108px; width: 100%;'></td> </tr><tr><td valign='top' class='edtext' style='padding: 5px; text-align: left; color: #5f5f5f; font-size: 15px; '><h2 class='text-center' style='text-align: center;'><strong>V.G. Vaze College of Arts, Science and Commerce (Autonomous)</strong></h2></td></tr><tr><td valign='top' class='edtext' style='background-color: #ffffff;padding: 32px; text-align: left; color: #5f5f5f; font-size: 15px; '><p class='text-center' style='text-align: center; margin: 0px; padding: 0px;'>Greetings <strong> ${email_to}</strong>!</p><br><p class='text-center' style='text-align: center; margin: 0px; padding: 0px;'>You have requested to verify this email address </p><br><br><p class='text-center' style='text-align: center; margin: 0px; padding: 0px;'>The requested OTP is :  <strong>${generated_OTP}</strong>.Please do not share this OTP with anyone. </p> <p style='margin: 0px; font-size: 15px;margin-top:4rem ;'>Vaze Alumni App</p></td></tr><tr><td valign='top' class='edtext' style='padding: 20px; text-align: left; color: #5f5f5f; font-size: 15px;'><p class='text-center' style='line-height: 1.75em; text-align: center; margin: 0px; padding: 0px;'><span style='font-size: 11px;'>If you no longer wish to receive mail from us, you can <a href='{unsubscribe}' style='background-color: initial; color: #5457ff; text-decoration: none;'>unsubscribe</a></span><br></p></td></tr></tbody></table></div></div>`;
+  var body_of_email = `<div id='emailContent' style='max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; background-color: #f9f9f9;'><div style='max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; background-color: #f9f9f9;'><table style='height: 100%; width: 100%; background-color: #f5f6f8;'><tbody><tr><td valign='top' class='edimg' style='padding: 5px; box-sizing: border-box; text-align: center;'><img src='https://github.com/rushiii3/Book_A_Slot/blob/main/src/img/logo11.jpeg?raw=true' alt='Image' width='108' style='border-width: 0px; border-style: none; max-width: 108px; width: 100%;'></td> </tr><tr><td valign='top' class='edtext' style='padding: 5px; text-align: left; color: #5f5f5f; font-size: 15px; '><h2 class='text-center' style='text-align: center;'><strong>V.G. Vaze College of Arts, Science and Commerce (Autonomous)</strong></h2></td></tr><tr><td valign='top' class='edtext' style='background-color: #ffffff;padding: 32px; text-align: left; color: #5f5f5f; font-size: 15px; '><p class='text-center' style='text-align: center; margin: 0px; padding: 0px;'>Greetings <strong> ${email_to}</strong>!</p><br><p class='text-center' style='text-align: center; margin: 0px; padding: 0px;'>You have requested to verify this email address </p><br><br><p class='text-center' style='text-align: center; margin: 0px; padding: 0px;'>The requested OTP is :  <strong>${generated_OTP}</strong>.Please do not share this OTP with anyone. </p> <p style='margin: 0px; font-size: 15px;margin-top:4rem ;'>Vaze Alumni App</p></td></tr><tr><td valign='top' class='edtext' style='padding: 20px; text-align: left; color: #5f5f5f; font-size: 15px;'><p class='text-center' style='line-height: 1.75em; text-align: center; margin: 0px; padding: 0px;'><span style='font-size: 11px;'>If you no longer wish to receive mail from us, you can <a href='{unsubscribe}' style='background-color: initial; color: #5457ff; text-decoration: none;'>unsubscribe</a></span><br></p></td></tr></tbody></table></div></div>`;
   Email.send({
     SecureToken: "9a49be4b-36f9-4e80-ace1-6be7717131e8",
     To: email_to,
@@ -409,17 +409,17 @@ function validateFieldsOnPage2() {
   masters_degree_college_name = masters_degree_college_name_input.value;
   masters_admission_year = masters_admission_year_input.value;
 
-  let bachelor_college_feedback_div = document.getElementById(
+  var bachelor_college_feedback_div = document.getElementById(
     "feedback_bachelor_degree_college_name"
   );
-  let master_college_feedback_div = document.getElementById(
+  var master_college_feedback_div = document.getElementById(
     "feedback_master_degree_college_name"
   );
 
-  let bachelor_admission_year_feedback_div = document.getElementById(
+  var bachelor_admission_year_feedback_div = document.getElementById(
     "feedback_bachelor_degree_admission_year"
   );
-  let master_admission_year_feedback_div = document.getElementById(
+  var master_admission_year_feedback_div = document.getElementById(
     "feedback_master_degree_admission_year"
   );
 
@@ -503,6 +503,7 @@ function validateFieldsOnPage2() {
         bachelors_admission_year_input.classList.remove("is-invalid");
         masters_admission_year_input.classList.remove("is-invalid");
       }
+      
     }
   } else {
     if (bachelors_admission_year === "") {
@@ -520,7 +521,7 @@ function validateFieldsOnPage2() {
   if (bachelors_degree_college_name === college_name) {
     if (bachelors_admission_year !== "") {
       //bachelor admission year is not empty
-      if (bachelors_admission_year < 1985) {
+      if (parseInt(bachelors_admission_year) < 1985) {
         bachelor_admission_year_feedback_div.innerText =
           "Please enter a valid admission year";
         bachelors_admission_year_input.classList.add("is-invalid");
@@ -528,6 +529,12 @@ function validateFieldsOnPage2() {
       } else {
         if (isValidYear(bachelors_admission_year)) {
           bachelors_admission_year_input.classList.remove("is-invalid");
+        }
+        else{
+          bachelor_admission_year_feedback_div.innerText="Enter a valid year";
+          bachelors_admission_year_input.classList.add("is-invalid");
+          bachelors_admission_year_input.focus();
+          return false;
         }
       }
     } else {
@@ -547,7 +554,7 @@ function validateFieldsOnPage2() {
   if (masters_degree_college_name === college_name) {
     if (masters_admission_year !== "") {
       //bachelor admission year is not empty
-      if (masters_admission_year < 1985) {
+      if (parseInt(masters_admission_year) < 1985) {
         master_admission_year_feedback_div.innerText =
           "Please enter a valid admission year";
         masters_admission_year_input.classList.add("is-invalid");
@@ -555,6 +562,12 @@ function validateFieldsOnPage2() {
       } else {
         if (isValidYear(masters_admission_year)) {
           masters_admission_year_input.classList.remove("is-invalid");
+        }
+        else{
+          master_admission_year_feedback_div.innerText="Enter a valid year";
+          masters_admission_year_input.classList.add("is-invalid");
+          masters_admission_year_input.focus();
+          return false;
         }
       }
     } else {
@@ -567,7 +580,7 @@ function validateFieldsOnPage2() {
     masters_admission_year_input.classList.remove("is-invalid");
   }
 
-  if (bachelors_degree_input.value === "Select a bachelors degree") {
+  if (bachelors_degree_input.value.toLowerCase() === "select a bachelors degree") {
     displayErrorinInputField(bachelors_degree_input);
     bachelors_degree_input.focus();
     return false;
@@ -772,14 +785,14 @@ function registerUser() {
   var user_designation = designation.trim();
 
   var user_password = final_password;
-
+  var phone_number_with_cc="+91"+user_phone_number;
   var formData = {
     username: user_username,
     firstname: user_first_name,
     middlename: user_middle_name,
     lastname: user_last_name,
     dateofbirth: user_dob,
-    phoneno: user_phone_number,
+    phoneno: phone_number_with_cc,
     bachelor_degree: user_bachelors_degree,
     bachelor_admission_year: user_bachelors_admission_year,
     bachelor_degree_college: user_bachelors_degree_college_name,

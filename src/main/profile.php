@@ -1,7 +1,7 @@
 <?php
 session_start();
-$_SESSION['isloggedin']=true;
-$_SESSION['username']="abc12@gmail.com";
+//$_SESSION['isloggedin']=true;
+//$_SESSION['username']="abc12@gmail.com";
 
 if(!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']){
     echo "<script> window.location.href='../main/login.php' </script>";
@@ -26,7 +26,7 @@ if(!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']){
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" />
     <script src="../js/navigation.js"></script>
-    <script src="../js/giving_back.js"></script>
+    <!--<script src="../js/giving_back.js"></script>-->
    
     <link rel="stylesheet" href="../css/navigation.css">
    
@@ -83,6 +83,7 @@ if(!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']){
             $user_id = $_SESSION['username'];
 $url = 'https://alumniandroidapp.000webhostapp.com/all_alumni_fetch.php'; // path to your JSON file
 $data = file_get_contents($url); // put the contents of the file into a variable
+if($data){
 $characters = json_decode($data); // decode the JSON feed
 foreach ($characters as $character) {
     if($character->username == $user_id)
@@ -119,12 +120,12 @@ foreach ($characters as $character) {
                                     <!-- Form Group (Phone number)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="phone_number">Phone Number</label>
-                                        <input class="form-control"  maxLength="10" name="phone_number" class="form-control" value="<?php echo($character->phoneno) ?>"  id="phone_number" type="number" placeholder="Enter your phone number" >
+                                        <input class="form-control"  maxLength="10" name="phone_number" class="form-control" value="<?php echo($character->phoneno) ?>"  id="phone_number" type="tel" placeholder="Enter your phone number" >
                                     </div>
                                     <!-- Form Group (Email)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="email">Email</label>
-                                        <input class="form-control" autocomplete="username"  name="email" id="email"type="email" value="<?php echo($character->username) ?>" placeholder="Enter your email" >
+                                        <input class="form-control" autocomplete="username"  name="email" id="email"type="email" value="<?php echo($character->username) ?>" placeholder="Enter your email" disabled>
                                     </div>
                                 </div>
                                 <!-- Form Row-->
@@ -137,7 +138,7 @@ foreach ($characters as $character) {
                                     <!-- Form Group (DOb)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="dob">Date of Birth</label>
-                                        <input class="form-control"   type="date" name="dob" id="dob" value="<?php echo($character->dateofbirth) ?>" placeholder="Enter your birthday" min='1950-01-01' required>
+                                        <input class="form-control"   type="date" name="dob" id="dob" value="<?php echo($character->dateofbirth) ?>" placeholder="Enter your birthdate" min='1950-01-01' required>
                                     </div>
                                 </div>
                             </div>
@@ -202,13 +203,13 @@ foreach ($characters as $character) {
                                         <!-- master degree -->
                                         <div class="col-12 mt-5">
                                             <p>
-                                                Master Degree
+                                                Masters Degree
                                             </p>
                                         </div>
                                         <div class="col-lg-4">
                                             <!-- Form Group (Master degree name)-->
                                             <label class="small mb-1" for="masters_degree_list">Select Course</label>
-                                            <input type="text" class="d-none" id="master_degree__name" value="<?php echo($character->master_degree) ?>">
+                                            <input type="text" class="d-none" id="master_degree__name" value="<?php if($character->master_degree !=""){echo($character->master_degree); }?>">
 
                                             <select class="form-select" aria-label="Masters degree" name="masters_degree_list" id="masters_degree_list">
                                                 <option value="None">None</option>
@@ -233,7 +234,7 @@ foreach ($characters as $character) {
                                             <datalist id="vaze_college_name">
                                                 <option value="KET's V.G. Vaze College of Arts,Science and Commerce">
                                             </datalist>
-                                            <div class="invalid-feedback" id="feedback_bachelor_degree_college_name">
+                                            <div class="invalid-feedback" id="feedback_master_degree_college_name">
                                                 Please enter the name of the college
                                             </div>
                                         </div>
@@ -241,7 +242,7 @@ foreach ($characters as $character) {
                                         <div class="col-lg-4">
                                             <label class="small mb-1" for="masters_admission_year">Year of Admission</label>
                                             <input type="number" maxLength="4" name="masters_admission_year" value="<?php echo($character->master_admission_year) ?>" class="form-control" placeholder="Enter your admission year"   id="masters_admission_year" min="1950" required>
-                                            <div class="invalid-feedback" id="feedback_bachelor_degree_admission_year">
+                                            <div class="invalid-feedback" id="feedback_master_degree_admission_year">
                                                 Please enter the year you took admission in the college
                                             </div>
                                         </div>
@@ -250,7 +251,7 @@ foreach ($characters as $character) {
 
 
 
-                             <!-- Degree Deatils page -->
+                             <!-- Professional Details page -->
                              <div id="professional_details_page">
 
                                         <!-- Form Row-->
@@ -324,6 +325,9 @@ foreach ($characters as $character) {
             
             <?php
 }
+}
+}else{
+    echo "Please refresh or try again later";
 }
             ?>
 </div>

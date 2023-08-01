@@ -156,11 +156,17 @@ document.addEventListener("DOMContentLoaded",function(){
           if(validateLoginForm()){
                loginUser();
           }
-          
-         
-     })
+     });
 
-})
+     
+});
+
+//Prevent the console from being viewed
+document.addEventListener("contextmenu", function (event) {
+     event.preventDefault();
+   });
+
+
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
