@@ -34,6 +34,7 @@ else{
   
   <link rel="stylesheet" href="../css/navigation.css">
   <link rel="stylesheet" href="../css/alumni_directory.css">
+  <link rel="stylesheet" href="../css/professional_dev.css">
 
   <script src="../js/navigation.js"></script>
 </head>
@@ -53,7 +54,7 @@ else{
         <?php
         include "navbar2.php";
         ?>  
-         <h1>
+         <h1 class="ms-4 mt-4 mb-3" >
 Professional Development
 </h1>
 
@@ -62,7 +63,7 @@ Professional Development
             <?php
             $url = 'https://alumniandroidapp.000webhostapp.com/all_professional_job_fetch.php'; // path to your JSON file
             $data = file_get_contents($url); // put the contents of the file into a variable
-            if($data){
+            if($data){ 
             $characters = json_decode($data); // decode the JSON feed
             ?>
             <?php
@@ -80,8 +81,9 @@ Professional Development
       <p class="card-text text-muted">
         <span id="job_experience"><?php echo "minimum " . $character->years_of_experience." years"; ?></span>
       </p>
+      <p hidden><?php echo $character-> id; ?></p>
       <p class="text-center mb-0">
-        <a href="#" class="link text-center" style="color:#0099CC ">View Details</a>
+        <a id="btnViewDetails" class="link text-center" style="color:#0099CC ">View Details</a>
       </p>
     </div>
   </div>
@@ -106,6 +108,26 @@ include "footer.php"
 ?>
          </main>
   <script src="../js/professional_dev.js"></script>
+  <script >
+    //redirect to specific professional dev
+
+    var all_cards_view_details=document.querySelectorAll("#card");
+    all_cards_view_details.forEach( (card)=>{
+
+      card.querySelector("p a").addEventListener('click',function(){
+        
+        var pj_id=card.querySelector("p[hidden]").innerText;
+        window.location.href = "../main/specific_professional_dev.php?pj_id="+pj_id;
+      });
+        
+      
+      });
+
+
+ 
+
+  </script>
+
 </body>
 
 </html>

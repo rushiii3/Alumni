@@ -36,7 +36,7 @@
   
         <h3 class="profile-badge__content-profile-name" itemprop="name">
           <a class="profile-badge__content-profile-name-link profile-badge__content-profile-name-link--dark" href="https://in.linkedin.com/in/hrushikesh-shinde-534b6b26a?trk=public-profile-badge-profile-badge-profile-name" data-tracking-control-name="public-profile-badge-profile-badge-profile-name" data-tracking-will-navigate="">
-            Hrushikesh Shinde
+            ABC XYZ
           </a>
         </h3>
 

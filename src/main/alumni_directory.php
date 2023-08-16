@@ -58,7 +58,7 @@ else{
         ?>
         <!-- write all files here -->
         <div style="display: flex;flex-direction: row;justify-content: space-between;">
-          <h1 class="mb-5" id="AD"> Alumni Directory</h1>
+          <h1 class="mb-5 ms-4 mt-4" id="AD"> Alumni Directory</h1>
           <div class="ms-auto">
             <div class="search-box">
               <button class="btn-search"><i class="fas fa-search bi bi-search"></i></button>

@@ -58,16 +58,16 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
                 ?>
                 <!-- write all files here -->
                 <!-- page name -->
-                <h1>
+                <h1 class="ms-4 mt-4 mb-3" >
                     Giving Back
                 </h1>
                 <!-- section name -->
-                <h3 id="section_name">
+                <h3 id="section_name" class="ms-4 mt-4 mb-3" >
 
                 </h3>
 
                 <!-- Scholarship_awards page -->
-                <div id="Scholarship_awards_page">
+                <div id="Scholarship_awards_page" class="ms-4" >
                     <form id="scholarship_award_form">
                         <div class="mb-3">
                             <!--Scholarship/Award Name-->
@@ -167,7 +167,7 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
                 </div>
 
                 <!-- Internship_jobs page -->
-                <div id="Internship_jobs_page">
+                <div id="Internship_jobs_page" class="ms-4">
 
                     <form id="internship_job_form">
 
@@ -265,7 +265,7 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
 
 
                 <!-- Accolades_you page -->
-                <div id="Accolades_you_page">
+                <div id="Accolades_you_page" class="ms-4">
 
                 
                 <!--<object type="text/html" data="loader.html"></object>-->
