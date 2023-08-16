@@ -27,18 +27,10 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" />
     <script src="../js/navigation.js"></script>
-   
+
 
     <link rel="stylesheet" href="../css/navigation.css">
     <link rel="stylesheet" href="../css/giving_back.css">
-
-   <!-- <style>
-        #loadingDiv {
-            display: none;
-        }
-    </style>
-    -->
-
 </head>
 
 <body>
@@ -46,7 +38,7 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
     include_once "loader.html";
     ?>
     <main id="main">
-        <div class="wrapper">
+        <div class="wrapper mb-5">
             <!-- Sidebar  -->
             <?php
             include "navbar1.php";
@@ -58,16 +50,16 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
                 ?>
                 <!-- write all files here -->
                 <!-- page name -->
-                <h1 class="ms-4 mt-4 mb-3" >
+                <h1 class="ms-4 mt-4 mb-3">
                     Giving Back
                 </h1>
                 <!-- section name -->
-                <h3 id="section_name" class="ms-4 mt-4 mb-3" >
+                <h3 id="section_name" class="ms-4 mt-4 mb-3">
 
                 </h3>
 
                 <!-- Scholarship_awards page -->
-                <div id="Scholarship_awards_page" class="ms-4" >
+                <div id="Scholarship_awards_page" class="ms-4 me-4">
                     <form id="scholarship_award_form">
                         <div class="mb-3">
                             <!--Scholarship/Award Name-->
@@ -123,7 +115,7 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
                                 <option value="Third Year">Third Year</option>
                             </select>
 
-                            <div class="invalid-feedback" >
+                            <div class="invalid-feedback">
                                 Please select a class
                             </div>
 
@@ -160,14 +152,14 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
 
                         <div class="mb-3">
                             <!-- Submit button -->
-                            <button type="submit" name="sa_submit" id="sa_submit" class="btn btn-primary px-5 py-2 ms-2 mt-3" >Submit</button>
+                            <button type="submit" name="sa_submit" id="sa_submit" class="btn btn-primary px-5 py-2 ms-2 mt-3">Submit</button>
                         </div>
 
                     </form>
                 </div>
 
                 <!-- Internship_jobs page -->
-                <div id="Internship_jobs_page" class="ms-4">
+                <div id="Internship_jobs_page" class="ms-4 me-4">
 
                     <form id="internship_job_form">
 
@@ -256,7 +248,7 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
 
                         <div class="mb-3">
                             <!-- Submit button -->
-                            <button type="submit" name="ij_submit" id="ij_submit" class="btn btn-primary px-5 py-2 ms-2 mt-3" >Submit</button>
+                            <button type="submit" name="ij_submit" id="ij_submit" class="btn btn-primary px-5 py-2 ms-2 mt-3">Submit</button>
                         </div>
 
                     </form>
@@ -267,8 +259,8 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
                 <!-- Accolades_you page -->
                 <div id="Accolades_you_page" class="ms-4">
 
-                
-                <!--<object type="text/html" data="loader.html"></object>-->
+
+                    <!--<object type="text/html" data="loader.html"></object>-->
                     <div class="form-check mb-3">
 
                         <input type="radio" class="form-check-input" name="exampleRadios" id="aby_scholarship_by_you" value="Scholarship and Awards by you">
@@ -283,113 +275,116 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
 
                     </div>
 
-                   
-                    <div class="container mt-4" style="height:calc(100vh-60px);" >
+
+                    <div class="container mt-4" style="height:calc(100vh-60px);">
                         <div class="row p-1" id="card_container">
 
-                           
+
                         </div>
                     </div>
+
+
                 </div>
 
-
-                <!-- Bottom navigation -->
-                <div class="position-fixed fixed-bottom bg-white d-flex justify-content-evenly py-1 " id="down_navigation">
-                    <button type="button" class="text-center mx-2 btn Scholarship_awards">
-                        <span class="material-symbols-outlined">
-                            social_leaderboard
-                        </span>
-                        <br />
-                        Scholarship & awards
-                    </button>
-
-                    <button type="button" class="text-center mx-2 btn Internship_jobs">
-                        <img src="../img/ic_internship.svg" />
-                        <br />
-                        Internship & jobs
-                    </button>
-
-                    <button type="button" class="text-center mx-2 btn Accolades_you">
-                        <span class="material-symbols-outlined">
-                            card_travel
-                        </span>
-                        <br />
-                        Accolades by you
-                    </button>
-                </div>
+                
 
 
             </div>
+
+           <!-- Bottom navigation -->
+           <div class="position-fixed fixed-bottom bg-white d-flex justify-content-evenly py-1 " id="down_navigation" >
+                <button type="button" class="text-center mx-2 btn Scholarship_awards">
+                    <span class="material-symbols-outlined">
+                        social_leaderboard
+                    </span>
+                    <br />
+                    Scholarship & awards
+                </button>
+
+                <button type="button" class="text-center mx-2 btn Internship_jobs">
+                    <img src="../img/ic_internship.svg" />
+                    <br />
+                    Internship & jobs
+                </button>
+
+                <button type="button" class="text-center mx-2 btn Accolades_you">
+                    <span class="material-symbols-outlined">
+                        card_travel
+                    </span>
+                    <br />
+                    Accolades by you
+                </button>
+            </div>
         </div>
+        
     </main>
 
     <script src="../js/giving_back.js"> </script>
-    
+
     <script>
         //1.When clicked on scholarship award submit button
-        
-  var sa_submit_button=document.getElementById("sa_submit");
-  sa_submit_button.addEventListener("click", function (e) {
-  e.preventDefault();
-  //alert("clicked");
-  if (validateScholarshipAwardForm()) {
 
-    //console.log("successfully validated");
-    insertScholarshipAwardsByUser("<?php echo $_SESSION["username"];?>");
-    
-  } else {
-    console.log(" scholarship award form is not valid");
-  }
-});
-  
+        var sa_submit_button = document.getElementById("sa_submit");
+        sa_submit_button.addEventListener("click", function(e) {
+            e.preventDefault();
+            //alert("clicked");
+            if (validateScholarshipAwardForm()) {
 
-//2.When clicked on internship job submit button
+                //console.log("successfully validated");
+                insertScholarshipAwardsByUser("<?php echo $_SESSION["username"]; ?>");
 
-      
-var ij_submit_button=document.getElementById("ij_submit");
-  ij_submit_button.addEventListener("click", function (e) {
-  e.preventDefault();
-  //alert("clicked");
-  if (validateInternshipJobForm()) {
+            } else {
+                console.log(" scholarship award form is not valid");
+            }
+        });
 
-    //console.log("successfully validated");
-    insertInternshipJobByUser("<?php echo $_SESSION["username"];?>");
-    
-  } else {
-    console.log("Internship/Job form is not valid");
-  }
-});
 
-//3.When user changes the radio button selected
+        //2.When clicked on internship job submit button
 
-const radioButtons = document.querySelectorAll('input[type="radio"]');
-  
-  radioButtons.forEach(function(radioButton) {
-    radioButton.addEventListener("change", function(event) {
-      if (event.target.checked) {
 
-        const selectedOption = event.target.value;
-        // Execute different functions based on the selected option
+        var ij_submit_button = document.getElementById("ij_submit");
+        ij_submit_button.addEventListener("click", function(e) {
+            e.preventDefault();
+            //alert("clicked");
+            if (validateInternshipJobForm()) {
 
-        if (selectedOption === "Scholarship and Awards by you") {
-          // alert("Scholarships by you");
-           fetchAllScholarshipAwardsByUser("<?php echo $_SESSION["username"];?>")
-           .then(function(data){
-            displayScholarshipsAwardsByUser();
-           });
-          
-        } else if (selectedOption === "Jobs and Internships by you") {
-           //alert("Internships by you");
-           fetchAllInternshipJobsByUser("<?php echo $_SESSION["username"];?>")
-           .then(function(data){
-            displayInternshipJobsByUser();
-           });
-           
-        } 
-      }
-    });
-  });
+                //console.log("successfully validated");
+                insertInternshipJobByUser("<?php echo $_SESSION["username"]; ?>");
 
+            } else {
+                console.log("Internship/Job form is not valid");
+            }
+        });
+
+        //3.When user changes the radio button selected
+
+        const radioButtons = document.querySelectorAll('input[type="radio"]');
+
+        radioButtons.forEach(function(radioButton) {
+            radioButton.addEventListener("change", function(event) {
+                if (event.target.checked) {
+
+                    const selectedOption = event.target.value;
+                    // Execute different functions based on the selected option
+
+                    if (selectedOption === "Scholarship and Awards by you") {
+                        // alert("Scholarships by you");
+                        fetchAllScholarshipAwardsByUser("<?php echo $_SESSION["username"]; ?>")
+                            .then(function(data) {
+                                displayScholarshipsAwardsByUser();
+                            });
+
+                    } else if (selectedOption === "Jobs and Internships by you") {
+                        //alert("Internships by you");
+                        fetchAllInternshipJobsByUser("<?php echo $_SESSION["username"]; ?>")
+                            .then(function(data) {
+                                displayInternshipJobsByUser();
+                            });
+
+                    }
+                }
+            });
+        });
     </script>
 
 
