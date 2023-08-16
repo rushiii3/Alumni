@@ -262,7 +262,16 @@ function fetchDetailsofLoggedInAlumni() {
       $("#firstname").text(response.firstname);
       $("#middlename").text(response.middlename);
       $("#lastname").text(response.lastname);
-      $("#phone_number").text(response.phoneno);
+     var phoneNumber = response.phoneno;
+
+// Remove the "+91" prefix
+var cleanedPhoneNumber = phoneNumber.replace("+91", "");
+
+console.log(cleanedPhoneNumber);
+alert(cleanedPhoneNumber);
+// Update the phone number element
+$("#phone_number").text(cleanedPhoneNumber);
+     
       //$("#email").text(response.email);
       $("#linkedin_address").text(response.linkedinprofile);
       $("#dob").text(response.dateofbirth);
@@ -677,7 +686,7 @@ $("#SubmitPassword").on("click", function (e) {
       },
       error: function (xhr, status, error) {
         alert(
-          "Oops,,Some Error Occured! Couldn't set your passwords.Please try again later"
+          "Oops,Some Error Occured! Couldn't set your passwords.Please try again later"
         );
         console.log(
           "AJAX Request failed. \n Status: " + status + "\n Error: " + error
@@ -736,7 +745,7 @@ $(".save").on("click", function () {
       error: function (response) {
         fetchDetailsofLoggedInAlumni(); //to reset the values to what they were before editing
         console.log(response.status);
-        alert("Couldnt update the details.Please try again later");
+        alert("Oops! Couldnt update the details.Please try again later");
       },
     });
   }

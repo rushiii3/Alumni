@@ -808,7 +808,7 @@ function registerUser() {
   //alert("Executing register function");
 
   $.ajax({
-    url: "https://alumniandroidapp.000webhostapp.com/user_registration.php", // PHP file to handle the form data
+    url: "https://alumniandroidapp.000webhostapp.com/new_user_registration.php", //https://alumniandroidapp.000webhostapp.com/user_registration.php   // PHP file to handle the form data
     type: "POST", // HTTP method (POST in this case)
     data: formData, // Form data object
     dataType: "text", // Expected data type of the response
@@ -829,6 +829,12 @@ function registerUser() {
           "<strong>Sorry we couldn't find anyone with the provided details. Please enter the details as on your the marksheet</strong>";
         $("#failed_modal").modal("show");
         //alert("Sorry we couldn't find anyone with the provided details. Enter the details as on the marksheet or click Help");
+      } else if (response.includes("This user is already registered")) {
+        failed_modal_message_para.innerHTML =
+          "<strong>Sorry,But a user with the following details is already registered.</strong>";
+        $("#failed_modal").modal("show");
+        //alert(response);
+        //alert("Sorry we couldn't find anyone with the provided details. Enter the details as on the marksheet or click Help");
       } else if (response.includes("User registration successful")) {
         //registration successful
         $("#success_modal").modal("show");
@@ -840,6 +846,8 @@ function registerUser() {
         $("#failed_modal").modal("show");
         //alert("Sorry! Please try again later");
       }
+      
+      alert(response);
       console.log(response); // Display the response from the PHP file
     },
     error: function (xhr, status, error) {
