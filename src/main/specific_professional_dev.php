@@ -60,6 +60,12 @@ if ($data) {
     <script src="../js/navigation.js"></script>
     <link rel="stylesheet" href="../css/navigation.css">
 
+    <style>
+        a:hover{
+            color:#0099CC;
+        }
+        </style>
+
 </head>
 
 <body>
@@ -106,7 +112,7 @@ if ($data) {
                     <div class=" card-text text-muted mt-2">
                         <span class="material-symbols-outlined">
                             call
-                        </span> <?php echo $contact_email . "\n" . $contact_number; ?>
+                        </span> <a href="mailto:<?php echo $contact_email ?> " title="Send an Email"> <?php echo $contact_email ?></a> <?php echo "\n" . $contact_number; ?>
                     </div>
 
                     <hr />
