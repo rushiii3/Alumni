@@ -50,10 +50,10 @@ ini_set('error_log', '/path/to/error.log');
             include "navbar2.php";
         ?>
             <!-- write all files here -->
-            <h1>
+            <h1 class="ms-4 mt-4 mb-3">
 Events
 </h1>
-<h3>
+<h3 class="ms-4 mt-4 mb-3" >
 Upcoming Events
 </h3>
 <?php

@@ -45,7 +45,7 @@ if (!isset($_SESSION['isloggedin'])) {
         <?php
         include "navbar2.php";
         ?>
-        <h1 id="heading">
+        <h1 id="heading" class="ms-4 mt-4 mb-3">
           News
         </h1>
 
@@ -71,7 +71,7 @@ if (!isset($_SESSION['isloggedin'])) {
 
                       <p class="card-text text-muted mt-3" id="news_for" hidden><?php echo $character->news_for_alumni_or_campus; ?></p>
 
-                      <p class="card-text text-muted mt-3" id="news_description"><?php echo $character->news_description; ?></p>
+                      <p class="card-text text-muted mt-3"   id="news_description"><?php echo $character->news_description; ?></p>
                       <p class="card-text text-muted mt-3" id="news_id" hidden><?php echo $character->news_id; ?></p>
 
 
@@ -120,6 +120,7 @@ if (!isset($_SESSION['isloggedin'])) {
     </div>
   </main>
   <script src="../js/news.js"></script>
+  
   <script>
     var cards = document.querySelectorAll("#card");
     cards.forEach((card) => {

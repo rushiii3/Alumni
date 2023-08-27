@@ -51,7 +51,7 @@ if(!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']){
 
             
             <div class="d-flex">
-                <h1>
+                <h1 class="ms-4 mt-4 mb-3" >
                         Your Profile
                 </h1>
                 <div class="ms-auto">
