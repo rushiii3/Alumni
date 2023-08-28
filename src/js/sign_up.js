@@ -808,7 +808,9 @@ function registerUser() {
   //alert("Executing register function");
 
   $.ajax({
-    url: "https://alumniandroidapp.000webhostapp.com/new_user_registration.php", //https://alumniandroidapp.000webhostapp.com/user_registration.php   // PHP file to handle the form data
+    url: "https://alumniandroidapp.000webhostapp.com/user_registration.php", //https://alumniandroidapp.000webhostapp.com/user_registration.php  
+    //https://alumniandroidapp.000webhostapp.com/user_registration.php 
+    // PHP file to handle the form data
     type: "POST", // HTTP method (POST in this case)
     data: formData, // Form data object
     dataType: "text", // Expected data type of the response
