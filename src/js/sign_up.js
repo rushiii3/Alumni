@@ -849,7 +849,7 @@ function registerUser() {
         //alert("Sorry! Please try again later");
       }
       
-      alert(response);
+     // alert(response);
       console.log(response); // Display the response from the PHP file
     },
     error: function (xhr, status, error) {

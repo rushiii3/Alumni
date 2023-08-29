@@ -76,6 +76,32 @@ if(!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']){
                     <a class="nav-link  " role="button">Professional  Details</a>
                 </li>
             </ul>
+
+<!--Modal displayed when user is deleting their profile-->
+
+<div class="modal fade" id="delete_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete Account ?</h5>
+        <button type="button" id="modal_cross_button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <p>This will delete all the data regarding jobs,internships, accolades,etc provided by you, including all your data. This is permanent and cant be undone.</p>
+      
+      </div>
+      <div class="modal-footer">
+      <button type="button" id="btn_delete_modal_yes" class="btn btn-primary">Yes</button>
+        <button type="button" id="btn_delete_modal_no" class="btn btn-secondary" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
             <!-- card for personal details -->
 
             <?php
@@ -120,8 +146,16 @@ foreach ($characters as $character) {
                                     <!-- Form Group (Phone number)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="phone_number">Phone Number</label>
-                                        <input class="form-control"  maxLength="10" name="phone_number" class="form-control" value="<?php echo($character->phoneno) ?>"  id="phone_number" type="tel" placeholder="Enter your phone number" >
+                                        <input class="form-control"  maxLength="10" name="phone_number" class="form-control" value="<?php $db_phone_no =$character->phoneno;
+                                        if (strpos($db_phone_no, "+91") === 0) {
+                                            $modifiedNumber = substr($db_phone_no, 3); // Remove the first 3 characters (+91)
+                                            echo $modifiedNumber;
+                                        } else {
+                                            echo $db_phone_no; // Phone number doesn't start with +91, so no modification needed
+                                        } 
+                                         ?>"  id="phone_number" type="tel" placeholder="Enter your phone number" >
                                     </div>
+
                                     <!-- Form Group (Email)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="email">Email</label>

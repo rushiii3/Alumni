@@ -293,6 +293,42 @@ $("#phone_number").text(cleanedPhoneNumber);
   });
 }
 
+//10.Delete the user account
+function deleteLoggedInUserFromDatabase(){
+  $.ajax({
+    type: "POST",
+    url: "https://alumniandroidapp.000webhostapp.com/delete_logged_in_profile_fragment.php",
+    data: { username: email_input.value },
+    dataType: "text",
+    success:function(response){
+//alert(response);
+if(response.includes("profile deleted successfully")){
+  $.ajax({
+    url: "../main/logout_and_destroy_session.php", // PHP file to handle the logout logic
+      type: "POST",
+      dataType: "text",
+      success: function(response) {
+        if (response.includes("logged out")) {
+          console.log("delete successfully");
+          window.location.href = "../main/login.php";
+        } else {
+          console.log("Error occurred while deleting account");
+        }
+      },
+      error: function(xhr, status, error) {
+        console.error("Request failed. Status: " + status + ". Error: " + error);
+        alert("Error occurred while deleting account");
+      }
+  })
+}
+console.log(response);
+    },
+    error:function (xhr, status, error) {
+      console.log("error when deleting the account" + error);
+    }
+  });
+}
+
 //..................................................................FIRST PAGE.................................................................
 
 //9. validate the first page ie personal details page
@@ -768,6 +804,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
   phone_number_input.dispatchEvent(new Event("input"));
 });
+
+//6.When the user clicks on delete button
+$(".delete").click(function(){
+
+  //alert("clicked");
+  $("#delete_modal").modal("show");
+
+  $("#modal_cross_button").click(function(){
+    $("#delete_modal").modal("hide");
+  });
+
+  $("#btn_delete_modal_yes").click(function(){
+    deleteLoggedInUserFromDatabase();
+  })
+  $("#btn_delete_modal_no").click(function(){
+    $("#delete_modal").modal("hide");
+  })
+  
+
+
+})
 
 //-----------------------------------------------------------------------------------------------------------------------------------------
 //Validation when user is typing
