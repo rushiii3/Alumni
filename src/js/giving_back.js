@@ -153,10 +153,6 @@ sa_department_input.addEventListener("change", function () {
       sa_department = "BMS";
       addThirdYearToClasslist();
       break;
-    case "BBI":
-      sa_department = "BBI";
-      addThirdYearToClasslist();
-      break;
     case "BCOM-BI":
       sa_department = "BCOM-BI";
       addThirdYearToClasslist();

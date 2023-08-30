@@ -278,7 +278,7 @@ function fetchDetailsofLoggedInAlumni() {
 */
 
       $("#firstname").text(response[0].firstname);
-      $("#middlename").text(response[0[0]].middlename);
+      $("#middlename").text(response[0].middlename);
       $("#lastname").text(response[0].lastname);
      var phoneNumber = response[0].phoneno;
     
@@ -286,7 +286,7 @@ function fetchDetailsofLoggedInAlumni() {
 var cleanedPhoneNumber = phoneNumber.replace("+91", "");
 
 console.log(cleanedPhoneNumber);
-alert(cleanedPhoneNumber);
+//alert(cleanedPhoneNumber);
 // Update the phone number element
 $("#phone_number").text(cleanedPhoneNumber);
      
@@ -304,6 +304,23 @@ $("#phone_number").text(cleanedPhoneNumber);
 
       $("#company_name").text(response[0].company);
       $("#designation").text(response[0].designation);
+
+      //to select the degree value from the drop down
+      $bachelor_degree_name = $("#bachelor_degree__name").val();
+$("#bachelors_degree_list option").each(function () {
+  if ($(this).text() == $bachelor_degree_name) {
+    $(this).prop("selected", true);
+  }
+});
+
+//2. set the masters degree value in the dropdown based on the value received from the database
+// this selects the master degree
+$master_degree_name = $("#master_degree__name").val();
+$("#masters_degree_list option").each(function () {
+  if ($(this).text() == $master_degree_name) {
+    $(this).prop("selected", true);
+  }
+});
     },
     error: function (xhr, status, error) {
       console.log("error when fetching updated details" + error);
@@ -754,14 +771,12 @@ $("#SubmitPassword").on("click", function (e) {
 masters_degree_input.addEventListener("change", disableEnableMastersFields);
 
 //4. When the save button is clicked
-$(".save").on("click", function () {
+$(".save").on("click",function () {
   if (FirstPage() & SecondPage() & validateProfessionalDetailPage()) {
     $(".edit").show();
     $(".devare").show();
     $(".save").hide();
-    $("#personal_details_page :input").prop("disabled", true);
-    $("#degree_details_page :input").prop("disabled", true);
-    $("#professional_details_page :input").prop("disabled", true);
+   
 
     //prepend country code with phone number
     var phone_number_with_cc = "+91" + phone_number_input.value;
@@ -806,10 +821,11 @@ $(".save").on("click", function () {
       success: function (response) {
         if (response.includes("Updated details successfully")) {
           fetchDetailsofLoggedInAlumni();
-          alert("details updated sucessfully");
+           alert("details updated sucessfully");
         } else {
           fetchDetailsofLoggedInAlumni(); //to reset the values to what they were before editing
-          alert("Couldnt update the details.Please try again later" +response);
+          alert("Couldnt update the details. Please try again later or verify each field in each tab");
+          console.log(response);
         }
       },
       error: function (response) {
@@ -818,6 +834,8 @@ $(".save").on("click", function () {
         alert("Oops! Couldnt update the details.Please try again later");
       },
     });
+
+   
   }
 
   else{
@@ -827,6 +845,11 @@ $(".save").on("click", function () {
     alert("secondpage :" + (""+SecondPage()));
     alert("prfoessionaldetails page :" + (""+validateProfessionalDetailPage()));
   }
+
+  //disable the input fields
+  $("#personal_details_page :input").prop("disabled", true);
+  $("#degree_details_page :input").prop("disabled", true);
+  $("#professional_details_page :input").prop("disabled", true);
 });
 
 //5.set the max date possible in the calendar and make the masters details disabled when "none" is selected from the drop down
