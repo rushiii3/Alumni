@@ -277,9 +277,9 @@ function fetchDetailsofLoggedInAlumni() {
       console.log(response[0].designation);
 */
 
-      $("#firstname").text(response[0].firstname);
-      $("#middlename").text(response[0].middlename);
-      $("#lastname").text(response[0].lastname);
+      $("#firstname").val(response[0].firstname);
+      $("#middlename").val(response[0].middlename);
+      $("#lastname").val(response[0].lastname);
      var phoneNumber = response[0].phoneno;
     
 // Remove the "+91" prefix
@@ -288,22 +288,22 @@ var cleanedPhoneNumber = phoneNumber.replace("+91", "");
 console.log(cleanedPhoneNumber);
 //alert(cleanedPhoneNumber);
 // Update the phone number element
-$("#phone_number").text(cleanedPhoneNumber);
+$("#phone_number").val(cleanedPhoneNumber);
      
       //$("#email").text(response.email);
-      $("#linkedin_address").text(response[0].linkedinprofile);
-      $("#dob").text(response[0].dateofbirth);
+      $("#linkedin_address").val(response[0].linkedinprofile);
+      $("#dob").val(response[0].dateofbirth);
 
-      $("#bachelor_degree__name").text(response[0].bachelor_degree);
-      $("#bachelors_admission_year").text(response[0].bachelor_admission_year);
-      $("#bachelor_college_name").text(response[0].bachelor_degree_college);
+      $("#bachelor_degree__name").val(response[0].bachelor_degree);
+      $("#bachelors_admission_year").val(response[0].bachelor_admission_year);
+      $("#bachelor_college_name").val(response[0].bachelor_degree_college);
 
-      $("#master_degree__name").text(response[0].master_degree);
-      $("#masters_college_name").text(response[0].master_admission_year);
-      $("#masters_admission_year").text(response[0].master_degree_college);
+      $("#master_degree__name").val(response[0].master_degree);
+      $("#masters_college_name").val(response[0].master_admission_year);
+      $("#masters_admission_year").val(response[0].master_degree_college);
 
-      $("#company_name").text(response[0].company);
-      $("#designation").text(response[0].designation);
+      $("#company_name").val(response[0].company);
+      $("#designation").val(response[0].designation);
 
       //to select the degree value from the drop down
       $bachelor_degree_name = $("#bachelor_degree__name").val();
@@ -820,11 +820,11 @@ $(".save").on("click",function () {
       dataType: "text",
       success: function (response) {
         if (response.includes("Updated details successfully")) {
+          alert("details updated sucessfully");
           fetchDetailsofLoggedInAlumni();
-           alert("details updated sucessfully");
         } else {
-          fetchDetailsofLoggedInAlumni(); //to reset the values to what they were before editing
           alert("Couldnt update the details. Please try again later or verify each field in each tab");
+          fetchDetailsofLoggedInAlumni(); //to reset the values to what they were before editing
           console.log(response);
         }
       },
@@ -839,11 +839,11 @@ $(".save").on("click",function () {
   }
 
   else{
-    alert("the form is not valid");
+    alert("There seems to be some error in the entered details. Please verify each field in each tab.");
     console.log("the form isnt valid");
-    alert("firstpage :" + (""+FirstPage()));
-    alert("secondpage :" + (""+SecondPage()));
-    alert("prfoessionaldetails page :" + (""+validateProfessionalDetailPage()));
+    console.log("firstpage :" + (""+FirstPage()));
+    console.log("secondpage :" + (""+SecondPage()));
+    console.log("prfoessionaldetails page :" + (""+validateProfessionalDetailPage()));
   }
 
   //disable the input fields
