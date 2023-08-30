@@ -257,13 +257,31 @@ function fetchDetailsofLoggedInAlumni() {
     type: "POST",
     url: "https://alumniandroidapp.000webhostapp.com/logged_in_alumni_details_fetch_profile_fragment.php",
     data: { alumni_username: email_input.value },
-    dataType: "text",
+    dataType: "json",
     success: function (response) {
-      $("#firstname").text(response.firstname);
-      $("#middlename").text(response.middlename);
-      $("#lastname").text(response.lastname);
-     var phoneNumber = response.phoneno;
+/*
+      console.log("new response after updating..." );
+      console.log(response);
+      console.log(response[0].firstname);
+      console.log(response[0].lastname);
+      console.log(response[0].phoneno);
+      console.log(response[0].linkedinprofile);
+      console.log(response[0].dateofbirth);
+      console.log(response[0].bachelor_degree);
+      console.log(response[0].bachelor_admission_year);
+      console.log(response[0].bachelor_degree_college);
+      console.log(response[0].master_degree);
+      console.log(response[0].master_admission_year);
+      console.log(response[0].master_degree_college);
+      console.log(response[0].company);
+      console.log(response[0].designation);
+*/
 
+      $("#firstname").text(response[0].firstname);
+      $("#middlename").text(response[0[0]].middlename);
+      $("#lastname").text(response[0].lastname);
+     var phoneNumber = response[0].phoneno;
+    
 // Remove the "+91" prefix
 var cleanedPhoneNumber = phoneNumber.replace("+91", "");
 
@@ -273,19 +291,19 @@ alert(cleanedPhoneNumber);
 $("#phone_number").text(cleanedPhoneNumber);
      
       //$("#email").text(response.email);
-      $("#linkedin_address").text(response.linkedinprofile);
-      $("#dob").text(response.dateofbirth);
+      $("#linkedin_address").text(response[0].linkedinprofile);
+      $("#dob").text(response[0].dateofbirth);
 
-      $("#bachelor_degree__name").text(response.bachelor_degree);
-      $("#bachelors_admission_year").text(response.bachelor_admission_year);
-      $("#bachelor_college_name").text(response.bachelor_degree_college);
+      $("#bachelor_degree__name").text(response[0].bachelor_degree);
+      $("#bachelors_admission_year").text(response[0].bachelor_admission_year);
+      $("#bachelor_college_name").text(response[0].bachelor_degree_college);
 
-      $("#master_degree__name").text(response.master_degree);
-      $("#masters_college_name").text(response.master_admission_year);
-      $("#masters_admission_year").text(response.master_degree_college);
+      $("#master_degree__name").text(response[0].master_degree);
+      $("#masters_college_name").text(response[0].master_admission_year);
+      $("#masters_admission_year").text(response[0].master_degree_college);
 
-      $("#company_name").text(response.company);
-      $("#designation").text(response.designation);
+      $("#company_name").text(response[0].company);
+      $("#designation").text(response[0].designation);
     },
     error: function (xhr, status, error) {
       console.log("error when fetching updated details" + error);
@@ -744,8 +762,24 @@ $(".save").on("click", function () {
     $("#personal_details_page :input").prop("disabled", true);
     $("#degree_details_page :input").prop("disabled", true);
     $("#professional_details_page :input").prop("disabled", true);
+
+    //prepend country code with phone number
     var phone_number_with_cc = "+91" + phone_number_input.value;
 
+//format the clg name if it Vaze
+    if((bachelors_degree_college_name_input.value).includes(college_name)){
+      var bachelor_clg_name = bachelors_degree_college_name_input.value;
+      var formatted_bachelor_clg_name =bachelor_clg_name.replace("'","''"); //replace the single quotes in the clg name to '', because it is required in such a format at server side.
+      //eg:clg name would be KET''s ..... instead of KET's
+    }
+
+    //same clg name formatting for masters degree clg name if it is vaze
+    if((masters_degree_college_name_input.value).includes(college_name)){
+      var masters_clg_name = masters_degree_college_name_input.value;
+      var formatted_masters_clg_name =masters_clg_name.replace("'","''"); //replace the single quotes in the clg name to '', because it is required in such a format at server side.
+      //eg:clg name would be KET''s ..... instead of KET's
+    }
+   
     var updated_details = {
       username: email_input.value,
       firstname: firstname_input.value,
@@ -755,10 +789,10 @@ $(".save").on("click", function () {
       phoneno: phone_number_with_cc,
       bachelor_degree: bachelors_degree_input.value,
       bachelor_admission_year: bachelors_admission_year_input.value,
-      bachelor_degree_college: bachelors_degree_college_name_input.value,
+      bachelor_degree_college: formatted_bachelor_clg_name,
       master_degree: masters_degree_input.value,
       master_admission_year: masters_admission_year_input.value,
-      master_degree_college: masters_degree_college_name_input.value,
+      master_degree_college: formatted_masters_clg_name ,
       company: company_input.value,
       designation: designation_input.value,
       linkedinprofile: linkedin_address_input.value,
@@ -775,7 +809,7 @@ $(".save").on("click", function () {
           alert("details updated sucessfully");
         } else {
           fetchDetailsofLoggedInAlumni(); //to reset the values to what they were before editing
-          alert("Couldnt update the details.Please try again later");
+          alert("Couldnt update the details.Please try again later" +response);
         }
       },
       error: function (response) {
@@ -784,6 +818,14 @@ $(".save").on("click", function () {
         alert("Oops! Couldnt update the details.Please try again later");
       },
     });
+  }
+
+  else{
+    alert("the form is not valid");
+    console.log("the form isnt valid");
+    alert("firstpage :" + (""+FirstPage()));
+    alert("secondpage :" + (""+SecondPage()));
+    alert("prfoessionaldetails page :" + (""+validateProfessionalDetailPage()));
   }
 });
 
