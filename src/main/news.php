@@ -45,10 +45,33 @@ if (!isset($_SESSION['isloggedin'])) {
         <?php
         include "navbar2.php";
         ?>
-        <h1 id="heading" class="ms-4 mt-4 mb-3">
+        <div class="d-flex flex-column flex-md-row flex-lg-row justify-content-between position-sticky sticky-top p-3" style="background-color:#fafafa;">
+        <h1 id="heading">
           News
         </h1>
+      <div class=" bg-white d-flex justify-content-evenly  py-1" id="bottom-navigation">
+          
+  <!-- <a href="#" class="navigation-item active">Alumni News</a>
+  <a href="#" class="navigation-item">Campus News</a> -->
+           
+          <button type="button" class="text-center mx-2 btn navigation-item active">
+            <img src="../img/ic_alumni_news_frag.svg" />
+            <br />
+            Alumni news
+          </button>
 
+          <button type="button" class="text-center mx-2 btn navigation-item">
+
+            <span class="material-symbols-outlined">
+              domain
+            </span>
+            <br />
+            Campus news
+          </button>
+        </div> 
+        </div>
+        
+      
         <div class="container mt-2" style="height:calc(100vh-50px);">
           <div class="row p-1 mb-5">
             <?php
@@ -71,7 +94,7 @@ if (!isset($_SESSION['isloggedin'])) {
 
                       <p class="card-text text-muted mt-3" id="news_for" hidden><?php echo $character->news_for_alumni_or_campus; ?></p>
 
-                      <p class="card-text text-muted mt-3"   id="news_description"><?php echo $character->news_description; ?></p>
+                      <p class="card-text text-muted mt-3" id="news_description" style="overflow: hidden;display:-webkit-box;-webkit-line-clamp: 4;line-clamp: 4; -webkit-box-orient: vertical;height:6.2rem"><?php echo $character->news_description; ?></p>
                       <p class="card-text text-muted mt-3" id="news_id" hidden><?php echo $character->news_id; ?></p>
 
 
@@ -90,15 +113,14 @@ if (!isset($_SESSION['isloggedin'])) {
 
           </div>
         </div>
-        
-
+      
       </div>
 
-      <div class="position-fixed fixed-bottom  bg-white d-flex justify-content-evenly  py-1" id="bottom-navigation">
-          <!--
+      <!-- <div class="position-fixed fixed-bottom  bg-white d-flex justify-content-evenly  py-1" id="bottom-navigation">
+          
   <a href="#" class="navigation-item active">Alumni News</a>
   <a href="#" class="navigation-item">Campus News</a>
-            -->
+           
           <button type="button" class="text-center mx-2 btn navigation-item active">
             <img src="../img/ic_alumni_news_frag.svg" />
             <br />
@@ -113,7 +135,7 @@ if (!isset($_SESSION['isloggedin'])) {
             <br />
             Campus news
           </button>
-        </div>
+        </div> -->
 
 
 
