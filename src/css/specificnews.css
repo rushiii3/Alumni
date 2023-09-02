@@ -1,18 +1,26 @@
+
 #container{
-    border-radius: 12px;
-    overflow: hidden,auto;
+    border-radius: 20px;
 }
-
-
-@media (min-width:768px) {
-    .card {
-        width:100%;
+        @media only screen and (min-width: 0em) {
+    #container{
+        width: 90%;
     }
-
+    #img{
+        border-radius:20px 20px 0px 0px;
+    }
+    
+}
+.material-symbols-outlined{
+    vertical-align: middle;
 }
 
-@media (min-width:0px){
-    .card{
-        width:75%;
+/* Medium devices such as tablets (768px and up) */
+@media only screen and (min-width: 48em) {
+    #container{
+        width: 75%;
+    }
+    #img{
+        border-radius:20px 0px 0px 20px;
     }
 }
