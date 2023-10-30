@@ -47,7 +47,10 @@ $("#btn_Professional_Dev").click();
 Display hiring status in green
 ----------------------------*/
 
-    var jobStatusElement = document.querySelectorAll("#job_status");
+    var jobStatusElement1 = document.querySelectorAll("#job_status");
+    var jobStatusElement2 = document.querySelectorAll("#your_job_status");
+
+    var jobStatusElement = Array.from(jobStatusElement1).concat(Array.from(jobStatusElement2));
 
     for(i=0;i<jobStatusElement.length;i++){
     var jobStatusValue = jobStatusElement[i].innerText;
@@ -58,7 +61,7 @@ Display hiring status in green
       jobStatusElement[i].style.color="#99cc00"; //green
 
     } else {
-        jobStatusElement[i].style.color="cc0000"; //red
+        jobStatusElement[i].style.color="#cc0000"; //red
 
     }
 
@@ -190,7 +193,7 @@ $(".input-search").on("mouseover", function() {
 });
 
 $('.input-search').on('input', function() {
-  var x = document.querySelectorAll("#job_title");
+  var x = document.querySelectorAll(".ToIdentifyPost");
   var card = document.querySelectorAll(".ToidentifyCard");
   var input = $('.input-search').val();
   var filter = input.toUpperCase();
@@ -294,7 +297,7 @@ function validatePostJobForm(){
     pj_yrs_of_exp_input.classList.remove("is-invalid");
     pj_email_input.classList.remove("is-invalid");
     pj_phone_input.classList.remove("is-invalid");
-    alert("form is valid");
+    //alert("form is valid");
 pj_phone = "+91"+pj_phone;
     return true;
   }
@@ -383,14 +386,14 @@ function displayMessageWhenYourJobsAreNotPresent(){
   //7.Update the status of the job
   function updateStatusOfYourJobsInDatabase(){
     var pj_id = document.getElementById("para_your_jobs_id").textContent.trim();
-    var pj_status = document.getElementById("job_status").textContent.trim();
+    var pj_status = document.getElementById("your_job_status").textContent.trim();
 
     var final_status="";
-    if(pj_status.toLowerCase() =="hiring"){
+    if(pj_status.toLowerCase().includes("hiring")){
       final_status="filled";
     }
     else{
-      final_status=pj_status;
+      final_status="hiring";
     }
 
     $.ajax({
@@ -403,7 +406,16 @@ function displayMessageWhenYourJobsAreNotPresent(){
         if (response.includes("Updated successfully")) {
           alert("Status Updated Successfully");
   
+          //reload the page to refresh
+  window.location.reload();
   
+  $("#btn_Professional_Dev").click();
+  /*
+  var btn_your_jobs = document.getElementById("btn_Professional_Dev");
+  var click_btn= new Event("click");
+  btn_your_jobs.dispatchEvent(click_btn);
+  */
+
         } else {
           alert("Sorry! Couldnt update the hiring status.Please try again later");
         }
