@@ -114,7 +114,7 @@ if (!isset($_SESSION['isloggedin'])) {
                     <div class="card shadow p-1" style="width: auto; border-radius: 20px;">
                       <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
-                          <h5 class="card-title fw-bold" id="job_title"><?php echo $character->post; ?></h5>
+                          <h5 class="card-title fw-bold ToIdentifyPost" id="job_title"><?php echo $character->post; ?></h5>
                           <p class="card-text" id="job_status"><?php echo $character->status; ?></p>
                         </div>
                         <p class="card-text text-muted mt-3" id="job_company"><?php echo $character->company_name; ?></p>
@@ -276,12 +276,12 @@ if (!isset($_SESSION['isloggedin'])) {
                       <div class="card shadow p-1" style="width: auto; border-radius: 20px;">
                         <div class="card-body">
                           <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="card-title fw-bold" id="job_title"><?php echo $character->post; ?></h5>
-                            <p class="card-text" id="job_status"><?php echo $character->status; ?></p>
+                            <h5 class="card-title fw-bold ToIdentifyPost" id="your_job_title"><?php echo $character->post; ?></h5>
+                            <p class="card-text" id="your_job_status"><?php echo $character->status; ?></p>
                           </div>
-                          <p class="card-text text-muted mt-3" id="job_company"><?php echo $character->company_name; ?></p>
+                          <p class="card-text text-muted mt-3" id="your_job_company"><?php echo $character->company_name; ?></p>
                           <p class="card-text text-muted">
-                            <span id="job_experience"><?php echo "minimum " . $character->years_of_experience . " years"; ?></span>
+                            <span id="your_job_experience"><?php echo "minimum " . $character->years_of_experience . " years"; ?></span>
                           </p>
                           <p id="para_your_jobs_id" hidden><?php echo $character->id; ?></p>
 
@@ -305,7 +305,8 @@ if (!isset($_SESSION['isloggedin'])) {
 
                           <div id="buttons" class="row p-1 mb-3 align-items-center justify-content-between">
                           <div class="col-5">
-                            <a id="btnViewDetails" class="link" style="color: #0099CC">View Details</a>
+
+                            <p><a id="btnViewDetails" class="link" style="color: #0099CC">View Details</a></p>
                           </div>
                           <div class="col-7" >
                             <?php
@@ -316,7 +317,7 @@ if (!isset($_SESSION['isloggedin'])) {
                              }
                              
                              else{
-                              echo '<button type="button" name="pj_btn_update_status" id="pj_btn_update_status" class="btn btn-primary mt-2 btn-block" style="background-color: #0099CC;float:right" disabled>Update Status</button';
+                              echo '<button type="button" name="pj_btn_update_status" id="pj_btn_update_status" class="btn btn-secondary mt-2 btn-block" style="float:right" disabled>Update Status</button';
                              }
                             ?>
                             >
@@ -383,7 +384,11 @@ if (!isset($_SESSION['isloggedin'])) {
   <script>
     //redirect to specific professional dev
 
-    var all_cards_view_details = document.querySelectorAll("#card");
+    var all_cards_view_details1 = document.querySelectorAll("#card");
+
+    var all_cards_view_details2 = document.querySelectorAll("#your_job_card");
+
+    var all_cards_view_details = Array.from(all_cards_view_details1).concat(Array.from(all_cards_view_details2));
     all_cards_view_details.forEach((card) => {
 
       card.querySelector("p a").addEventListener('click', function() {

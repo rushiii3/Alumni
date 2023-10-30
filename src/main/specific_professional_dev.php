@@ -92,10 +92,19 @@ if ($data) {
                             } ?>
                         </p>
 
-                        <p class="col-md-4 " style="text-align:right;color:green;font-size:20px;">
-                            <?php echo "currently " . $status; ?>
-                        </p>
+                        <?php
 
+                        if($status=="hiring"){
+                        echo '<p class="col-md-4 " style="text-align:right;color:green;font-size:20px;">'
+                             ."currently " . $status.
+                        '</p>';
+                        }
+                        else{
+                            echo '<p class="col-md-4 " style="text-align:right;color:red;font-size:20px;">'.$status.
+                        '</p>';
+                        }
+
+                        ?>
                     </div>
 
                     <div class=" card-text text-muted mt-2">
