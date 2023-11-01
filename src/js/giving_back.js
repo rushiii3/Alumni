@@ -286,7 +286,7 @@ function insertScholarshipAwardsByUser(username) {
   };
 
   //console.log("username is :" + username);
-  $.ajax({
+  return $.ajax({
     url: "https://alumniandroidapp.000webhostapp.com/post_scholarship_award_giving_back_fragment.php",
     type: "POST",
     data: scholarshipAwardFormData,
@@ -300,10 +300,13 @@ function insertScholarshipAwardsByUser(username) {
 
         scholarship_award_form.reset();
         //reload the accolades by you section
+
+        /*
         $("#section_name").text("Accolades by you");
     $("#Accolades_you_page").show();
     $("#Internship_jobs_page").hide();
     $("#Scholarship_awards_page").hide();
+    */
 
       } else {
         alert("Sorry! Couldnt post Scholarship/Award.Please try again later");
@@ -502,7 +505,7 @@ function insertInternshipJobByUser(username) {
     "sj_job_or_internship" : sj_job_or_internship
   };
 
-  $.ajax({
+  return $.ajax({
     url: "https://alumniandroidapp.000webhostapp.com/post_student_job_giving_back_fragment.php",
     type: "POST",
     data: internshipJobFormData,
@@ -515,12 +518,6 @@ function insertInternshipJobByUser(username) {
         //clear the form
         internship_job_form.reset();
 
-        //reload the accolades by you section
-       $("#section_name").text("Accolades by you");
-    $("#Accolades_you_page").show();
-    $("#Internship_jobs_page").hide();
-    $("#Scholarship_awards_page").hide();
-
       } else {
         alert("Sorry! Couldnt post the internship/job.Please try again later");
       }
@@ -529,7 +526,9 @@ function insertInternshipJobByUser(username) {
       console.error("Request failed. Status: " + status + ". Error: " + error);
       alert("Oops!Couldnt post your internship/job.Please try again later.");
     }
-  });
+  })
+  
+  ;
 }
 
 //....................................................ACCOLADES BY YOU PAGE....................................................

@@ -1,7 +1,5 @@
 <?php
 session_start();
-//$_SESSION['isloggedin'] = true;
-//$_SESSION['username'] = "abc12@gmail.com";
 if (!isset($_SESSION['isloggedin'])) {
   echo "<script> window.location.href='../main/login.php' </script>";
   exit;
@@ -53,50 +51,50 @@ if (!isset($_SESSION['isloggedin'])) {
         include "navbar2.php";
         ?>
 
-<div style="display: flex;flex-direction: row;justify-content: space-between;">
-        <h1 class="ms-4 mt-4 mb-3" id="PD_title">
-          Professional Development
-        </h1>
+        <div style="display: flex;flex-direction: row;justify-content: space-between;">
+          <h1 class="ms-4 mt-4 mb-3" id="PD_title">
+            Professional Development
+          </h1>
 
-        <!--SEARCH BAR-->
-        <div class="ms-auto" id="search_bar_div">
+          <!--SEARCH BAR-->
+          <div class="ms-auto" id="search_bar_div">
             <div class="search-box">
               <button class="btn-search"><i class="fas fa-search bi bi-search"></i></button>
               <input type="text" class="input-search" placeholder="Search Designation...">
             </div>
           </div>
 
-</div>
+        </div>
 
- <!-- section name -->
- <h3 id="section_name" class="ms-4 mt-4 mb-3">
+        <!-- section name -->
+        <h3 id="section_name" class="ms-4 mt-4 mb-3">
 
-</h3>
+        </h3>
         <!-- UPDATE STATUS MODAL-->
         <!--Modal displayed when user is deleting their profile-->
 
-<div class="modal fade" id="update_status_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Update Status of Job ?</h5>
-        <button type="button" id="modal_cross_button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      <p>Are you sure you want to update the hiring status of your job? This cant be undone.</p>
-      
-      </div>
-      <div class="modal-footer">
-      <button type="button" id="btn_update_status_modal_yes" class="btn btn-primary">Yes</button>
-        <button type="button" id="btn_update_status_modal_no" class="btn btn-secondary" data-dismiss="modal">No</button>
-      </div>
-    </div>
-  </div>
-</div>
+        <div class="modal fade" id="update_status_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Status of Job ?</h5>
+                <button type="button" id="modal_cross_button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Are you sure you want to update the hiring status of your job? This cant be undone.</p>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" id="btn_update_status_modal_yes" class="btn btn-primary">Yes</button>
+                <button type="button" id="btn_update_status_modal_no" class="btn btn-secondary" data-dismiss="modal">No</button>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="container mt-2" id="professional_dev_page" style="height:100vh;">
-        
+
           <div class="row p-1">
             <?php
             $url = 'https://alumniandroidapp.000webhostapp.com/all_professional_job_fetch.php'; // path to your JSON file
@@ -121,7 +119,7 @@ if (!isset($_SESSION['isloggedin'])) {
                         <p class="card-text text-muted">
                           <span id="job_experience"><?php echo "minimum " . $character->years_of_experience . " years"; ?></span>
                         </p>
-                        <p  hidden><?php echo $character->id; ?></p>
+                        <p hidden><?php echo $character->id; ?></p>
                         <p hidden><?php echo $character->verification_status; ?></p>
 
                         <p class="text-center mb-0">
@@ -226,8 +224,8 @@ if (!isset($_SESSION['isloggedin'])) {
         <!--JOBS POSTED BY YOU PAGE-->
         <div id="jobs_posted_by_you_page">
 
-          <div class="container mt-2" id="professional_dev_page" style="height:100vh;">
-            <div class="row p-1">
+          <div class="container mt-2">
+            <div class="row p-1 " id="ToIdentifyMainRow">
               <?php
               $url = 'https://alumniandroidapp.000webhostapp.com/all_professional_job_fetch.php'; // path to your JSON file
               $data = file_get_contents($url); // put the contents of the file into a variable
@@ -239,141 +237,134 @@ if (!isset($_SESSION['isloggedin'])) {
                 $filled_jobs_array = array();
                 foreach ($characters as $character) {
 
-                  
+
                   if ($character->username == $_SESSION["username"]) {
 
-                    if($character->status =="hiring"){
-                      array_push($hiring_jobs_array,$character);
+                    if ($character->status == "hiring") {
+                      array_push($hiring_jobs_array, $character);
+                    } else {
+                      array_push($filled_jobs_array, $character);
                     }
-                    else{
-                      array_push($filled_jobs_array,$character);
+                  }
+                }
+
+                if (count($hiring_jobs_array) > 0) {
+                  usort(
+                    $hiring_jobs_array,
+                    function ($a, $b) {
+                      return strcmp($a->verification_status, $b->verification_status);
                     }
-
-                  }
-
-                }
-                
-                if(count($hiring_jobs_array) > 0 ){
-                usort($hiring_jobs_array, function($a, $b){
-                  return strcmp($a->verification_status, $b->verification_status);
-                }
-              );
+                  );
                 }
 
-                if(count($filled_jobs_array) > 0 ){
-                  usort($filled_jobs_array, function($a, $b){
-                    return strcmp($a->verification_status, $b->verification_status);
-                  }
-                );
-                  }
+                if (count($filled_jobs_array) > 0) {
+                  usort(
+                    $filled_jobs_array,
+                    function ($a, $b) {
+                      return strcmp($a->verification_status, $b->verification_status);
+                    }
+                  );
+                }
 
-                  $all_sorted_jobs=array_merge($hiring_jobs_array, $filled_jobs_array);
-                  
-                  foreach($all_sorted_jobs as $character){
+                $all_sorted_jobs = array_merge($hiring_jobs_array, $filled_jobs_array);
+
+                foreach ($all_sorted_jobs as $character) {
 
                 ?>
-                    <div class="col-lg-4 col-md-6 mb-5 mt-4 ToidentifyCard" id="your_job_card">
-                      <div class="card shadow p-1" style="width: auto; border-radius: 20px;">
-                        <div class="card-body">
-                          <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="card-title fw-bold ToIdentifyPost" id="your_job_title"><?php echo $character->post; ?></h5>
-                            <p class="card-text" id="your_job_status"><?php echo $character->status; ?></p>
-                          </div>
-                          <p class="card-text text-muted mt-3" id="your_job_company"><?php echo $character->company_name; ?></p>
-                          <p class="card-text text-muted">
-                            <span id="your_job_experience"><?php echo "minimum " . $character->years_of_experience . " years"; ?></span>
-                          </p>
-                          <p id="para_your_jobs_id" hidden><?php echo $character->id; ?></p>
+                  <div class="col-lg-4 col-md-6 mb-5 mt-4 ToidentifyCard" id="your_job_card">
+                    <div class="card shadow p-1" style="width: auto; border-radius: 20px;">
+                      <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <h5 class="card-title fw-bold ToIdentifyPost" id="your_job_title"><?php echo $character->post; ?></h5>
+                          <p class="card-text" id="your_job_status"><?php echo $character->status; ?></p>
+                        </div>
+                        <p class="card-text text-muted mt-3" id="your_job_company"><?php echo $character->company_name; ?></p>
+                        <p class="card-text text-muted">
+                          <span id="your_job_experience"><?php echo "minimum " . $character->years_of_experience . " years"; ?></span>
+                        </p>
+                        <p id="para_your_jobs_id" hidden><?php echo $character->id; ?></p>
 
-                          
 
-                          <?php
 
-                          if($character->verification_status == "verified"){
-                            echo '<p class="card-text  mt-3" id="job_verification_status" style="color:green">
-                            <img id="img_veri_status" src="../img/ic_verified_final_svg.svg" />&nbsp' . $character->verification_status
-                            ,'</p>';
-                          }
-                          else{
-                            echo '<p class="card-text mt-3" id="job_verification_status" style="color:red">
-                            <img id="img_veri_status" src="../img/ic_not_verified_final_svg.svg" /> &nbsp' . $character->verification_status
-                            ,'</p>';
-                          }
-                          ?>
-                            
-                          
+                        <?php
 
-                          <div id="buttons" class="row p-1 mb-3 align-items-center justify-content-between">
+                        if ($character->verification_status == "verified") {
+                          echo '<p class="card-text  mt-3" id="job_verification_status" style="color:green">
+                            <img id="img_veri_status" src="../img/ic_verified_final_svg.svg" />&nbsp' . $character->verification_status, '</p>';
+                        } else {
+                          echo '<p class="card-text mt-3" id="job_verification_status" style="color:red">
+                            <img id="img_veri_status" src="../img/ic_not_verified_final_svg.svg" /> &nbsp' . $character->verification_status, '</p>';
+                        }
+                        ?>
+
+
+
+                        <div id="buttons" class="row p-1 mb-3 align-items-center justify-content-between">
                           <div class="col-5">
 
-                            <p><a id="btnViewDetails" class="link" style="color: #0099CC">View Details</a></p>
+                            <p><a id="btnViewDetails" class="link ToIdentifyViewDetailsLink" style="color: #0099CC">View Details</a></p>
                           </div>
-                          <div class="col-7" >
+                          <div class="col-7">
                             <?php
-                             
-                             if(in_array($character,$hiring_jobs_array)){
-                              echo '<button type="button" name="pj_btn_update_status" id="pj_btn_update_status" class="btn btn-primary mt-2 btn-block" style="background-color: #0099CC;float:right">Update Status</button"';
 
-                             }
-                             
-                             else{
-                              echo '<button type="button" name="pj_btn_update_status" id="pj_btn_update_status" class="btn btn-secondary mt-2 btn-block" style="float:right" disabled>Update Status</button';
-                             }
+                            if (in_array($character, $hiring_jobs_array)) {
+                              echo '<button type="button" name="pj_btn_update_status" id="pj_btn_update_status" class="btn btn-primary mt-2 btn-block ToIdentifyUpdateButton" style="background-color: #0099CC;float:right">Update Status</button>';
+                            } else {
+                              echo '<button type="button" name="pj_btn_update_status" id="pj_btn_update_status" class="btn btn-secondary mt-2 btn-block ToIdentifyUpdateButton " style="float:right" disabled>Update Status</button>';
+                            }
                             ?>
-                            >
+
                           </div>
                         </div>
 
                       </div>
                     </div>
-            </div>
+                  </div>
 
-      <?php
-                  }
+              <?php
                 }
-                
-               else {
+              } else {
                 echo "Please refresh or try again later";
               }
 
-      ?>
+              ?>
 
-      <div id="div_no_your_jobs">
-        No jobs posted.
-      </div>
+              <div id="div_no_your_jobs">
+                No jobs posted.
+              </div>
+            </div>
           </div>
         </div>
+
+        <!-- Bottom navigation -->
+        <div class="position-fixed fixed-bottom bg-white d-flex justify-content-evenly py-1 " id="down_navigation">
+          <button type="button" class="text-center mx-2 btn Professional_Dev" id="btn_Professional_Dev">
+            <span class="material-symbols-outlined">
+              work
+            </span>
+            <br />
+            View Jobs
+          </button>
+
+          <button type="button" class="text-center mx-2 btn Post_Jobs" id="btn_Post_Jobs">
+            <span class="material-symbols-outlined">
+              post_add
+            </span>
+            <br />
+            Post Jobs
+          </button>
+
+          <button type="button" class="text-center mx-2 btn Jobs_Posted_By_You" id="btn_Jobs_Posted_By_You">
+            <span class="material-symbols-outlined">
+              real_estate_agent
+            </span>
+            <br />
+            Jobs you posted
+          </button>
+        </div>
+
+
       </div>
-
-      <!-- Bottom navigation -->
-      <div class="position-fixed fixed-bottom bg-white d-flex justify-content-evenly py-1 " id="down_navigation">
-        <button type="button" class="text-center mx-2 btn Professional_Dev" id="btn_Professional_Dev">
-          <span class="material-symbols-outlined">
-            work
-          </span>
-          <br />
-          View Jobs
-        </button>
-
-        <button type="button" class="text-center mx-2 btn Post_Jobs" id="btn_Post_Jobs">
-          <span class="material-symbols-outlined">
-            post_add
-          </span>
-          <br />
-          Post Jobs
-        </button>
-
-        <button type="button" class="text-center mx-2 btn Jobs_Posted_By_You" id="btn_Jobs_Posted_By_You">
-          <span class="material-symbols-outlined">
-            real_estate_agent
-          </span>
-          <br />
-          Jobs you posted
-        </button>
-      </div>
-
-
-    </div>
     </div>
     </div>
     <?php
@@ -404,16 +395,93 @@ if (!isset($_SESSION['isloggedin'])) {
     var pj_submit_button = document.getElementById("pj_btn_submit");
     pj_submit_button.addEventListener("click", function(e) {
       e.preventDefault();
+
+      //disable the button to avoid duplicate forms to be submitted
+      pj_submit_button.disabled = true;
+      //alert(pj_submit_button.disabled);
       //alert("clicked");
+     
       if (validatePostJobForm()) {
 
         //console.log("successfully validated");
-        insertPostJobDataToDatabase("<?php echo $_SESSION["username"]; ?>");
+        insertPostJobDataToDatabase("<?php echo $_SESSION["username"]; ?>")
+        .then(function(){
+          console.log("HERRRRE")
+           //go to your jobs page
+          $("#btn_Jobs_Posted_By_You").click();
+
+          pj_submit_button.disabled = false;
+
+          //fetch the updated jobs
+          fetchYourJobsOfUser("<?php echo $_SESSION["username"]; ?>");
+        });
+          
 
       } else {
-        console.log("Job form is not valid");
+        pj_submit_button.disabled = false;
+        console.log("Job form is not valid " + pj_submit_button.disabled);
+        
       }
+
+
     });
+
+
+    //-------------------------------------------------WHEN UPDATE STATUS BUTTON IS CLICKED---------------------------------------------------------------------------------
+
+    //DISPLAY THE MODAL AND UPDATE THE STATUS ACCORDINGLY
+/*
+    var all_update_btns = document.querySelectorAll("#pj_btn_update_status");
+
+    all_update_btns.forEach((element) => {
+      element.addEventListener("click", function() {
+        $("#update_status_modal").modal("show");
+
+        //remove the "update in progess" text if already set
+        $("#update_status_modal .modal-body h5").remove();
+
+        $("#modal_cross_button").click(function() {
+          $("#update_status_modal").modal("hide");
+        });
+
+        $("#btn_update_status_modal_yes").click(function() {
+
+          //display the "update in progress" text
+          if($("#update_status_modal .modal-body").has("h5").length === 0){
+          $("#update_status_modal .modal-body").append("<h5><b>Update in progress</b></h5>");
+          }
+          
+          //pass the card as the context so that pj_id can be accessed inside the updateStatusOfYourJobsInDatabase() method
+          var ancestor=element.closest("#your_job_card");
+
+          console.log("CALLING UPDATE STATUS FUNCTION FROM PHP FILE");
+          updateStatusOfYourJobsInDatabase(ancestor,"<?php echo $_SESSION["username"]; ?>")
+          .then(function(data){
+            console.log("calling fetchjobsofuser and the data is:" + data);
+            $("#update_status_modal").modal("hide");
+
+            element.removeEventListener("click",function(){
+            console.log("Removing the event listener for the click event");
+          })
+
+
+            fetchYourJobsOfUser("<?php echo $_SESSION["username"]; ?>");
+
+         
+          })
+         
+        });
+
+        $("#btn_delete_modal_no").click(function() {
+          $("#btn_update_status_modal_no").modal("hide");
+        });
+      });
+    });
+*/
+    document.addEventListener("DOMContentLoaded",function(){
+     setUpEventHandlers("<?php echo $_SESSION["username"]; ?>");
+    })
+    
   </script>
 
 </body>

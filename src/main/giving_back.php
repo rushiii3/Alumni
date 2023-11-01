@@ -1,7 +1,5 @@
 <?php
 session_start();
-//$_SESSION['isloggedin'] = true;
-//$_SESSION['username'] = "abc12@gmail.com";
 
 if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
     echo "<script> window.location.href='../main/login.php' </script>";
@@ -286,14 +284,14 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
 
                 </div>
 
-                
+
 
 
             </div>
 
-           <!-- Bottom navigation -->
-           <div class="position-fixed fixed-bottom bg-white d-flex justify-content-evenly py-1 " id="down_navigation" >
-                <button type="button" class="text-center mx-2 btn Scholarship_awards">
+            <!-- Bottom navigation -->
+            <div class="position-fixed fixed-bottom bg-white d-flex justify-content-evenly py-1 " id="down_navigation">
+                <button type="button" class="text-center mx-2 btn Scholarship_awards" id="Scholarship_awards_btn">
                     <span class="material-symbols-outlined">
                         social_leaderboard
                     </span>
@@ -301,13 +299,13 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
                     Scholarship & awards
                 </button>
 
-                <button type="button" class="text-center mx-2 btn Internship_jobs">
+                <button type="button" class="text-center mx-2 btn Internship_jobs" id="Internship_jobs_btn">
                     <img src="../img/ic_internship.svg" />
                     <br />
                     Internship & jobs
                 </button>
 
-                <button type="button" class="text-center mx-2 btn Accolades_you">
+                <button type="button" class="text-center mx-2 btn Accolades_you" id="Accolades_you_btn">
                     <span class="material-symbols-outlined">
                         card_travel
                     </span>
@@ -316,7 +314,7 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
                 </button>
             </div>
         </div>
-        
+
     </main>
 
     <script src="../js/giving_back.js"> </script>
@@ -327,32 +325,97 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
         var sa_submit_button = document.getElementById("sa_submit");
         sa_submit_button.addEventListener("click", function(e) {
             e.preventDefault();
+            sa_submit_button.disabled = true;
             //alert("clicked");
             if (validateScholarshipAwardForm()) {
 
                 //console.log("successfully validated");
-                insertScholarshipAwardsByUser("<?php echo $_SESSION["username"]; ?>");
+                insertScholarshipAwardsByUser("<?php echo $_SESSION["username"]; ?>")
+                    .then(function() {
+
+
+
+                        sa_submit_button.disabled = false;
+
+                        //select the "scholarship_awards by you" radiobutton in order to load the recently posted scholarship
+                        /*
+                                                var select_radio_button_event = new Event("change");
+                                                var r_button = document.getElementById("aby_scholarship_by_you");
+                                                r_button.dispatchEvent(select_radio_button_event);
+                        */
+                        
+
+                       
+                        //select the "internship_jobs by you" radiobutton in order to load the recently posted internship job
+                        const radioButtons = document.querySelectorAll('input[type="radio"]');
+
+                         // The value you want to select
+                         const targetValue = 'Scholarship and Awards by you';
+
+                        // Loop through the radio buttons
+                        radioButtons.forEach(radioButton => {
+                            if (radioButton.value === targetValue) {
+                                // Set the checked property to true for the desired value
+                                radioButton.checked = true;
+
+                                var select_radio_button_event= new Event("change");
+                                radioButton.dispatchEvent(select_radio_button_event);
+                            }
+                        });
+
+                        //go to accolades by you page
+                        $("#Accolades_you_btn").click();
+
+                    });
 
             } else {
                 console.log(" scholarship award form is not valid");
+
+                sa_submit_button.disabled = false;
             }
         });
 
 
         //2.When clicked on internship job submit button
-
-
         var ij_submit_button = document.getElementById("ij_submit");
         ij_submit_button.addEventListener("click", function(e) {
             e.preventDefault();
+
+            ij_submit_button.disabled = true;
             //alert("clicked");
             if (validateInternshipJobForm()) {
 
                 //console.log("successfully validated");
-                insertInternshipJobByUser("<?php echo $_SESSION["username"]; ?>");
+                insertInternshipJobByUser("<?php echo $_SESSION["username"]; ?>")
+                    .then(function() {
+                        ij_submit_button.disabled = false;
+
+                        //go to accolades by you page
+                        $("#Accolades_you_btn").click();
+
+                        //select the "internship_jobs by you" radiobutton in order to load the recently posted internship job
+                        const radioButtons = document.querySelectorAll('input[type="radio"]');
+
+                        // The value you want to select
+                        const targetValue = 'Jobs and Internships by you';
+
+                        // Loop through the radio buttons
+                        radioButtons.forEach(radioButton => {
+                            if (radioButton.value === targetValue) {
+                                // Set the checked property to true for the desired value
+                                radioButton.checked = true;
+                                var select_radio_button_event= new Event("change");
+                                radioButton.dispatchEvent(select_radio_button_event);
+                            }
+                        });
+
+
+
+                    });
 
             } else {
                 console.log("Internship/Job form is not valid");
+                ij_submit_button.disabled = false;
             }
         });
 

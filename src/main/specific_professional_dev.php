@@ -146,6 +146,21 @@ if ($data) {
 
     </main>
 
+    <script type="text/javascript">
+        window.onpopstate = function(event) {
+  if (event.state && event.state.page) {
+    window.location.href = event.state.page;
+  } else {
+    // You can specify a default page to go to if there's no state
+    //window.location.href = "../main/professional_dev.php";
+  }
+};
+
+// Push the current page onto the history stack
+history.pushState({ page: window.location.href }, "", window.location.href);
+
+        </script>
+
 </body>
 
 </html>
