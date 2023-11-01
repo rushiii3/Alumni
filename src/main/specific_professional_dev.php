@@ -61,10 +61,10 @@ if ($data) {
     <link rel="stylesheet" href="../css/navigation.css">
 
     <style>
-        a:hover{
-            color:#0099CC;
+        a:hover {
+            color: #0099CC;
         }
-        </style>
+    </style>
 
 </head>
 
@@ -76,7 +76,7 @@ if ($data) {
         <div class="container  my-auto  mt-5 mb-5 bg-body card shadow p-4 " style="border-radius:20px;" id="card">
             <div class="row">
                 <div class="p-0 col-lg-6 col-md-6 mt-1">
-                    <img src="../img/job_search_cropped.svg"  alt="" class="img-fluid h-100 w-100" />
+                    <img src="../img/job_search_cropped.svg" alt="" class="img-fluid h-100 w-100" />
                 </div>
 
                 <div class="col-lg-6 col-md-6 bg-white my-5 p-4">
@@ -94,14 +94,13 @@ if ($data) {
 
                         <?php
 
-                        if($status=="hiring"){
-                        echo '<p class="col-md-4 " style="text-align:right;color:green;font-size:20px;">'
-                             ."currently " . $status.
-                        '</p>';
-                        }
-                        else{
-                            echo '<p class="col-md-4 " style="text-align:right;color:red;font-size:20px;">'.$status.
-                        '</p>';
+                        if ($status == "hiring") {
+                            echo '<p class="col-md-4 " style="text-align:right;color:green;font-size:20px;">'
+                                . "currently " . $status .
+                                '</p>';
+                        } else {
+                            echo '<p class="col-md-4 " style="text-align:right;color:red;font-size:20px;">' . $status .
+                                '</p>';
                         }
 
                         ?>
@@ -116,7 +115,7 @@ if ($data) {
                     <div class=" card-text text-muted mt-2 ">
                         <span class="material-symbols-outlined">
                             business_center
-                        </span> <?php echo "minimum " . $years_of_experience ." years of experience"; ?>
+                        </span> <?php echo "minimum " . $years_of_experience . " years of experience"; ?>
                     </div>
                     <div class=" card-text text-muted mt-2">
                         <span class="material-symbols-outlined">
@@ -146,20 +145,41 @@ if ($data) {
 
     </main>
 
-    <script type="text/javascript">
-        window.onpopstate = function(event) {
-  if (event.state && event.state.page) {
-    window.location.href = event.state.page;
-  } else {
-    // You can specify a default page to go to if there's no state
-    //window.location.href = "../main/professional_dev.php";
-  }
-};
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            window.addEventListener('beforeunload', () => {
+                alert("here");
+            });
 
-// Push the current page onto the history stack
-history.pushState({ page: window.location.href }, "", window.location.href);
+            window.addEventListener('popstate', function(event) {
+                console.log('popstate event triggered');
+            });
 
-        </script>
+        });
+
+        /*
+              document.addEventListener("DOMContentLoaded", function() {
+            window.onpopstate = function(event) {
+                alert("here")
+                if (event.state && event.state.page) {
+                    console.log("here");
+                    alert("here");
+                    window.location.href = event.state.page;
+                } else {
+                    console.log("else here");
+                    alert("else here");
+                    // You can specify a default page to go to if there's no state
+                    //window.location.href = "../main/professional_dev.php";
+                }
+            };
+
+            // Push the current page onto the history stack
+            history.pushState({
+                page: window.location.href
+            }, "", window.location.href);
+        })
+        */
+    </script>
 
 </body>
 

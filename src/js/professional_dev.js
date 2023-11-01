@@ -533,16 +533,12 @@ function setUpEventHandlers(username) {
       //remove the "update in progess" text if already set
       $("#update_status_modal .modal-body h5").remove();
 
-      $("#modal_cross_button").click(function () {
-        $("#update_status_modal").modal("hide");
-      });
-
       //pass the card as the context so that pj_id can be accessed inside the updateStatusOfYourJobsInDatabase() method
       var ancestor = event.target.closest("#your_job_card");
       ancestor_of_update_progress_btn = ancestor;
 
-      $("#btn_delete_modal_no").click(function () {
-        $("#btn_update_status_modal_no").modal("hide");
+      $("#btn_update_status_modal_no").click(function () {
+        $("#update_status_modal").modal("hide");
       });
     } else if (event.target.classList.contains("ToIdentifyViewDetailsLink")) {
       //alert("View Details clicked");
@@ -586,4 +582,7 @@ function setUpEventHandlers(username) {
       $("#update_status_modal").modal("hide");
     });
   });
+
+
+
 }

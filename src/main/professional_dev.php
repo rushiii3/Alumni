@@ -83,7 +83,7 @@ if (!isset($_SESSION['isloggedin'])) {
                 </button>
               </div>
               <div class="modal-body">
-                <p>Are you sure you want to update the hiring status of your job? This cant be undone.</p>
+                <p>Are you sure you want to update the hiring status of your job? <b>This cant be undone.</b></p>
 
               </div>
               <div class="modal-footer">
