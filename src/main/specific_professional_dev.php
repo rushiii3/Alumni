@@ -144,43 +144,6 @@ if ($data) {
         </div>
 
     </main>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            window.addEventListener('beforeunload', () => {
-                alert("here");
-            });
-
-            window.addEventListener('popstate', function(event) {
-                console.log('popstate event triggered');
-            });
-
-        });
-
-        /*
-              document.addEventListener("DOMContentLoaded", function() {
-            window.onpopstate = function(event) {
-                alert("here")
-                if (event.state && event.state.page) {
-                    console.log("here");
-                    alert("here");
-                    window.location.href = event.state.page;
-                } else {
-                    console.log("else here");
-                    alert("else here");
-                    // You can specify a default page to go to if there's no state
-                    //window.location.href = "../main/professional_dev.php";
-                }
-            };
-
-            // Push the current page onto the history stack
-            history.pushState({
-                page: window.location.href
-            }, "", window.location.href);
-        })
-        */
-    </script>
-
 </body>
 
 </html>

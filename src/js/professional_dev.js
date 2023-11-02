@@ -1,7 +1,3 @@
-let no_of_times_setupeventhandler_is_called = 0;
-
-let eventHandlersAttached = false;
-
 $(document).ready(function () {
   /*----------------------
 Bottom Navigation Logic
@@ -19,6 +15,9 @@ Bottom Navigation Logic
     $("#post_jobs_page").hide();
     $("#jobs_posted_by_you_page").hide();
     $("#search_bar_div").show();
+
+    history.pushState({ tab: "professional_dev_page" },"",window.location.href);
+    console.log(history.length);
   });
   // show post jobs page
   $("#btn_Post_Jobs").on("click", function () {
@@ -36,10 +35,36 @@ Bottom Navigation Logic
     $("#post_jobs_page").hide();
     $("#jobs_posted_by_you_page").show();
     $("#search_bar_div").show();
+
+    history.pushState({ tab: "jobs_posted_by_you_page" },"",window.location.href);
+    console.log(history.length);
   });
 
   //by default select scholarship awards
-  $("#btn_Professional_Dev").click();
+  //$("#btn_Professional_Dev").click();
+
+  /*------------------------------------------------------------------------------------
+IF COMING FROM SPECIFIC PROFESSIONAL DEV , THEN SELECT THE TAB THAT WAS SELECTED
+Eg: if "your jobs" tab was selected then it should return to that tab
+-------------------------------------------------------------------------------------*/
+  if (history.state && history.state.tab) {
+    var selectedTab = history.state.tab;
+    //alert("triggered")
+    console.log("selected tab" + selectedTab);
+    // Now you have the selected tab name. You can use it to determine which tab to show.
+    if (selectedTab === "professional_dev_page") {
+      $("#btn_Professional_Dev").click();
+      history.pushState({ tab: "professional_dev_page" },"",window.location.href);
+
+    } 
+    else if (selectedTab === "jobs_posted_by_you_page") {
+      $("#btn_Jobs_Posted_By_You").click();
+      //alert("here");
+
+      history.pushState({ tab: "jobs_posted_by_you_page" },"",window.location.href);
+    }
+    
+  }
 
   /*---------------------------
 Display hiring status in green
@@ -320,8 +345,6 @@ function insertPostJobDataToDatabase(username) {
       alert("Oops!Couldnt post your job.Please try again later.");
     },
   });
-
-
 }
 
 /*---------------------------
@@ -355,9 +378,7 @@ async function updateStatusOfYourJobsInDatabase(context, username) {
   var pj_id = context.querySelector("#para_your_jobs_id").textContent.trim();
   var pj_status = context.querySelector("#your_job_status").textContent.trim();
 
-  console.log(
-    "who initiated it " + context.querySelector("#your_job_title").textContent
-  );
+  //console.log("who initiated it " + context.querySelector("#your_job_title").textContent);
 
   var final_status = "";
   if (pj_status.toLowerCase().includes("hiring")) {
@@ -366,7 +387,7 @@ async function updateStatusOfYourJobsInDatabase(context, username) {
     final_status = "hiring";
   }
 
-  $.ajax({
+  return $.ajax({
     url: "https://alumniandroidapp.000webhostapp.com/update_status_professional_dev_fragment.php",
     type: "POST",
     data: { pj_id: pj_id, pj_status: final_status },
@@ -582,7 +603,4 @@ function setUpEventHandlers(username) {
       $("#update_status_modal").modal("hide");
     });
   });
-
-
-
 }

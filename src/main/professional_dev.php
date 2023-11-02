@@ -400,88 +400,91 @@ if (!isset($_SESSION['isloggedin'])) {
       pj_submit_button.disabled = true;
       //alert(pj_submit_button.disabled);
       //alert("clicked");
-     
+
       if (validatePostJobForm()) {
 
         //console.log("successfully validated");
         insertPostJobDataToDatabase("<?php echo $_SESSION["username"]; ?>")
-        .then(function(){
-          console.log("HERRRRE")
-           //go to your jobs page
-          $("#btn_Jobs_Posted_By_You").click();
+          .then(function() {
+            //console.log("HERRRRE")
+            //go to your jobs page
+            $("#btn_Jobs_Posted_By_You").click();
 
-          pj_submit_button.disabled = false;
+            pj_submit_button.disabled = false;
 
-          //fetch the updated jobs
-          fetchYourJobsOfUser("<?php echo $_SESSION["username"]; ?>");
-        });
-          
+            //fetch the updated jobs
+            fetchYourJobsOfUser("<?php echo $_SESSION["username"]; ?>");
+          });
+
 
       } else {
         pj_submit_button.disabled = false;
         console.log("Job form is not valid " + pj_submit_button.disabled);
-        
+
       }
 
 
     });
 
+    
+
 
     //-------------------------------------------------WHEN UPDATE STATUS BUTTON IS CLICKED---------------------------------------------------------------------------------
 
     //DISPLAY THE MODAL AND UPDATE THE STATUS ACCORDINGLY
-/*
-    var all_update_btns = document.querySelectorAll("#pj_btn_update_status");
+    /*
+        var all_update_btns = document.querySelectorAll("#pj_btn_update_status");
 
-    all_update_btns.forEach((element) => {
-      element.addEventListener("click", function() {
-        $("#update_status_modal").modal("show");
+        all_update_btns.forEach((element) => {
+          element.addEventListener("click", function() {
+            $("#update_status_modal").modal("show");
 
-        //remove the "update in progess" text if already set
-        $("#update_status_modal .modal-body h5").remove();
+            //remove the "update in progess" text if already set
+            $("#update_status_modal .modal-body h5").remove();
 
-        $("#modal_cross_button").click(function() {
-          $("#update_status_modal").modal("hide");
+            $("#modal_cross_button").click(function() {
+              $("#update_status_modal").modal("hide");
+            });
+
+            $("#btn_update_status_modal_yes").click(function() {
+
+              //display the "update in progress" text
+              if($("#update_status_modal .modal-body").has("h5").length === 0){
+              $("#update_status_modal .modal-body").append("<h5><b>Update in progress</b></h5>");
+              }
+              
+              //pass the card as the context so that pj_id can be accessed inside the updateStatusOfYourJobsInDatabase() method
+              var ancestor=element.closest("#your_job_card");
+
+              console.log("CALLING UPDATE STATUS FUNCTION FROM PHP FILE");
+              updateStatusOfYourJobsInDatabase(ancestor,"<?php echo $_SESSION["username"]; ?>")
+              .then(function(data){
+                console.log("calling fetchjobsofuser and the data is:" + data);
+                $("#update_status_modal").modal("hide");
+
+                element.removeEventListener("click",function(){
+                console.log("Removing the event listener for the click event");
+              })
+
+
+                fetchYourJobsOfUser("<?php echo $_SESSION["username"]; ?>");
+
+             
+              })
+             
+            });
+
+            $("#btn_delete_modal_no").click(function() {
+              $("#btn_update_status_modal_no").modal("hide");
+            });
+          });
         });
-
-        $("#btn_update_status_modal_yes").click(function() {
-
-          //display the "update in progress" text
-          if($("#update_status_modal .modal-body").has("h5").length === 0){
-          $("#update_status_modal .modal-body").append("<h5><b>Update in progress</b></h5>");
-          }
-          
-          //pass the card as the context so that pj_id can be accessed inside the updateStatusOfYourJobsInDatabase() method
-          var ancestor=element.closest("#your_job_card");
-
-          console.log("CALLING UPDATE STATUS FUNCTION FROM PHP FILE");
-          updateStatusOfYourJobsInDatabase(ancestor,"<?php echo $_SESSION["username"]; ?>")
-          .then(function(data){
-            console.log("calling fetchjobsofuser and the data is:" + data);
-            $("#update_status_modal").modal("hide");
-
-            element.removeEventListener("click",function(){
-            console.log("Removing the event listener for the click event");
-          })
+    */
+    document.addEventListener("DOMContentLoaded", function() {
+      setUpEventHandlers("<?php echo $_SESSION["username"]; ?>");
 
 
-            fetchYourJobsOfUser("<?php echo $_SESSION["username"]; ?>");
-
-         
-          })
-         
-        });
-
-        $("#btn_delete_modal_no").click(function() {
-          $("#btn_update_status_modal_no").modal("hide");
-        });
-      });
-    });
-*/
-    document.addEventListener("DOMContentLoaded",function(){
-     setUpEventHandlers("<?php echo $_SESSION["username"]; ?>");
     })
-    
   </script>
 
 </body>
