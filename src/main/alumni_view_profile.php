@@ -77,6 +77,7 @@ body{
     <main id="main">
     <?php
     $user_id = str_rot13($_GET['id']);
+   
     if(empty($user_id)){
         echo("error");
     }
@@ -85,14 +86,18 @@ $data = file_get_contents($url); // put the contents of the file into a variable
 
 if($data){
 $characters = json_decode($data); // decode the JSON feed
+$flag = false;
 foreach ($characters as $character) {
+    
     if($character->username == $user_id)
     {
+        $flag = true;
         ?>
-        
+         
         <div class="container  mt-5 mb-5  shadow mb-5 bg-body" id="container" style="overflow:auto;">
         <div class="row ">
             <div class="p-1 col-lg-6 col-md-6 ">
+                
                 <?php
                     
                     $url = $character->linkedin_profile;
@@ -112,7 +117,6 @@ foreach ($characters as $character) {
                     // The last part of the path should contain the desired value
                     $LinkedinId = end($pathParts);
                     ?>
-                    
                 <div class="d-flex justify-content-center align-items-center">
                     <div>
                         <div class="LI-profile-badge" data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="dark" data-vanity="<?php echo $LinkedinId ?>">
@@ -225,18 +229,25 @@ foreach ($characters as $character) {
         </div>
     </div>
     <div id="info_inside">
-                                        by
-                            </div>
+                                        
+    </div>
     <?php
-        break;
+       
+    }
+    if(!$flag){
+        ?>
+        <div class="d-flex justify-content-center">
+            <img src="../img/UserNotExist.webp" class="img-fluid">
+            
+        </div>
+        <p class="h2 text-center">User Doesn't Exist</p>
+        <?php
     }
 }else{
     echo "Please refresh or try again later";
 }
 ?>
-<?php
-include "footer.php"
-?>
+
        
     </main>
 </body>
@@ -245,7 +256,7 @@ include "footer.php"
     
         $profile = $('.LI-profile-badge iframe .profile-badge__content');
         $('#info_inside').html($profile);
-        console.log($profile.prevObject[0].all);
+        
 	
     
 </script>

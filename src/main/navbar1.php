@@ -13,7 +13,7 @@ function fetchLoggedinUserDetails(username){
         data:{"alumni_username":loggedin_username},
         dataType:"json",
         success:function(response){
-          console.log(response);
+        //   console.log(response);
           if (Array.isArray(response) && response.length > 0) {
         var name_of_alumni = response[0].firstname + " " + response[0].lastname;
         $('#alumni_name').text(name_of_alumni);
