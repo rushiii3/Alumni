@@ -806,10 +806,10 @@ function registerUser() {
   };
 
   //alert("Executing register function");
-
+//https://alumniandroidapp.000webhostapp.com/user_registration.php 
   $.ajax({
-    url: "https://alumniandroidapp.000webhostapp.com/user_registration.php", //https://alumniandroidapp.000webhostapp.com/user_registration.php  
-    //https://alumniandroidapp.000webhostapp.com/user_registration.php 
+    url: "https://vazecollege.net/ALUMNI/user_registration.php",  
+   
     // PHP file to handle the form data
     type: "POST", // HTTP method (POST in this case)
     data: formData, // Form data object

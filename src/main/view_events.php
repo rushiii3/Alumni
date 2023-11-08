@@ -75,7 +75,9 @@ body{
     if(empty($event_id)){
         echo("error");
     }
-$url = 'https://alumniandroidapp.000webhostapp.com/all_events_fetch.php'; // path to your JSON file
+$url = 'https://vazecollege.net/ALUMNI/all_events_fetch.php';
+//https://alumniandroidapp.000webhostapp.com/
+// path to your JSON file
 $data = file_get_contents($url); // put the contents of the file into a variable
 if($data){
 $characters = json_decode($data); // decode the JSON feed
@@ -93,7 +95,7 @@ foreach ($characters as $character) {
                     echo "../img/Beige 2 Image Polaroid Instagram Story.png"; 
                 }else
                 { 
-                    echo"https://alumniandroidapp.000webhostapp.com/Event%20Posters/$img";
+                    echo"https://vazecollege.net/ALUMNI/Event%20Posters/$img"; //https://alumniandroidapp.000webhostapp.com/
                 } 
                 ?>" alt="" class="img-fluid h-100 w-100"/>
             </div>

@@ -286,8 +286,10 @@ function insertScholarshipAwardsByUser(username) {
   };
 
   //console.log("username is :" + username);
+
+  //https://alumniandroidapp.000webhostapp.com/
   return $.ajax({
-    url: "https://alumniandroidapp.000webhostapp.com/post_scholarship_award_giving_back_fragment.php",
+    url: "https://vazecollege.net/ALUMNI/post_scholarship_award_giving_back_fragment.php",
     type: "POST",
     data: scholarshipAwardFormData,
     dataType: "text",
@@ -505,8 +507,9 @@ function insertInternshipJobByUser(username) {
     "sj_job_or_internship" : sj_job_or_internship
   };
 
+  //https://alumniandroidapp.000webhostapp.com/
   return $.ajax({
-    url: "https://alumniandroidapp.000webhostapp.com/post_student_job_giving_back_fragment.php",
+    url: "https://vazecollege.net/ALUMNI/post_student_job_giving_back_fragment.php",
     type: "POST",
     data: internshipJobFormData,
     dataType: "text",
@@ -537,9 +540,10 @@ function insertInternshipJobByUser(username) {
 function fetchAllScholarshipAwardsByUser(username) {
   //$('#loadingDiv').show();
 
+  //https://alumniandroidapp.000webhostapp.com/
   return new Promise(function(resolve,reject){
   $.ajax({
-    url: "https://alumniandroidapp.000webhostapp.com/all_student_scholarship_award_fetch.php",
+    url: "https://vazecollege.net/ALUMNI/all_student_scholarship_award_fetch.php",
     type: "POST",
     dataType: "json",
     success: function (response) {
@@ -564,9 +568,10 @@ function fetchAllInternshipJobsByUser(username){
 
  // $('#loadingDiv').show();
 
+ //https://alumniandroidapp.000webhostapp.com/
   return new Promise(function(resolve,reject){
   $.ajax({
-    url: "https://alumniandroidapp.000webhostapp.com/all_student_internship_job_fetch.php",
+    url: "https://vazecollege.net/ALUMNI/all_student_internship_job_fetch.php",
     type: "POST",
     dataType: "json",
     success: function (response) {

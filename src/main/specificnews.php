@@ -11,7 +11,8 @@ $news_id= $_GET['news_id'];
 $news_title=$_GET['news_title'];
 //echo $id;
 
-$url="https://alumniandroidapp.000webhostapp.com/all_news_fetch.php";
+$url="https://vazecollege.net/ALUMNI/all_news_fetch.php";
+//https://alumniandroidapp.000webhostapp.com/
 $data=file_get_contents($url);
 
 if($data){
