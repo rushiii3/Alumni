@@ -83,6 +83,7 @@ body{
     }
 $url = 'https://vazecollege.net/ALUMNI/all_alumni_fetch.php'; 
 //https://alumniandroidapp.000webhostapp.com/
+//https://vazecollege.net/ALUMNI/
 // path to your JSON file
 $data = file_get_contents($url); // put the contents of the file into a variable
 
