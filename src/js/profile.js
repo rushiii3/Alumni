@@ -253,9 +253,12 @@ function setMaxDateofCalendar() {
 
 //8. function to fetch the updated details of the logged in alumni
 function fetchDetailsofLoggedInAlumni() {
+
+  //https://alumniandroidapp.000webhostapp.com/
+
   $.ajax({
     type: "POST",
-    url: "https://alumniandroidapp.000webhostapp.com/logged_in_alumni_details_fetch_profile_fragment.php",
+    url: "https://vazecollege.net/ALUMNI/logged_in_alumni_details_fetch_profile_fragment.php",
     data: { alumni_username: email_input.value },
     dataType: "json",
     success: function (response) {
@@ -330,9 +333,10 @@ $("#masters_degree_list option").each(function () {
 
 //10.Delete the user account
 function deleteLoggedInUserFromDatabase(){
+  //https://alumniandroidapp.000webhostapp.com/
   $.ajax({
     type: "POST",
-    url: "https://alumniandroidapp.000webhostapp.com/delete_logged_in_profile_fragment.php",
+    url: "https://vazecollege.net/ALUMNI/delete_logged_in_profile_fragment.php",
     data: { username: email_input.value },
     dataType: "text",
     success:function(response){
@@ -742,9 +746,11 @@ $("#SubmitPassword").on("click", function (e) {
   } else if (confirm_password === "") {
     confirm_password_input.dispatchEvent(new Event("input")); ///trigger the validation of confirm password
   } else if (password === confirm_password) {
+
+    //https://alumniandroidapp.000webhostapp.com/
     $.ajax({
       type: "POST",
-      url: "https://alumniandroidapp.000webhostapp.com/alumni_update_password_profile_fragment.php",
+      url: "https://vazecollege.net/ALUMNI/alumni_update_password_profile_fragment.php",
       data: { username: email_input.value, password: password_input.value },
       dataType: "text",
       success: function (response) {
@@ -814,8 +820,9 @@ $(".save").on("click",function () {
     };
 
     $.ajax({
+      //https://alumniandroidapp.000webhostapp.com/
       type: "POST",
-      url: "https://alumniandroidapp.000webhostapp.com/update_all_details_of_logged_in_alumni_profile_fragment.php",
+      url: "https://vazecollege.net/ALUMNI/update_all_details_of_logged_in_alumni_profile_fragment.php",
       data: updated_details,
       dataType: "text",
       success: function (response) {

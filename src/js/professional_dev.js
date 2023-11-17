@@ -324,8 +324,9 @@ function insertPostJobDataToDatabase(username) {
     pj_status: "hiring",
   };
 
+  //https://alumniandroidapp.000webhostapp.com/
   return $.ajax({
-    url: "https://alumniandroidapp.000webhostapp.com/post_job_professional_dev_fragment.php",
+    url: "https://vazecollege.net/ALUMNI/post_job_professional_dev_fragment.php",
     type: "POST",
     data: formdata,
     dataType: "text",
@@ -387,8 +388,9 @@ async function updateStatusOfYourJobsInDatabase(context, username) {
     final_status = "hiring";
   }
 
+  //https://alumniandroidapp.000webhostapp.com/
   return $.ajax({
-    url: "https://alumniandroidapp.000webhostapp.com/update_status_professional_dev_fragment.php",
+    url: "https://vazecollege.net/ALUMNI/update_status_professional_dev_fragment.php",
     type: "POST",
     data: { pj_id: pj_id, pj_status: final_status },
     dataType: "text",
@@ -409,8 +411,10 @@ async function updateStatusOfYourJobsInDatabase(context, username) {
 
 //8.fetch the updated jobs posted by user
 function fetchYourJobsOfUser(username) {
+
+  //https://alumniandroidapp.000webhostapp.com/
   $.ajax({
-    url: "https://alumniandroidapp.000webhostapp.com/all_professional_job_fetch.php",
+    url: "https://vazecollege.net/ALUMNI/all_professional_job_fetch.php",
     type: "GET",
 
     dataType: "json",
