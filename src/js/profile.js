@@ -302,8 +302,8 @@ $("#phone_number").val(cleanedPhoneNumber);
       $("#bachelor_college_name").val(response[0].bachelor_degree_college);
 
       $("#master_degree__name").val(response[0].master_degree);
-      $("#masters_college_name").val(response[0].master_admission_year);
-      $("#masters_admission_year").val(response[0].master_degree_college);
+      $("#masters_admission_year").val(response[0].master_admission_year);
+      $("#masters_college_name").val(response[0].master_degree_college);
 
       $("#company_name").val(response[0].company);
       $("#designation").val(response[0].designation);
