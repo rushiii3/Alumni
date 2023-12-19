@@ -81,7 +81,7 @@ body{
     if(empty($user_id)){
         echo("error");
     }
-$url = 'https://vazecollege.net/ALUMNI/all_alumni_fetch.php'; 
+$url = 'https://alumniandroidapp.000webhostapp.com/all_alumni_fetch.php'; 
 //https://alumniandroidapp.000webhostapp.com/
 //https://vazecollege.net/ALUMNI/
 // path to your JSON file

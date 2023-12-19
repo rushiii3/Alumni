@@ -97,8 +97,9 @@ if (!isset($_SESSION['isloggedin'])) {
 
           <div class="row p-1">
             <?php
-            $url = 'https://vazecollege.net/ALUMNI/all_professional_job_fetch.php';
+            $url = 'https://alumniandroidapp.000webhostapp.com/all_professional_job_fetch.php';
             //https://alumniandroidapp.000webhostapp.com/
+            //https://vazecollege.net/ALUMNI/
             // path to your JSON file
             $data = file_get_contents($url); // put the contents of the file into a variable
             if ($data) {
@@ -229,8 +230,9 @@ if (!isset($_SESSION['isloggedin'])) {
           <div class="container mt-2">
             <div class="row p-1 " id="ToIdentifyMainRow">
               <?php
-              $url = 'https://vazecollege.net/ALUMNI/all_professional_job_fetch.php'; 
+              $url = 'https://alumniandroidapp.000webhostapp.com/all_professional_job_fetch.php'; 
               //https://alumniandroidapp.000webhostapp.com/
+              //https://vazecollege.net/ALUMNI/
               // path to your JSON file
               $data = file_get_contents($url); // put the contents of the file into a variable
               if ($data) {

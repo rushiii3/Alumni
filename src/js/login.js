@@ -44,8 +44,9 @@ function loginUser(){
      };
 
      //https://alumniandroidapp.000webhostapp.com/
+     //https://vazecollege.net/ALUMNI/
      $.ajax({
-          url: "https://vazecollege.net/ALUMNI/user_login.php", // PHP file to handle the form data
+          url: "https://alumniandroidapp.000webhostapp.com/user_login.php", // PHP file to handle the form data
           type: "POST", // HTTP method (POST in this case)
           data: formData, // Form data object
           dataType: 'text', // Expected data type of the response

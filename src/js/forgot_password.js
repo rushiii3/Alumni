@@ -185,7 +185,7 @@ function checkWhetherUserEmailExists(email) {
     };
 
     $.ajax({
-      url: "https://vazecollege.net/ALUMNI/check_is_user_registered_forgot_password_activity.php",
+      url: "https://alumniandroidapp.000webhostapp.com/check_is_user_registered_forgot_password_activity.php",
 
       //https://vazecollege.net/ALUMNI/check_is_user_registered_forgot_password_activity.php
       //https://alumniandroidapp.000webhostapp.com/
@@ -277,7 +277,7 @@ password:final_password
   }
 
   $.ajax({
-    url: "https://vazecollege.net/ALUMNI/alumni_update_password_profile_fragment.php",
+    url: "https://alumniandroidapp.000webhostapp.com/alumni_update_password_profile_fragment.php",
 
     //https://vazecollege.net/ALUMNI/check_is_user_registered_forgot_password_activity.php
     //https://alumniandroidapp.000webhostapp.com/

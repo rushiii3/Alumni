@@ -9,9 +9,10 @@ function fetchLoggedinUserDetails(username){
     //console.log(username);
 
     //https://alumniandroidapp.000webhostapp.com/
+    //https://vazecollege.net/ALUMNI/
 
     $.ajax({
-        url:"https://vazecollege.net/ALUMNI/logged_in_alumni_details_fetch_profile_fragment.php", 
+        url:"https://alumniandroidapp.000webhostapp.com/logged_in_alumni_details_fetch_profile_fragment.php", 
         type:"POST",
         data:{"alumni_username":loggedin_username},
         dataType:"json",

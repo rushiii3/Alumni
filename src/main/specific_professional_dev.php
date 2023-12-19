@@ -11,9 +11,10 @@ $posted_by = $company = $post = $years_of_experience = $contact_number = $contac
 //$news_title=$_GET['news_title'];
 //echo $id;
 
-$url = "https://vazecollege.net/ALUMNI/all_professional_job_fetch.php";
+$url = "https://alumniandroidapp.000webhostapp.com/all_professional_job_fetch.php";
 
 //https://alumniandroidapp.000webhostapp.com/
+//https://vazecollege.net/ALUMNI/
 
 $data = file_get_contents($url);
 

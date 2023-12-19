@@ -75,8 +75,9 @@ body{
     if(empty($event_id)){
         echo("error");
     }
-$url = 'https://vazecollege.net/ALUMNI/all_events_fetch.php';
+$url = 'https://alumniandroidapp.000webhostapp.com/all_events_fetch.php';
 //https://alumniandroidapp.000webhostapp.com/
+//https://vazecollege.net/ALUMNI/
 // path to your JSON file
 $data = file_get_contents($url); // put the contents of the file into a variable
 if($data){
@@ -95,7 +96,9 @@ foreach ($characters as $character) {
                     echo "../img/specific_events_different_png.png"; 
                 }else
                 { 
-                    echo"https://vazecollege.net/ALUMNI/Event%20Posters/$img"; //https://alumniandroidapp.000webhostapp.com/
+                    echo"https://alumniandroidapp.000webhostapp.com/Event%20Posters/$img"; 
+                    //https://alumniandroidapp.000webhostapp.com/
+                    //https://vazecollege.net/ALUMNI/
                 } 
                 ?>" alt="" class="img-fluid h-100 w-100"/>
             </div>

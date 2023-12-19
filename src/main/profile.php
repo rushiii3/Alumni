@@ -105,8 +105,9 @@ if(!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']){
             <?php
             // getting user email
             $user_id = $_SESSION['username'];
-$url = 'https://vazecollege.net/ALUMNI/all_alumni_fetch.php'; 
+$url = 'https://alumniandroidapp.000webhostapp.com/all_alumni_fetch.php'; 
 //https://alumniandroidapp.000webhostapp.com/
+//https://vazecollege.net/ALUMNI/
 // path to your JSON file
 $data = file_get_contents($url); // put the contents of the file into a variable
 if($data){

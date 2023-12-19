@@ -9,9 +9,10 @@ if (!isset($_SESSION['isloggedin']) || !$_SESSION['isloggedin']) {
 }
 
 // Load external data from a JSON file
-$url = 'https://vazecollege.net/ALUMNI/all_events_fetch.php';
+$url = 'https://alumniandroidapp.000webhostapp.com/all_events_fetch.php';
 
 //https://alumniandroidapp.000webhostapp.com/
+//https://vazecollege.net/ALUMNI/
 $data = file_get_contents($url);
 
 if ($data) {
