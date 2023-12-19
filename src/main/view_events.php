@@ -92,7 +92,7 @@ foreach ($characters as $character) {
                 <img id="img" src="<?php 
                 if($img=="event image")
                 { 
-                    echo "../img/Beige 2 Image Polaroid Instagram Story.png"; 
+                    echo "../img/specific_events_different_png.png"; 
                 }else
                 { 
                     echo"https://vazecollege.net/ALUMNI/Event%20Posters/$img"; //https://alumniandroidapp.000webhostapp.com/
