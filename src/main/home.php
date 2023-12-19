@@ -18,12 +18,13 @@ if ($data) {
     $characters = json_decode($data); // Decode the JSON feed
 } else {
     echo "Please refresh or try again later";
-    exit;
+    //exit;
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv='cache-control' content='no-cache'>
@@ -46,6 +47,7 @@ if ($data) {
         }
     </style>
 </head>
+
 <body>
     <?php
     include_once "loader.html";
@@ -76,7 +78,7 @@ if ($data) {
                     </div>
                 </div>
                 <h3 class="ms-4 mt-4 mb-3" id="heading">
-                   Upcoming Events
+                    Upcoming Events
                 </h3>
 
                 <?php
@@ -131,8 +133,39 @@ if ($data) {
                     <div class="container mt-4" style="height:100vh;">
                         <div class="row p-1">
                             <?php
-                            foreach ($upcoming_events as $character) {
+                            if (count($upcoming_events) > 0) {
+                                foreach ($upcoming_events as $character) {
                             ?>
+                                    <div class="col-lg-4 col-md-6 mb-5">
+                                        <div class="card shadow p-1" style="width: auto; border-radius: 20px;">
+                                            <div class="card-body">
+                                                <h5 class="card-title fw-bold"><?php echo $character->event_name; ?></h5>
+                                                <p class="card-text" style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; height: 4.5rem"><?php echo $character->event_description; ?> </p>
+                                                <p class="card-text"> Date: <?php echo date("d F Y", strtotime($character->event_date)); ?></p>
+                                                <div class="mx-auto text-center">
+                                                    <a href="view_events.php?id=<?php echo $character->event_id; ?>" class="link text-center mx-2 my-2" style="color:#0099CC ">View Details</a>
+                                                    <a href="<?php echo $character->event_registration_link; ?>" class="link text-center btn mx-2 my-2" style="background-color:#0099CC ">Register</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            <?php
+                                }
+                            } else {
+                                echo "No Upcoming events";
+                            }
+                            ?>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Past Events -->
+                <div class="container mt-4" style="height:100vh;" id="past">
+                    <div class="row p-1">
+                        <?php
+                        if (count($past_events) > 0) {
+                            foreach ($past_events as $character) {
+                        ?>
                                 <div class="col-lg-4 col-md-6 mb-5">
                                     <div class="card shadow p-1" style="width: auto; border-radius: 20px;">
                                         <div class="card-body">
@@ -146,40 +179,22 @@ if ($data) {
                                         </div>
                                     </div>
                                 </div>
-                            <?php
+                        <?php
                             }
-                            ?>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Past Events -->
-                <div class="container mt-4" style="height:100vh;" id="past">
-                    <div class="row p-1">
-                        <?php
-                        foreach ($past_events as $character) {
-                        ?>
-                            <div class="col-lg-4 col-md-6 mb-5">
-                                <div class="card shadow p-1" style="width: auto; border-radius: 20px;">
-                                    <div class="card-body">
-                                        <h5 class="card-title fw-bold"><?php echo $character->event_name; ?></h5>
-                                        <p class="card-text" style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; height: 4.5rem"><?php echo $character->event_description; ?> </p>
-                                        <p class="card-text"> Date: <?php echo date("d F Y", strtotime($character->event_date)); ?></p>
-                                        <div class="mx-auto text-center">
-                                            <a href="view_events.php?id=<?php echo $character->event_id; ?>" class="link text-center mx-2 my-2" style="color:#0099CC ">View Details</a>
-                                            <a href="<?php echo $character->event_registration_link; ?>" class="link text-center btn mx-2 my-2" style="background-color:#0099CC ">Register</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php
+                        } else {
+                            echo "No Past events";
                         }
                         ?>
                     </div>
                 </div>
+                <!--End of Past Events-->
             </div>
+
+            <!--End of content-->
         </div>
+        <!--End of wrapper-->
     </main>
     <script src="../js/home.js"></script>
 </body>
+
 </html>
